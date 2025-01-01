@@ -3,11 +3,9 @@ import MenuIcon from "./icons/menuIcon.astro";
 import ProfileIcon from "./icons/profileIcon.astro";
 import ProgrammingIcon from "./icons/programmingIcon.astro";
 import SectionContainer from "./sectionContainer.astro";
-
-
 ---
 
-<SectionContainer>
+<SectionContainer class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm transition-colors rounded-b-md duration-500" id="header-nav">
     <header class="py-4">
         <ul class="flex justify-between items-center text-yellow-300">
             <li>
@@ -29,3 +27,13 @@ import SectionContainer from "./sectionContainer.astro";
         </ul>
     </header>
 </SectionContainer>
+<div class="pb-16" />
+
+<script>
+    const header = document.getElementById('header-nav')
+    
+    const toggleHeaderBackground = () => {
+        header?.classList.toggle('bg-black/50', window.scrollY > 0)
+    }
+    window.addEventListener('scroll', toggleHeaderBackground)
+</script>
