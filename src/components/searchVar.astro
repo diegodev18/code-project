@@ -1,0 +1,29 @@
+---
+import SearchIcon from "./icons/searchIcon.astro";
+import SectionContainer from "./sectionContainer.astro";
+
+---
+
+<SectionContainer class="!px-8">
+    <var>
+        <form
+        class="flex justify-center gap-x-2 py-2 bg-[#1E1E1E] rounded-lg"
+        action="/search"
+        method="get"
+        >
+            <input
+            class="w-3/4 bg-transparent outline-none text-white font-medium"
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Buscar..."
+            >
+            <button
+            class="text-white"
+            type="submit"
+            >
+                <SearchIcon />
+            </button>
+        </form>
+    </var>
+</SectionContainer>
