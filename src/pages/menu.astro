@@ -1,0 +1,34 @@
+---
+import Clear from '../layouts/Clear.astro';
+
+const pages = [
+    { title: 'Inicio', href: '/' },
+    { title: 'Ayuda', href: '/help' },
+    { title: 'Creado por', href: '/created-by' },
+];
+
+const active = "Inicio";
+---
+
+<Clear
+title="Menu"
+description="Menu de navegación"
+>
+    <main class="flex flex-col justify-end px-5 py-8 bg-[#28292B] text-white h-svh">
+        <ul class="flex flex-col gap-y-5">
+            {
+                pages.map(page => (
+                    <li
+                    class:list={["text-4xl font-bold", active === page.title ? "text-[#FFD700]" : "opacity-65"]}
+                    >
+                        <a
+                        href={page.href}
+                        >
+                            {page.title}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </main>
+</Clear>
