@@ -2,27 +2,30 @@
 import MenuIcon from "./icons/menuIcon.astro";
 import ProfileIcon from "./icons/profileIcon.astro";
 import ProgrammingIcon from "./icons/programmingIcon.astro";
+import SectionContainer from "./sectionContainer.astro";
 
 
 ---
 
-<header class="px-5 py-4">
-    <ul class="flex justify-between items-center text-yellow-300">
-        <li>
-            <a href="">
-                <MenuIcon />
-            </a>
-        </li>
-        <li class="flex gap-x-[5px] items-center">
-            <ProgrammingIcon />
-            <h3 class="text-xl text-white font-bold">
-                Code Project
-            </h3>
-        </li>
-        <li>
-            <a href="">
-                <ProfileIcon />
-            </a>
-        </li>
-    </ul>
-</header>
+<SectionContainer>
+    <header class="py-4">
+        <ul class="flex justify-between items-center text-yellow-300">
+            <li>
+                <a href="">
+                    <MenuIcon />
+                </a>
+            </li>
+            <li class="flex gap-x-[5px] items-center">
+                <ProgrammingIcon />
+                <h3 class="text-xl text-white font-bold">
+                    Code Project
+                </h3>
+            </li>
+            <li>
+                <a href="">
+                    <ProfileIcon />
+                </a>
+            </li>
+        </ul>
+    </header>
+</SectionContainer>
