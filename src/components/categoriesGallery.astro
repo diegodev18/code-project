@@ -1,0 +1,43 @@
+---
+import SectionContainer from "./sectionContainer.astro"
+
+const categories = [
+    {
+        name: "Todas",
+    },
+    {
+        name: "Bajo nivel",
+    },
+    {
+        name: "Alto nivel",
+    },
+    {
+        name: "Especial",
+    },
+    {
+        name: "Especial",
+    },
+]
+---
+
+<SectionContainer class="!px-0 py-4">
+    <div class="overflow-x-auto !px-4 scroll-hidden">
+        <ul class="flex gap-x-3 text-nowrap">
+            {
+                categories.map((category) => (
+                    <li class="px-2 py-1 bg-[#1E1E1E] rounded-xl">
+                        <button>
+                            {category.name}
+                        </button>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</SectionContainer>
+
+<style>
+    .scroll-hidden {
+        scrollbar-width: none;
+    }
+</style>
