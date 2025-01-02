@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ProfileComp from "../components/profile.astro";
+import ProfileComponent from "../components/profileComponent.astro";
 import Login from "../components/login.astro";
 import { getSession } from "auth-astro/server";
 
@@ -15,7 +15,7 @@ description="Profile page"
 >
     {
         session ?
-        <ProfileComp
+        <ProfileComponent
         name={session.user?.name ?? "Cool name"}
         username={session.user?.id ?? "Cool username"}
         img={session.user?.image ?? ""}
