@@ -1,4 +1,6 @@
 ---
+import MarkText from "@/components/markText.astro";
+import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 
 ---
@@ -7,5 +9,30 @@ import Layout from "@/layouts/Layout.astro";
 title="Sobre nostros - CodeProject"
 description="Conoce más sobre CodeProject, la comunidad de programadores más grande de habla hispana."
 >
-
+    <SectionContainer class="flex flex-col gap-y-2 border-b-[1px] border-b-yellow-200/50 pb-5">
+        <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
+            Sobre CodeProject
+        </h2>
+        <p class="text-lg font-medium">
+            <MarkText>CodeProject es un proyecto personal mio</MarkText> que nace de la idea de crear mas recursos practicos para mejorar en programacion. Aqui podras encontrar proyectos, con documentacion y ejemplos practicos para mejorar tus habilidades en programacion.
+        </p>
+    </SectionContainer>
+    <SectionContainer class="flex flex-col gap-y-2 py-5">
+        <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
+            Sobre Mi
+        </h2>
+        <p class="text-lg font-medium">
+            Hola, <MarkText>mi nombre es Diego Sanchez,</MarkText> soy un <MarkText>estudiante de Ingenieria en Desarrollo de Software.</MarkText> Gracias por visitar este proyecto, espero te ayude a mejorar tus habilidades. Puedes visitar mi portfolio si gustas :).
+        </p>
+        <aside class="flex justify-center">
+            <a class="bg-[#1E1E1E] text-lg font-semibold px-4 py-[6px] rounded-full" target="_blank" href="https://www.diego18.pro/">
+                Portfolio
+            </a>
+        </aside>
+    </SectionContainer>
+    <!-- <SectionContainer class="flex flex-col gap-y-2 border-b-[1px] border-b-yellow-200/50 py-5">
+        <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
+            Colaboradores
+        </h2>
+    </SectionContainer> -->
 </Layout>
