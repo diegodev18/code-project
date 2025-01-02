@@ -1,78 +1,28 @@
 ---
-import SectionContainer from "../components/sectionContainer.astro";
 import Layout from "../layouts/Layout.astro";
-import ShareIcon from "../components/icons/shareIcon.astro";
-import GitHubIcon from "../components/icons/brands/githubIcon.astro";
-import Share2Icon from "../components/icons/share2Icon.astro";
+import ProfileComp from "../components/profile.astro";
+import Login from "../components/login.astro";
+import { getSession } from "auth-astro/server";
 
-const certificates = [
-    {
-        title: "Curso de React",
-        description: "Curso de React en Platzi",
-        url: "https://platzi.com/cursos/react/"
-    },
-    {
-        title: "Curso de JavaScript",
-        description: "Curso de JavaScript en Platzi",
-        url: "https://platzi.com/cursos/javascript/"
-    },
-    {
-        title: "Curso de CSS Grid",
-        description: "Curso de CSS Grid en Platzi",
-        url: "https://platzi.com/cursos/css-grid-layout/"
-    },
-    {
-        title: "Curso de CSS Flexbox",
-        description: "Curso de CSS Flexbox en Platzi",
-        url: "https://platzi.com/cursos/css-flexbox/"
-    },
-    {
-        title: "Curso de CSS Grid",
-        description: "Curso de CSS Grid en Platzi",
-        url: "https://platzi.com/cursos/css-grid-layout/"
-    },
-]
+const certificates: { title: string; description: string; img: { src: string; alt: string } }[] = [];
+
+const session = await getSession(Astro.request);
 ---
 
 <Layout
 title="Profile"
 description="Profile page"
 >
-    <SectionContainer>
-        <div
-        class="aspect-square w-44 rounded-lg bg-white"
+    {
+        session ?
+        <ProfileComp
+        name={session.user?.name ?? "Cool name"}
+        username={session.user?.id ?? "Cool username"}
+        img={session.user?.image ?? ""}
+        link={session.user?.id ? `https://github.com/${session.user?.id}` : "https://github.com/"}
+        certificates={certificates ?? []}
+        /> :
+        <Login
         />
-        <div class="flex items-center gap-x-3 pt-4">
-            <h1 class="font-bold text-3xl">
-                Diego Sanchez
-            </h1>
-            <button>
-                <ShareIcon />
-            </button>
-        </div>
-        <a href="" class="flex w-fit gap-x-2 opacity-65 items-center font-medium pt-2">
-            <GitHubIcon />
-            <p class="text-xl">
-                diego-dev018
-            </p>
-        </a>
-    </SectionContainer>
-    <SectionContainer class="!px-0 mx-5 border-opacity-50 border-t-[1px] border-t-yellow-300 mt-5 pt-2">
-        <h2 class="text-2xl text-yellow-200 font-bold text-center pb-2">
-            Certificados
-        </h2>
-        <ul class="flex flex-col gap-y-2">
-            {
-                certificates.map(certificate => (
-                    <li>
-                        <div
-                        class="flex justify-end items-end p-3 aspect-video w-full rounded-xl bg-[#1E1E1E]"
-                        >
-                            <Share2Icon />
-                        </div>
-                    </li>
-                ))
-            }
-        </ul>
-    </SectionContainer>
+    }
 </Layout>
