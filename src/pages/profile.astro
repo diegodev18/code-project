@@ -19,6 +19,7 @@ description="Profile page"
         name={session.user?.name ?? "Cool name"}
         username={session.user?.id ?? "Cool username"}
         img={session.user?.image ?? ""}
+        link={session.user?.id ? `https://github.com/${session.user?.id}` : "https://github.com/"}
         certificates={certificates ?? []}
         /> :
         <Login

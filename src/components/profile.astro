@@ -9,6 +9,7 @@ interface Props {
     name: string;
     username: string;
     img: string;
+    link: string;
     certificates?: {
         title: string;
         description: string;
@@ -18,7 +19,7 @@ interface Props {
         }
     }[];
 }
-const { name, username, img, certificates } = Astro.props;
+const { name, username, img, link, certificates } = Astro.props;
 ---
 <SectionContainer>
     <div class="flex justify-around items-end">
@@ -38,7 +39,7 @@ const { name, username, img, certificates } = Astro.props;
             <ShareIcon />
         </button>
     </div>
-    <a href="" class="flex w-fit gap-x-2 opacity-65 items-center font-medium pt-2">
+    <a href={link ?? ""} target="_blank" class="flex w-fit gap-x-3 pr-2 opacity-65 items-center font-medium pt-2">
         <GitHubIcon />
         <p class="text-xl">
             {username}
