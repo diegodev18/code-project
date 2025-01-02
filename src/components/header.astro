@@ -2,6 +2,7 @@
 import MenuIcon from "./icons/menuIcon.astro";
 import ProfileIcon from "./icons/profileIcon.astro";
 import ProgrammingIcon from "./icons/programmingIcon.astro";
+import MobileMenu from "./mobileMenu.astro";
 import SectionContainer from "./sectionContainer.astro";
 ---
 
@@ -9,9 +10,12 @@ import SectionContainer from "./sectionContainer.astro";
     <header class="py-4">
         <ul class="flex justify-between items-center text-yellow-300">
             <li>
-                <a href="/menu">
+                <button
+                onclick="document.getElementById('mobile-menu').classList.remove('hidden')"
+                >
                     <MenuIcon />
-                </a>
+                </button>
+                <MobileMenu />
             </li>
             <li class="flex gap-x-[5px] items-center cursor-default">
                 <ProgrammingIcon />
