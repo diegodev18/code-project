@@ -2,6 +2,7 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 import ArrowBottom from "@/components/icons/arrowBottom.astro";
+import ArrowBadgeDown from "@/components/icons/arrowBadgeDown.astro";
 
 const frenquently_questions = [
     {
@@ -19,21 +20,24 @@ const frenquently_questions = [
 title="Help - Code Project"
 description="Help page for Code Project"
 >
-    <SectionContainer>
-        <h1 class="flex flex-col justify-center text-center text-[3rem] leading-tight font-bold text-yellow-300 h-[80svh]">
+    <SectionContainer class="flex flex-col items-center justify-center h-[80svh] text-yellow-300">
+        <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
             <span class="text-xl font-medium opacity-65">
                 Bienvenido!
             </span>
             En que te podemos ayudar?
         </h1>
+        <a href="#faq" class="text-yellow-300">
+            <ArrowBadgeDown />
+        </a>
     </SectionContainer>
-    <SectionContainer>
+    <SectionContainer class="min-h-[35svh]">
         <h2 class="text-3xl font-bold text-yellow-300 pb-3">
             Preguntas frecuentes
         </h2>
-        <ul class="flex flex-col gap-y-4">
+        <ul class="flex flex-col gap-y-4" id="faq">
             {
-                frenquently_questions.map((question, index) => (
+                frenquently_questions.map((question) => (
                     <li class="flex flex-col gap-y-1 cursor-pointer group frenq-question">
                         <button class="flex items-center text-start text-yellow-300 text-xl gap-x-1 font-semibold">
                             <span class="-rotate-90 group-hover:rotate-0 transition-transform duration-300">
