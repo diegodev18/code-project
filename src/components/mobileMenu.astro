@@ -1,0 +1,47 @@
+---
+import XLetterIcon from "./icons/xLetterIcon.astro"
+
+
+const enableOpts = [
+    { name: 'Inicio', link: '/' },
+    { name: 'Ayuda', link: '/help' },
+    { name: 'Creado por', link: '/about' },
+]
+
+const location = Astro.url.pathname
+---
+<div
+class="fixed inset-0 z-[999] h-screen w-screen px-5 pt-4 pb-10 bg-black/50 backdrop-blur-sm hidden"
+id="mobile-menu"
+>
+    <div class="flex flex-col justify-between h-full">
+        <aside>
+            <button
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+            >
+                <XLetterIcon />
+            </button>
+        </aside>
+        <nav>
+            <ul class="flex flex-col">
+                {
+                    enableOpts.map((opt) => (
+                        <li class="text-4xl font-bold py-2">
+                            <a
+                            href={opt.link}
+                            class={location === opt.link ? 'text-yellow-300' : 'opacity-65 text-white'}
+                            >
+                                {opt.name}
+                            </a>
+                        </li>
+                    ))
+                }
+                <li class="h-20 bg-black/50 mt-5 rounded-md">
+                    <a href="">
+    
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
