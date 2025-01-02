@@ -3,17 +3,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 import ArrowBottom from "@/components/icons/arrowBottom.astro";
 import ArrowBadgeDown from "@/components/icons/arrowBadgeDown.astro";
-
-const frenquently_questions = [
-    {
-        title: "Como puedo acceder a mi cuenta?",
-        content: "Para acceder a tu cuenta, debes iniciar session con github, presionando el boton con el icono de la persona en la esquina superior derecha."
-    },
-    {
-        title: "Como accedo a un proyecto?",
-        content: "Para acceder a un proyecto, debes buscarlo en la barra de busqueda y presionar en su tarjeta."
-    }
-]
+import frenquently_questions from "@/db/freq_questions";
 ---
 
 <Layout
