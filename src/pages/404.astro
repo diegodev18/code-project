@@ -1,4 +1,5 @@
 ---
+import Adv from "@/components/adv.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 
@@ -7,14 +8,5 @@ import Layout from "@/layouts/Layout.astro";
 title="Pagina no encontrada - CodeProject"
 description="404: Not Found"
 >
-    <SectionContainer>
-        <div class="flex flex-col justify-center text-center px-5 min-h-[82svh]">
-            <h1 class="text-4xl font-bold text-yellow-300">
-                404: Not Found
-            </h1>
-            <p class="text-xl text-gray-300">
-                La página que buscas no existe. Pero no te preocupes, puedes regresar a la página principal y buscar el proyecto que quieres realizar.
-            </p>
-        </div>
-    </SectionContainer>
+    <Adv title="404 - Not Found" description="La página que buscas no existe. Pero no te preocupes, puedes regresar a la página principal y buscar el proyecto que quieres realizar." />
 </Layout>

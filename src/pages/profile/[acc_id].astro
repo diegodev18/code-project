@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProfileComponent from "@/components/profileComponent.astro";
+import Adv from "@/components/adv.astro";
+
+const params = Astro.params;
+
+const session = {
+    acc_id: 1,
+    name: "Diego Sanchez",
+    id: "diego-dev018",
+    image: "https://avatars.githubusercontent.com/u/76844947?v=4",
+    certificates: []
+};
+---
+<Layout
+title={session.name ?? "Profile - CodeProject"}
+description={`Pagina de perfil de ${session.name ?? "CodeProject"}`}
+>
+    {
+        session.acc_id.toString() === params.acc_id ?
+        <ProfileComponent
+        name={session?.name ?? "Cool name"}
+        username={session?.id ?? "Cool username"}
+        img={session?.image ?? ""}
+        link={session?.id ? `https://github.com/${session?.id}` : "https://github.com/"}
+        certificates={session.certificates ?? []}
+        /> :
+        <Adv title="404 - Not found" description="No se ha encontrado el perfil :(. Revisa que la url este correcta!" />
+    }
+</Layout>
