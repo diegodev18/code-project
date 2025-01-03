@@ -17,9 +17,7 @@ id="mobile-menu"
 >
     <div class="flex flex-col justify-between h-full">
         <aside>
-            <button
-            onclick="document.getElementById('mobile-menu').removeAttribute('open')"
-            >
+            <button id="close-mobile-menu">
                 <XLetterIcon />
             </button>
         </aside>
@@ -68,3 +66,18 @@ id="mobile-menu"
         opacity: 0;
     }
 </style>
+
+<script>
+    const mobileMenu = document.querySelector('#mobile-menu')
+    const closeMobileMenu = document.querySelector('#close-mobile-menu')
+    const openMobileMenu = document.querySelector('#open-mobile-menu')
+    const mobileHeader = document.querySelector('#header-nav')
+
+    closeMobileMenu?.addEventListener('click', () => {
+        mobileMenu?.removeAttribute('open')
+    })
+
+    openMobileMenu?.addEventListener('click', () => {
+        mobileMenu?.setAttribute('open', '')
+    })
+</script>
