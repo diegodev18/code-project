@@ -4,6 +4,16 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
 import Layout from "@/layouts/Layout.astro";
 
+const buttons_me = [
+    {
+        text: "Portfolio",
+        link: "https://www.diego18.pro/",
+    },
+    {
+        text: "Github",
+        link: "https://github.com/diego-dev018",
+    },
+];
 ---
 
 <Layout
@@ -26,10 +36,15 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
         <p class="text-lg font-medium">
             Hola, <MarkText>mi nombre es Diego Sanchez,</MarkText> soy un <MarkText>estudiante de Ingenieria en Desarrollo de Software.</MarkText> Gracias por visitar este proyecto, espero te ayude a mejorar tus habilidades. Puedes visitar mi portfolio si gustas :).
         </p>
-        <aside class="flex justify-center">
-            <a class="bg-[#1E1E1E] text-lg font-semibold px-4 py-[6px] rounded-full" target="_blank" href="https://www.diego18.pro/">
-                Portfolio
-            </a>
+        <aside class={`grid grid-cols-${buttons_me.length} gap-x-${buttons_me.length}`}>
+
+            {
+                buttons_me.map(({text, link}) => (
+                    <a class="bg-[#1E1E1E] text-lg font-semibold px-4 py-[6px] text-center rounded-full" target="_blank" href={link}>
+                        {text}
+                    </a>
+                ))
+            }
         </aside>
         <ToSectionArrow href="#about-project" divClass="rotate-180" />
     </SectionContainer>
