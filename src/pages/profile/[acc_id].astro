@@ -2,27 +2,22 @@
 import Layout from "@/layouts/Layout.astro";
 import ProfileComponent from "@/components/profileComponent.astro";
 import Adv from "@/components/adv.astro";
+import Profiles from "@/db/profiles";
 
 const params = Astro.params;
 
-const session = {
-    acc_id: 1,
-    name: "Diego Sanchez",
-    id: "diego-dev018",
-    image: "https://avatars.githubusercontent.com/u/76844947?v=4",
-    certificates: []
-};
+const session = Profiles.find((profile) => profile.acc_id.toString() === params.acc_id);
 ---
 <Layout
-title={session.name ?? "Profile - CodeProject"}
-description={`Pagina de perfil de ${session.name ?? "CodeProject"}`}
+title={session?.name ?? "Profile - CodeProject"}
+description={`Pagina de perfil de ${session?.name ?? "CodeProject"}`}
 >
     {
-        session.acc_id.toString() === params.acc_id ?
+        session ?
         <ProfileComponent
         name={session?.name ?? "Cool name"}
         username={session?.id ?? "Cool username"}
-        img={session?.image ?? ""}
+        img={session?.img ?? ""}
         link={session?.id ? `https://github.com/${session?.id}` : "https://github.com/"}
         certificates={session.certificates ?? []}
         />
