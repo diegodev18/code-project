@@ -1,0 +1,59 @@
+---
+import SectionContainer from "@/components/sectionContainer.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const params = Astro.params; // http://localhost:4321/projects/git/c/introduction
+
+const pages = [
+    {
+        title: "Instrucciones",
+        href: "",
+    }
+]
+
+const info = {
+    id: 1,
+    title: "Introduccion",
+    task: "Create a new repository",
+}
+---
+
+<Layout
+title={params.title?.toUpperCase() ?? "Project - CodeProject"}
+description="This is a project page"
+>
+    <SectionContainer class="pb-3">
+        <h3 class="text-md italic font-semibold text-yellow-300/50">
+            {params.name?.toUpperCase()}
+        </h3>
+        <h1 class="flex text-3xl font-bold items-end gap-x-2 text-yellow-300">
+            {info.title}
+            <span class="text-lg text-yellow-200/65">
+                {`#${info.id}`}
+            </span>
+        </h1>
+    </SectionContainer>
+    <SectionContainer>
+        <ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
+            {
+                pages.map(page => (
+                    <li class="pb-1 px-3 rounded-b-lg bg-[#1E1E1E]">
+                        <a class="font-semibold" href={page.href}>
+                            {page.title}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </SectionContainer>
+    <SectionContainer class="pt-5">
+        <div class="py-2 px-3 bg-[#1E1E1E] rounded-lg">
+            <h2 class="text-2xl pb-1 font-semibold border-b-2 border-yellow-300">
+                Tarea
+            </h2>
+            <p class="pt-3 font-medium min-h-[65svh]">
+                {info.task}
+            </p>
+        </div>
+    </SectionContainer>
+</Layout>
