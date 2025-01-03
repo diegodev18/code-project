@@ -1,0 +1,15 @@
+---
+import ArrowBadgeDown from "@/components/icons/arrowBadgeDown.astro"
+
+interface Props {
+    href: string;
+    divClass?: string;
+    aClass?: string;
+}
+const { href: linkRefer, divClass, aClass } = Astro.props;
+---
+<div class:list={["flex justify-center", divClass]}>
+    <a href={linkRefer} class:list={["w-fit text-yellow-300 animate-pulse", aClass]}>
+        <ArrowBadgeDown />
+    </a>
+</div>

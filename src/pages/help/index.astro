@@ -2,8 +2,8 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 import ArrowBottom from "@/components/icons/arrowBottom.astro";
-import ArrowBadgeDown from "@/components/icons/arrowBadgeDown.astro";
 import frenquently_questions from "@/db/freq_questions";
+import ToSectionArrow from "@/components/toSectionArrow.astro";
 ---
 
 <Layout
@@ -17,9 +17,7 @@ description="Help page for Code Project"
             </span>
             En que te podemos ayudar?
         </h1>
-        <a href="#faq" class="text-yellow-300 animate-pulse">
-            <ArrowBadgeDown />
-        </a>
+        <ToSectionArrow href="#faq" />
     </SectionContainer>
     <SectionContainer class="min-h-[35svh]">
         <h2 class="text-3xl font-bold text-yellow-300 pb-3">
