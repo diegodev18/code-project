@@ -6,7 +6,7 @@ import MobileMenu from "@/components/mobileMenu.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 ---
 
-<SectionContainer class="fixed top-0 left-0 right-0 z-50 transition-colors rounded-b-md duration-500" id="header-nav">
+<SectionContainer class="fixed top-0 left-0 right-0 z-50 transition-colors backdrop-blur-sm rounded-b-md duration-500" id="header-nav">
     <header class="py-4">
         <ul class="flex justify-between items-center text-yellow-300">
             <li>
@@ -38,7 +38,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
     
     const toggleHeaderBackground = () => {
         header?.classList.toggle('bg-black/50', window.scrollY > 0)
-        header?.classList.toggle('backdrop-blur-sm', window.scrollY > 0)
+        header?.classList.toggle('!backdrop-blur-md', window.scrollY > 0)
     }
     window.addEventListener('scroll', toggleHeaderBackground)
 </script>
