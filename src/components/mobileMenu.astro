@@ -12,13 +12,13 @@ const enableOpts = [
 const location = Astro.url.pathname
 ---
 <div
-class="fixed inset-0 z-[999] h-[100dvh] w-screen px-5 pt-4 pb-10 bg-black/60 backdrop-blur-md hidden"
+class="fixed inset-0 z-[999] h-[100dvh] w-screen px-5 pt-4 pb-10 bg-black/60 backdrop-blur-md"
 id="mobile-menu"
 >
     <div class="flex flex-col justify-between h-full">
         <aside>
             <button
-            onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+            onclick="document.getElementById('mobile-menu').removeAttribute('open')"
             >
                 <XLetterIcon />
             </button>
@@ -51,3 +51,20 @@ id="mobile-menu"
         </nav>
     </div>
 </div>
+
+<style>
+    #mobile-menu[open] {
+        display: block;
+        opacity: 1;
+        transition: opacity 0.3s;
+        
+        @starting-style {
+            opacity: 0;
+        }
+    }
+    #mobile-menu {
+        display: none;
+        transition: opacity 0.3s, display 0.3s allow-discrete;
+        opacity: 0;
+    }
+</style>
