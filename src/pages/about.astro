@@ -36,7 +36,7 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
         <p class="text-lg font-medium">
             Hola, <MarkText>mi nombre es Diego Sanchez,</MarkText> soy un <MarkText>estudiante de Ingenieria en Desarrollo de Software.</MarkText> Gracias por visitar este proyecto, espero te ayude a mejorar tus habilidades. Puedes visitar mi portfolio si gustas :).
         </p>
-        <aside class={`grid grid-cols-${buttons_me.length} gap-x-${buttons_me.length}`}>
+        <div class={`grid grid-cols-2 gap-2`}>
 
             {
                 buttons_me.map(({text, link}) => (
@@ -45,7 +45,7 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
                     </a>
                 ))
             }
-        </aside>
+        </div>
         <ToSectionArrow href="#about-top" divClass="rotate-180" />
     </SectionContainer>
 </Layout>
