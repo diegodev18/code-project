@@ -10,7 +10,9 @@ import SectionContainer from "@/components/sectionContainer.astro";
     <header class="py-4">
         <ul class="flex justify-between items-center text-yellow-300">
             <li>
-                <button id="open-mobile-menu">
+                <button
+                onclick="document.querySelector('#mobile-menu').setAttribute('open', '')"
+                >
                     <MenuIcon />
                 </button>
                 <MobileMenu />
