@@ -26,6 +26,6 @@ description={`Pagina de perfil de ${session.name ?? "CodeProject"}`}
         link={session?.id ? `https://github.com/${session?.id}` : "https://github.com/"}
         certificates={session.certificates ?? []}
         /> :
-        <Adv title="404 - Not found" description="No se ha encontrado el perfil :(. Revisa que la url este correcta!" />
+        <Adv title="404 - Perfil no encontrado" description="No se ha encontrado el perfil :(. Revisa que la url este correcta!" />
     }
 </Layout>
