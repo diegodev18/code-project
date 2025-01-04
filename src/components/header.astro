@@ -33,12 +33,17 @@ import DesktopNav from "@/components/desktopNav.astro";
 </SectionContainer>
 <div class="pb-20" />
 
-<script>
-    const header = document.getElementById('header-nav')
-    
-    const toggleHeaderBackground = () => {
-        header?.classList.toggle('bg-black/50', window.scrollY > 0)
-        header?.classList.toggle('!backdrop-blur-md', window.scrollY > 0)
+<script is:inline>
+    function toggleHeaderBackground() {
+        const header = document.querySelector('#header-nav');
+        if (window.scrollY > 10) {
+            header?.classList.add('bg-black/50');
+        } else {
+            header?.classList.remove('bg-black/50');
+        }
     }
-    window.addEventListener('scroll', toggleHeaderBackground)
+    window.addEventListener('scroll', () => {
+        toggleHeaderBackground();
+    })
+    
 </script>
