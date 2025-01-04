@@ -24,6 +24,7 @@ export default [
         content: "Puedes contactar a los creadores de la plataforma via twitter en \"@diegodev018\""
     },
     {
-        
+        title: "Como puedo reportar un error?",
+        content: "Puedes reportar un error en la plataforma, enviando un mensaje a los creadores de la plataforma via twitter en \"@diegodev018\""
     }
 ]
