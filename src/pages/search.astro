@@ -1,0 +1,24 @@
+---
+import SearchVar from '@/components/searchVar.astro'
+import SectionContainer from '@/components/sectionContainer.astro';
+import Layout from '@/layouts/Layout.astro'
+
+const searched = Astro.url.searchParams.get('search');
+---
+
+<Layout
+title='Search'
+description='Search for products'
+>
+    <SearchVar />
+    <SectionContainer>
+        <p class="pt-2 pb-4 font-medium">
+            <span class="opacity-70 italic text-sm">
+                Resultados para:
+            </span>
+            <span class="font-bold text-purple-300">
+                {searched}
+            </span>
+        </p>
+    </SectionContainer>
+</Layout>
