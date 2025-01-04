@@ -27,18 +27,33 @@ import Categories from "@/db/index_categories"
 
 <script>
     function initCatGallery() {
-        let catGallery = document.querySelectorAll('.cat-gallery');
-        catGallery.forEach((cat) => {
-            cat.addEventListener('click', () => {
-                catGallery.forEach((cat) => {
-                    cat.classList.remove('text-[#FFD700]');
-                    cat.classList.add('text-[#A9A9A9]');
-                });
-                cat.classList.remove('text-[#A9A9A9]');
-                cat.classList.add('text-[#FFD700]');
+        const catGallery = document.querySelectorAll('.cat-gallery');
+
+        // Función manejadora
+        function handleCat(event: Event) {
+            // Reiniciar clases de todos los elementos
+            catGallery.forEach((cat) => {
+                cat.classList.remove('text-[#FFD700]');
+                cat.classList.add('text-[#A9A9A9]');
             });
+
+            // Aplicar estilo activo al elemento clicado
+            const clickedCat = event.currentTarget as HTMLElement;
+            clickedCat.classList.remove('text-[#A9A9A9]');
+            clickedCat.classList.add('text-[#FFD700]');
+        }
+
+        // Vincular eventos
+        catGallery.forEach((cat) => {
+            // Remover cualquier listener previo
+            cat.removeEventListener("click", handleCat);
+
+            // Agregar el nuevo listener
+            cat.addEventListener("click", handleCat);
         });
     }
+
+    // Inicializar en carga inicial y tras navegación de Astro
     document.addEventListener('DOMContentLoaded', initCatGallery);
     document.addEventListener('astro:after-swap', initCatGallery);
 </script>
