@@ -1,28 +1,14 @@
 ---
 import SectionContainer from "@/components/sectionContainer.astro"
-
-const categories = [
-    {
-        name: "Todas",
-    },
-    {
-        name: "Bajo nivel",
-    },
-    {
-        name: "Alto nivel",
-    },
-    {
-        name: "Especial",
-    },
-]
+import Categories from "@/db/index_categories"
 ---
 
 <SectionContainer class="!px-0">
     <div class="overflow-x-auto px-4 md:px-0 scroll-hidden">
         <ul class="flex gap-x-3 text-nowrap py-4 md:!px-20 lg:!px-40">
             {
-                categories.map((category, index) => (
-                    <li class="font-medium bg-[#1E1E1E] rounded-xl hover:scale-110 active:scale-100 transition-transform duration-300 ease-in-out">
+                Categories.map((category, index) => (
+                    <li class="font-medium bg-[#1E1E1E] rounded-xl md:hover:scale-110 md:active:scale-100 transition-transform duration-300 ease-in-out">
                         <button class:list={["px-3 py-1 transition-colors duration-300", index === 0 ? "text-[#FFD700]" : "text-[#A9A9A9]", "cat-gallery"]}>
                             {category.name}
                         </button>
