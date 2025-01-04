@@ -4,22 +4,22 @@ import SectionContainer from "@/components/sectionContainer.astro";
 
 ---
 
-<SectionContainer class="!px-8">
+<SectionContainer>
     <var>
         <form
-        class="flex justify-center gap-x-2 py-2 bg-[#1E1E1E] rounded-lg"
+        class="grid grid-cols-[1fr_50px] justify-between items-center gap-x-2 h-12 bg-[#1E1E1E] rounded-lg"
         action="/search"
         method="get"
         >
             <input
-            class="w-3/4 bg-transparent outline-none text-white font-medium"
+            class="px-5 min-w-40 bg-transparent outline-none text-white font-medium"
             type="text"
             name="search"
             id="search"
             placeholder="Buscar..."
             >
             <button
-            class="text-white"
+            class="flex justify-center items-center text-white bg-slate-500 bg-opacity-0 hover:bg-opacity-10 h-full rounded-r-lg transition duration-300"
             type="submit"
             >
                 <SearchIcon />
