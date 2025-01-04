@@ -6,7 +6,7 @@ const profiles = [
         email: "diegosanchez.dev018@gmail.com",
         img: "https://avatars.githubusercontent.com/u/175571311?v=4",
         progress: [
-            { id_project: "git", status: 2 },
+            // { id_project: "git", status: 2 },
         ],
         certificates: [
             // { title: "", description: "", img: { src: "", alt: "" } },
