@@ -4,45 +4,50 @@ import Layout from "@/layouts/Layout.astro";
 import ArrowBottom from "@/components/icons/arrowBottom.astro";
 import frenquently_questions from "@/db/freq_questions";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
+import MyArticle from "@/components/myArticle.astro";
 ---
 
 <Layout
 title="Help - Code Project"
 description="Help page for Code Project"
->
-    <SectionContainer class="flex flex-col items-center justify-center h-[80svh] text-yellow-300">
-        <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
-            <span class="text-xl font-medium opacity-65">
-                Bienvenido!
-            </span>
-            En que te podemos ayudar?
-        </h1>
-        <ToSectionArrow href="#faq" />
-    </SectionContainer>
-    <SectionContainer class="min-h-[35svh]">
-        <h2 class="text-3xl font-bold text-yellow-300 pb-3">
-            Preguntas frecuentes
-        </h2>
-        <ul class="flex flex-col gap-y-4" id="faq">
-            {
-                frenquently_questions.map((question) => (
-                    <li class="flex flex-col gap-y-1 cursor-pointer group frenq-question">
-                        <button class="flex items-center text-start text-yellow-300 text-xl gap-x-1 font-semibold">
-                            <span class="-rotate-90 group-hover:rotate-0 transition-transform duration-300">
-                                <ArrowBottom />
-                            </span>
-                            <h3 class="text-yellow-100">
-                                {question.title}
-                            </h3>
-                        </button>
-                        <p class="pl-8 frenq-answer overflow-hidden h-0 transition-all duration-300">
-                            {question.content}
-                        </p>
-                    </li>
-                ))
-            }
-        </ul>
-    </SectionContainer>
+>   
+    <MyArticle>
+        <SectionContainer class="flex flex-col items-center justify-center h-[80svh] text-yellow-300">
+            <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
+                <span class="text-xl font-medium opacity-65">
+                    Bienvenido!
+                </span>
+                En que te podemos ayudar?
+            </h1>
+            <ToSectionArrow href="#faq" />
+        </SectionContainer>
+    </MyArticle>
+    <MyArticle>
+        <SectionContainer class="min-h-[35svh]">
+            <h2 class="text-3xl font-bold text-yellow-300 pb-3">
+                Preguntas frecuentes
+            </h2>
+            <ul class="flex flex-col gap-y-4" id="faq">
+                {
+                    frenquently_questions.map((question) => (
+                        <li class="flex flex-col gap-y-1 cursor-pointer group frenq-question">
+                            <button class="flex items-center text-start text-yellow-300 text-xl gap-x-1 font-semibold">
+                                <span class="-rotate-90 group-hover:rotate-0 transition-transform duration-300">
+                                    <ArrowBottom />
+                                </span>
+                                <h3 class="text-yellow-100">
+                                    {question.title}
+                                </h3>
+                            </button>
+                            <p class="pl-9 frenq-answer overflow-hidden h-0 text-pretty transition-all duration-300">
+                                {question.content}
+                            </p>
+                        </li>
+                    ))
+                }
+            </ul>
+        </SectionContainer>
+    </MyArticle>
 </Layout>
 
 <style>
