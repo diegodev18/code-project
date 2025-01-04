@@ -26,16 +26,19 @@ import Categories from "@/db/index_categories"
 </style>
 
 <script>
-    const catGallery = document.querySelectorAll('.cat-gallery');
-
-    catGallery.forEach((cat) => {
-        cat.addEventListener('click', () => {
-            catGallery.forEach((cat) => {
-                cat.classList.remove('text-[#FFD700]');
-                cat.classList.add('text-[#A9A9A9]');
+    function initCatGallery() {
+        let catGallery = document.querySelectorAll('.cat-gallery');
+        catGallery.forEach((cat) => {
+            cat.addEventListener('click', () => {
+                catGallery.forEach((cat) => {
+                    cat.classList.remove('text-[#FFD700]');
+                    cat.classList.add('text-[#A9A9A9]');
+                });
+                cat.classList.remove('text-[#A9A9A9]');
+                cat.classList.add('text-[#FFD700]');
             });
-            cat.classList.remove('text-[#A9A9A9]');
-            cat.classList.add('text-[#FFD700]');
         });
-    });
+    }
+    document.addEventListener('DOMContentLoaded', initCatGallery);
+    document.addEventListener('astro:after-swap', initCatGallery);
 </script>

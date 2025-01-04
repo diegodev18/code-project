@@ -27,7 +27,7 @@ description="Help page for Code Project"
             <h2 class="text-3xl font-bold text-yellow-300 pb-3">
                 Preguntas frecuentes
             </h2>
-            <ul class="flex flex-col gap-y-4" id="faq">
+            <ul class="flex flex-col gap-y-2 md:gap-y-6" id="faq">
                 {
                     frenquently_questions.map((question) => (
                         <li class="flex flex-col gap-y-1 cursor-pointer group frenq-question">
@@ -67,11 +67,15 @@ description="Help page for Code Project"
 </style>
 
 <script>
-    const question = document.querySelectorAll('.frenq-question');
-
-    question.forEach((item) => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('open');
+    function initFrenq() {
+        const question = document.querySelectorAll('.frenq-question');
+    
+        question.forEach((item) => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
         });
-    });
+    }
+    document.addEventListener('DOMContentLoaded', initFrenq);
+    document.addEventListener('astro:after-swap', initFrenq);
 </script>
