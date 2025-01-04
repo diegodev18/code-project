@@ -24,7 +24,9 @@ import DesktopNav from "@/components/desktopNav.astro";
             </li>
             <DesktopNav />
             <li class="lg:flex lg:justify-end">
-                <a href="/profile">
+                <a href="/profile" class:list={[
+                    "md:opacity-75 md:hover:opacity-100 transition duration-300"
+                ]}>
                     <ProfileIcon />
                 </a>
             </li>

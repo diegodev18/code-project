@@ -31,7 +31,7 @@ const { name, username, img, link, certificates } = Astro.props;
             Cerrar sesion
         </button>
     </div>
-    <div class="md:flex md:flex-col md:justify-center md:gap-y-4 lg:gap-y-6">
+    <div class="md:flex md:flex-col md:justify-center md:gap-y-2">
         <div class="flex items-center gap-x-3 md:gap-x-4 pt-4">
             <h1 class="font-bold text-3xl md:text-[4rem] leading-[1.2]">
                 {name}
@@ -45,7 +45,7 @@ const { name, username, img, link, certificates } = Astro.props;
         </div>
         <a href={link ?? ""} target="_blank" class="flex w-fit pr-2 opacity-65 items-center font-medium pt-2">
             <GitHubIcon />
-            <p class="pl-2 text-xl">
+            <p class="pl-2 md:pl-4 text-xl">
                 {username}
             </p>
         </a>
