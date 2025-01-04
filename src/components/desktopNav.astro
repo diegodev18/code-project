@@ -1,0 +1,27 @@
+---
+
+const location = Astro.url.pathname
+
+const options = [
+    { name: 'Inicio', link: '/' },
+    { name: 'Creado por', link: '/about' },
+    { name: 'Ayuda', link: '/help' },
+]
+---
+
+<ul class="hidden lg:flex items-center font-semibold gap-x-2 text-xl">
+    {
+        options.map(({name, link}) => (
+            <li class="bg-slate-500 bg-opacity-0 hover:bg-opacity-10 rounded-xl transition duration-300">
+                <a
+                class:list={[
+                    location === link ? 'text-yellow-300' : 'text-white/65',
+                    'px-4 hover:!text-purple-300 hover:opacity-100 transition duration-300'
+                ]}
+                href={link}>
+                    {name}
+                </a>
+            </li>
+        ))
+    }
+</ul>

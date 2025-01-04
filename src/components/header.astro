@@ -2,14 +2,14 @@
 import MenuIcon from "@/components/icons/menuIcon.astro";
 import ProfileIcon from "@/components/icons/profileIcon.astro";
 import ProgrammingIcon from "@/components/icons/programmingIcon.astro";
-import MobileMenu from "@/components/mobileMenu.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
+import DesktopNav from "./desktopNav.astro";
 ---
 
 <SectionContainer class="fixed top-0 left-0 right-0 z-50 transition-colors backdrop-blur-sm rounded-b-md duration-500" id="header-nav">
     <header class="py-4">
         <ul class="flex justify-between items-center text-yellow-300">
-            <li>
+            <li class="lg:hidden">
                 <button
                 onclick="document.querySelector('#mobile-menu').setAttribute('open', '')"
                 >
@@ -22,6 +22,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
                     Code Project
                 </h3>
             </li>
+            <DesktopNav />
             <li>
                 <a href="/profile">
                     <ProfileIcon />
