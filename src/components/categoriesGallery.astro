@@ -14,19 +14,16 @@ const categories = [
     {
         name: "Especial",
     },
-    {
-        name: "Especial",
-    },
 ]
 ---
 
-<SectionContainer class="!px-0 md:!px-20 lg:!px-40 py-4">
+<SectionContainer class="!px-0">
     <div class="overflow-x-auto px-4 md:px-0 scroll-hidden">
-        <ul class="flex gap-x-3 text-nowrap">
+        <ul class="flex gap-x-3 text-nowrap py-4 md:!px-20 lg:!px-40">
             {
-                categories.map((category) => (
-                    <li class="px-2 py-1 bg-[#1E1E1E] rounded-xl">
-                        <button>
+                categories.map((category, index) => (
+                    <li class="font-medium bg-[#1E1E1E] rounded-xl hover:scale-110 active:scale-100 transition-transform duration-300 ease-in-out">
+                        <button class:list={["px-3 py-1 transition-colors duration-300", index === 0 ? "text-[#FFD700]" : "text-[#A9A9A9]", "cat-gallery"]}>
                             {category.name}
                         </button>
                     </li>
@@ -41,3 +38,18 @@ const categories = [
         scrollbar-width: none;
     }
 </style>
+
+<script>
+    const catGallery = document.querySelectorAll('.cat-gallery');
+
+    catGallery.forEach((cat) => {
+        cat.addEventListener('click', () => {
+            catGallery.forEach((cat) => {
+                cat.classList.remove('text-[#FFD700]');
+                cat.classList.add('text-[#A9A9A9]');
+            });
+            cat.classList.remove('text-[#A9A9A9]');
+            cat.classList.add('text-[#FFD700]');
+        });
+    });
+</script>
