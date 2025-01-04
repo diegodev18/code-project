@@ -1,5 +1,11 @@
-<span class="underline text-blue-200">
-    <a href="/about#about-me">
+---
+interface Props {
+    href: string;
+}
+const { href: link } = Astro.props;
+---
+<span class="underline font-semibold text-blue-200">
+    <a href={link}>
         <slot />
     </a>
 </span>
