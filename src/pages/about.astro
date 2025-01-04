@@ -1,5 +1,6 @@
 ---
 import MarkText from "@/components/markText.astro";
+import MyArticle from "@/components/myArticle.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -20,32 +21,35 @@ const buttons_me = [
 title="Sobre nostros - CodeProject"
 description="Conoce más sobre CodeProject, la comunidad de programadores más grande de habla hispana."
 >
-    <SectionContainer class="flex flex-col justify-center gap-y-2 h-[80svh] pb-5" id="about-project">
-        <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
-            Sobre CodeProject
-        </h2>
-        <p class="text-lg font-medium">
-            <MarkText>CodeProject es un proyecto personal mio</MarkText> que nace de la idea de crear mas recursos practicos para mejorar en programacion. Aqui podras encontrar proyectos, con documentacion y ejemplos practicos para mejorar tus habilidades en programacion.
-        </p>
-        <ToSectionArrow href="#about-me" />
-    </SectionContainer>
-    <SectionContainer class="flex flex-col gap-y-2 py-5 justify-center h-[90svh]" id="about-me">
-        <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
-            Sobre Mi
-        </h2>
-        <p class="text-lg font-medium">
-            Hola, <MarkText>mi nombre es Diego Sanchez,</MarkText> soy un <MarkText>estudiante de Ingenieria en Desarrollo de Software.</MarkText> Gracias por visitar este proyecto, espero te ayude a mejorar tus habilidades. Puedes visitar mi portfolio si gustas :).
-        </p>
-        <div class={`grid grid-cols-2 gap-2`}>
-
-            {
-                buttons_me.map(({text, link}) => (
-                    <a class="bg-[#1E1E1E] text-lg font-semibold px-4 py-[6px] text-center rounded-full" target="_blank" href={link}>
-                        {text}
-                    </a>
-                ))
-            }
-        </div>
-        <ToSectionArrow href="#about-top" divClass="rotate-180" />
-    </SectionContainer>
+    <MyArticle>
+        <SectionContainer class="flex flex-col justify-center gap-y-2 h-[80svh] pb-5" id="about-project">
+            <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
+                Sobre CodeProject
+            </h2>
+            <p class="text-lg font-medium">
+                <MarkText>CodeProject es un proyecto personal mio</MarkText> que nace de la idea de crear mas recursos practicos para mejorar en programacion. Aqui podras encontrar proyectos, con documentacion y ejemplos practicos para mejorar tus habilidades en programacion.
+            </p>
+            <ToSectionArrow href="#about-me" />
+        </SectionContainer>
+    </MyArticle>
+    <MyArticle>
+        <SectionContainer class="flex flex-col gap-y-2 py-5 justify-center h-[90svh]" id="about-me">
+            <h2 class="text-[3rem] leading-tight font-bold text-yellow-200">
+                Sobre Mi
+            </h2>
+            <p class="text-lg font-medium text-pretty">
+                Hola, <MarkText>mi nombre es Diego Sanchez,</MarkText> soy un <MarkText>estudiante de Ingenieria en Desarrollo de Software.</MarkText> Gracias por visitar este proyecto, espero te ayude a mejorar tus habilidades. Puedes visitar mi portfolio si gustas :).
+            </p>
+            <div class={`grid grid-cols-2 gap-2`}>
+                {
+                    buttons_me.map(({text, link}) => (
+                        <a class="bg-[#1E1E1E] text-lg font-semibold px-4 py-[6px] text-center rounded-full" target="_blank" href={link}>
+                            {text}
+                        </a>
+                    ))
+                }
+            </div>
+            <ToSectionArrow href="#about-top" divClass="rotate-180" />
+        </SectionContainer>
+    </MyArticle>
 </Layout>
