@@ -9,11 +9,17 @@
 </section>
 
 <script>
-    const { signIn } = await import("auth-astro/client");
+    async function initSignIn() {
+        const { signIn } = await import("auth-astro/client");
+        const loginButton = document.querySelector("#github-signin");
 
-    const loginButton = document.querySelector("#github-signin");
+        loginButton?.removeEventListener("click", initSignIn);
+        async function initSignIn() {
+            await signIn("github");
+        }
+        loginButton?.addEventListener("click", initSignIn);
+    }
 
-    loginButton?.addEventListener("click", async () => {
-        await signIn("github");
-    });
+    document.addEventListener('DOMContentLoaded', initSignIn);
+    document.addEventListener('astro:after-swap', initSignIn);
 </script>
