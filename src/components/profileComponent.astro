@@ -21,36 +21,38 @@ interface Props {
 }
 const { name, username, img, link, certificates } = Astro.props;
 ---
-<SectionContainer>
-    <div class="flex justify-around items-end">
+<SectionContainer class="md:flex md:gap-x-8">
+    <div class="flex md:flex-col justify-around md:items-start items-end md:gap-y-2">
         <div
         style={{ backgroundImage: `url(${img})` }}
-        class="aspect-square w-44 bg-center bg-cover bg-no-repeat rounded-lg bg-white"
+        class="aspect-square w-44 md:w-72 bg-center bg-cover bg-no-repeat rounded-lg bg-white"
         />
-        <button class="py-2 px-3 bg-[#1E1E1E] font-bold rounded-lg" id="github-signout">
+        <button class="py-2 px-3 bg-[#1E1E1E] font-bold rounded-lg lg:w-full" id="github-signout">
             Cerrar sesion
         </button>
     </div>
-    <div class="flex items-center gap-x-3 pt-4">
-        <h1 class="font-bold text-3xl">
-            {name}
-        </h1>
-        <button>
-            <ShareIcon />
-        </button>
+    <div class="md:flex md:flex-col md:justify-center md:gap-y-4">
+        <div class="flex items-center gap-x-3 md:gap-x-4 pt-4">
+            <h1 class="font-bold text-3xl md:text-[4rem]">
+                {name}
+            </h1>
+            <button class="p-2 bg-[#1E1E1E] rounded-lg bg-opacity-0 hover:bg-opacity-100 hover:scale-105 active:scale-95 transition">
+                <ShareIcon />
+            </button>
+        </div>
+        <a href={link ?? ""} target="_blank" class="flex w-fit pr-2 opacity-65 items-center font-medium pt-2">
+            <GitHubIcon />
+            <p class="pl-2 text-xl">
+                {username}
+            </p>
+        </a>
     </div>
-    <a href={link ?? ""} target="_blank" class="flex w-fit gap-x-3 pr-2 opacity-65 items-center font-medium pt-2">
-        <GitHubIcon />
-        <p class="text-xl">
-            {username}
-        </p>
-    </a>
 </SectionContainer>
 <SectionContainer class="!px-0 mx-5 border-opacity-50 border-t-[1px] border-t-yellow-300 mt-5">
     <h2 class="text-2xl text-yellow-200 font-bold text-center pb-3 pt-4">
         Certificados
     </h2>
-    <ul class="flex flex-col gap-y-2 min-h-[42vh]">
+    <ul class="flex flex-col gap-y-2 min-h-[42vh] md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 lg:gap-4 2xl:grid-cols-4 2xl:gap-5">
         {
             certificates && certificates?.length > 0 ? certificates.map(certificate => (
                 <li>
