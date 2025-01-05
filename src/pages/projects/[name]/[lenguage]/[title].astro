@@ -1,17 +1,25 @@
 ---
-import SectionContainer from "@/components/sectionContainer.astro";
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Projects from "@/db/projects";
+import SectionContainer from "@/components/sectionContainer.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
-console.log(params);
+const collections = await getCollection('projects', (entry) => {
+    if (entry.id.slice(0, entry.id.lastIndexOf("/")) === `${params.name}/${params.lenguage}`) {
+        return entry;
+    }
+});
 
-const info = Projects.find(project => project.id === params.name);
-
-console.log(info);
+const info = collections.find(task => task.id === `${params.name}/${params.lenguage}/${params.title}.md`);
 
 if (!info) {
+    return Astro.redirect("/404");
+}
+
+const { Content } = await info.render();
+
+if (!collections) {
     return Astro.redirect("/404");
 }
 
@@ -21,7 +29,7 @@ const opts = [
 ---
 
 <Layout
-title={params.title?.toUpperCase() ?? "Project - CodeProject"}
+title={`${info?.data.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
@@ -31,10 +39,12 @@ description="This is a project page"
             </h3>
             <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
                 {
-                    info.tasks.sort((a, b) => a.num - b.num).map(task => (
+                    collections.sort((a, b) => a.data.num - b.data.num).map(task => (
                         <li>
-                            <a class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300" href={`/projects/${params.name}/${params.lenguage}/${task.title}`}>
-                                {task.title}
+                            <a
+                            class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
+                            href={`/projects/${params.name}/${params.lenguage}/${task.data.id}`}>
+                                {task.data.title}
                             </a>
                         </li>
                     ))
@@ -46,9 +56,9 @@ description="This is a project page"
                 {params.name?.toUpperCase()}
             </h3>
             <h1 class="flex text-3xl md:text-4xl md:pb-2 font-bold items-end gap-x-2 text-yellow-300">
-                {info.title}
+                {info?.data.title ?? ""}
                 <span class="text-lg text-yellow-200/65">
-                    {`#${info.num}`}
+                    {`#${info?.data.num ?? ""}`}
                 </span>
             </h1>
             <ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
@@ -66,9 +76,12 @@ description="This is a project page"
                 <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-yellow-300">
                     Tarea
                 </h2>
-                <p class="pt-3 md:pt-2 font-medium text-lg min-h-[65svh] md:min-h-[20vh]">
-                    <!-- {info.task} -->
-                </p>
+                <div
+                class="pt-3 md:pt-2"
+                id="content"
+                >
+                    <Content />
+                </div>
             </div>
         </section>
     </SectionContainer>
@@ -77,5 +90,62 @@ description="This is a project page"
 <style>
     #tasks {
         scrollbar-width: none;
+    }
+
+    #content :global(h1) {
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h2) {
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h3) {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h4) {
+        font-size: 1rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h5) {
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(p) {
+        font-size: 1rem;
+        padding-top: 0.1rem;
+    }
+
+    #content :global(ul) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.05rem;
+        padding-top: 0.3rem;
+        list-style: disc;
+        padding-left: 1rem;
+
+        li {
+            font-size: 1rem;
+        }
+    }
+
+    #content :global(code) {
+        font-size: 0.9rem;
+        padding: 0.1rem 0.3rem;
+        font-weight: 600;
+        background-color: #2e2e2e;
+        color: #ff8888;
+        border-radius: 0.3rem;
     }
 </style>
