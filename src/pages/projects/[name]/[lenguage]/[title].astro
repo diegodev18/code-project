@@ -1,118 +1,36 @@
 ---
-import SectionContainer from "@/components/sectionContainer.astro";
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/sectionContainer.astro";
 
-const params = Astro.params; // http://localhost:4321/projects/git/c/introduction
+const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
-const pages = [
-    {
-        title: "Instrucciones",
-        href: "",
+const collections = await getCollection('projects', (entry) => {
+    if (entry.id.slice(0, entry.id.lastIndexOf("/")) === `${params.name}/${params.lenguage}`) {
+        return entry;
     }
-]
+});
 
-const info = {
-    id: 1,
-    title: "Introduccion",
-    task: "Create a new repository",
+const info = collections.find(task => task.id === `${params.name}/${params.lenguage}/${params.title}.md`);
+
+
+if (!info) {
+    return Astro.redirect("/404");
 }
 
-const tasks = [
-    {
-        id: 1,
-        title: "Introduccion 1",
-        task: "Create a new repository",
-    },
-    {
-        id: 2,
-        title: "Introduccion 2",
-        task: "Create a new repository",
-    },
-    {
-        id: 3,
-        title: "Introduccion 3",
-        task: "Create a new repository",
-    },
-    {
-        id: 4,
-        title: "Introduccion 4",
-        task: "Create a new repository",
-    },
-    {
-        id: 5,
-        title: "Introduccion 5",
-        task: "Create a new repository",
-    },
-    {
-        id: 6,
-        title: "Introduccion 10",
-        task: "Create a new repository",
-    },
-    {
-        id: 7,
-        title: "Introduccion 11",
-        task: "Create a new repository",
-    },
-    {
-        id: 8,
-        title: "Introduccion 12",
-        task: "Create a new repository",
-    },
-    {
-        id: 9,
-        title: "Introduccion 13",
-        task: "Create a new repository",
-    },
-    {
-        id: 10,
-        title: "Introduccion 14",
-        task: "Create a new repository",
-    },
-    {
-        id: 11,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 12,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 13,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 14,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 15,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 16,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 17,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 18,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
+const { Content } = await info.render();
+
+if (!collections) {
+    return Astro.redirect("/404");
+}
+
+const opts = [
+    {  title: "Introducción", href: `#` },
 ]
 ---
 
 <Layout
-title={params.title?.toUpperCase() ?? "Project - CodeProject"}
+title={`${info?.data.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
@@ -120,12 +38,14 @@ description="This is a project page"
             <h3 class="text-center text-2xl not-italic font-semibold text-yellow-300 border-b-2 pb-1">
                 Tareas
             </h3>
-            <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll">
+            <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
                 {
-                    tasks.map(task => (
-                        <li>
-                            <a class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300" href={`/projects/${params.name}/${params.lenguage}/${task.title}`}>
-                                {task.title}
+                    collections.sort((a, b) => a.data.num - b.data.num).map(task => (
+                        <li class={task.data.title === info?.data.title ? "text-yellow-300 rounded-xl" : "hover:text-yellow-100"}>
+                            <a
+                            class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
+                            href={`/projects/${params.name}/${params.lenguage}/${task.data.id}`}>
+                                {task.data.title}
                             </a>
                         </li>
                     ))
@@ -136,31 +56,113 @@ description="This is a project page"
             <h3 class="text-md md:text-lg italic font-semibold text-yellow-300/50">
                 {params.name?.toUpperCase()}
             </h3>
-            <h1 class="flex text-3xl md:text-4xl md:pb-2 font-bold items-end gap-x-2 text-yellow-300">
-                {info.title}
+            <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-yellow-300">
+                {info?.data.title ?? ""}
                 <span class="text-lg text-yellow-200/65">
-                    {`#${info.id}`}
+                    {`#${info?.data.num ?? ""}`}
                 </span>
             </h1>
             <ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
                 {
-                    pages.map(page => (
+                    opts.map(opt => (
                         <li class="pb-1 px-3 rounded-b-lg bg-[#1E1E1E] md:hover:text-yellow-100 transition duration-300">
-                            <a class="font-semibold" href={page.href}>
-                                {page.title}
+                            <a class="font-semibold" href={opt.href}>
+                                {opt.title}
                             </a>
                         </li>
                     ))
                 }
             </ul>
-            <div class="py-2 px-3 md:px-5 md:py-3 mt-5 bg-[#1E1E1E] rounded-lg">
+            <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
                 <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-yellow-300">
                     Tarea
                 </h2>
-                <p class="pt-3 md:pt-2 font-medium text-lg min-h-[65svh] md:min-h-[20vh]">
-                    {info.task}
-                </p>
+                <div
+                class="pt-3 md:pt-2"
+                id="content"
+                >
+                    <Content />
+                </div>
             </div>
         </section>
     </SectionContainer>
 </Layout>
+
+<style>
+    #tasks {
+        scrollbar-width: none;
+    }
+
+    #content :global(h1) {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h2) {
+        font-size: 1.4rem;
+        font-weight: 600;
+        padding-top: 0.3rem;
+    }
+
+    #content :global(h3) {
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding-top: 0.28rem;
+    }
+
+    #content :global(h4) {
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding-top: 0.25rem;
+    }
+
+    #content :global(h5) {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding-top: 0.2rem;
+    }
+
+    #content :global(p) {
+        font-size: 1rem;
+        padding-top: 0.25rem;
+    }
+
+    #content :global(ul) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.05rem;
+        padding-top: 0.3rem;
+        list-style: disc;
+        padding-left: 1rem;
+
+        li {
+            font-size: 1rem;
+        }
+    }
+
+    #content :global(code) {
+        font-size: 0.9rem;
+        padding: 0.1rem 0.3rem;
+        font-weight: 600;
+        background-color: #2e2e2e;
+        color: #ff8888;
+        border-radius: 0.3rem;
+    }
+
+    #content :global(pre) {
+        font-size: 1rem;
+        margin-top: 0.3rem;
+        padding: 0.5rem 0.8rem;
+        background-color: #2e2e2e;
+        border-radius: 0.3rem;
+        overflow-x: auto;
+
+        code {
+            font-size: 0.9rem;
+            padding: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
+    }
+</style>
