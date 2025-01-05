@@ -13,6 +13,7 @@ const collections = await getCollection('projects', (entry) => {
 
 const info = collections.find(task => task.id === `${params.name}/${params.lenguage}/${params.title}.md`);
 
+
 if (!info) {
     return Astro.redirect("/404");
 }
@@ -40,7 +41,7 @@ description="This is a project page"
             <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
                 {
                     collections.sort((a, b) => a.data.num - b.data.num).map(task => (
-                        <li>
+                        <li class={task.data.title === info?.data.title ? "text-yellow-300 rounded-xl" : "hover:text-yellow-100"}>
                             <a
                             class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
                             href={`/projects/${params.name}/${params.lenguage}/${task.data.id}`}>
@@ -72,7 +73,7 @@ description="This is a project page"
                     ))
                 }
             </ul>
-            <div class="py-2 px-3 md:px-5 md:py-3 mt-5 bg-[#1E1E1E] rounded-lg">
+            <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
                 <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-yellow-300">
                     Tarea
                 </h2>
@@ -93,38 +94,38 @@ description="This is a project page"
     }
 
     #content :global(h1) {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         font-weight: 600;
         padding-top: 0.3rem;
     }
 
     #content :global(h2) {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: 600;
         padding-top: 0.3rem;
     }
 
     #content :global(h3) {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-weight: 600;
-        padding-top: 0.3rem;
+        padding-top: 0.28rem;
     }
 
     #content :global(h4) {
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: 600;
-        padding-top: 0.3rem;
+        padding-top: 0.25rem;
     }
 
     #content :global(h5) {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 600;
-        padding-top: 0.3rem;
+        padding-top: 0.2rem;
     }
 
     #content :global(p) {
         font-size: 1rem;
-        padding-top: 0.1rem;
+        padding-top: 0.25rem;
     }
 
     #content :global(ul) {
@@ -147,5 +148,21 @@ description="This is a project page"
         background-color: #2e2e2e;
         color: #ff8888;
         border-radius: 0.3rem;
+    }
+
+    #content :global(pre) {
+        font-size: 1rem;
+        margin-top: 0.3rem;
+        padding: 0.5rem 0.8rem;
+        background-color: #2e2e2e;
+        border-radius: 0.3rem;
+        overflow-x: auto;
+
+        code {
+            font-size: 0.9rem;
+            padding: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
     }
 </style>
