@@ -1,113 +1,22 @@
 ---
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
+import Projects from "@/db/projects";
 
-const params = Astro.params; // http://localhost:4321/projects/git/c/introduction
+const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
-const pages = [
-    {
-        title: "Instrucciones",
-        href: "",
-    }
-]
+console.log(params);
 
-const info = {
-    id: 1,
-    title: "Introduccion",
-    task: "Create a new repository",
+const info = Projects.find(project => project.id === params.name);
+
+console.log(info);
+
+if (!info) {
+    return Astro.redirect("/404");
 }
 
-const tasks = [
-    {
-        id: 1,
-        title: "Introduccion 1",
-        task: "Create a new repository",
-    },
-    {
-        id: 2,
-        title: "Introduccion 2",
-        task: "Create a new repository",
-    },
-    {
-        id: 3,
-        title: "Introduccion 3",
-        task: "Create a new repository",
-    },
-    {
-        id: 4,
-        title: "Introduccion 4",
-        task: "Create a new repository",
-    },
-    {
-        id: 5,
-        title: "Introduccion 5",
-        task: "Create a new repository",
-    },
-    {
-        id: 6,
-        title: "Introduccion 10",
-        task: "Create a new repository",
-    },
-    {
-        id: 7,
-        title: "Introduccion 11",
-        task: "Create a new repository",
-    },
-    {
-        id: 8,
-        title: "Introduccion 12",
-        task: "Create a new repository",
-    },
-    {
-        id: 9,
-        title: "Introduccion 13",
-        task: "Create a new repository",
-    },
-    {
-        id: 10,
-        title: "Introduccion 14",
-        task: "Create a new repository",
-    },
-    {
-        id: 11,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 12,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 13,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 14,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 15,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 16,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 17,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
-    {
-        id: 18,
-        title: "Introduccion",
-        task: "Create a new repository",
-    },
+const opts = [
+    {  title: "Introducción", href: `#` },
 ]
 ---
 
@@ -120,9 +29,9 @@ description="This is a project page"
             <h3 class="text-center text-2xl not-italic font-semibold text-yellow-300 border-b-2 pb-1">
                 Tareas
             </h3>
-            <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll">
+            <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
                 {
-                    tasks.map(task => (
+                    info.tasks.sort((a, b) => a.num - b.num).map(task => (
                         <li>
                             <a class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300" href={`/projects/${params.name}/${params.lenguage}/${task.title}`}>
                                 {task.title}
@@ -139,15 +48,15 @@ description="This is a project page"
             <h1 class="flex text-3xl md:text-4xl md:pb-2 font-bold items-end gap-x-2 text-yellow-300">
                 {info.title}
                 <span class="text-lg text-yellow-200/65">
-                    {`#${info.id}`}
+                    {`#${info.num}`}
                 </span>
             </h1>
             <ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
                 {
-                    pages.map(page => (
+                    opts.map(opt => (
                         <li class="pb-1 px-3 rounded-b-lg bg-[#1E1E1E] md:hover:text-yellow-100 transition duration-300">
-                            <a class="font-semibold" href={page.href}>
-                                {page.title}
+                            <a class="font-semibold" href={opt.href}>
+                                {opt.title}
                             </a>
                         </li>
                     ))
@@ -158,9 +67,15 @@ description="This is a project page"
                     Tarea
                 </h2>
                 <p class="pt-3 md:pt-2 font-medium text-lg min-h-[65svh] md:min-h-[20vh]">
-                    {info.task}
+                    <!-- {info.task} -->
                 </p>
             </div>
         </section>
     </SectionContainer>
 </Layout>
+
+<style>
+    #tasks {
+        scrollbar-width: none;
+    }
+</style>
