@@ -5,17 +5,17 @@ import Categories from "@/db/index_categories"
 
 <SectionContainer class="!px-0">
     <div class="overflow-x-auto px-4 md:px-0 scroll-hidden">
-        <ul class="flex gap-x-3 text-nowrap py-4 md:!px-20 lg:!px-40">
+        <div class="flex gap-x-3 text-nowrap py-4 md:!px-20 lg:!px-40">
             {
-                Categories.map((category, index) => (
-                    <li class="font-medium bg-[#1E1E1E] rounded-xl md:hover:scale-110 md:active:scale-100 transition-transform duration-300 ease-in-out">
-                        <button class:list={["px-3 py-1 transition-colors duration-300", index === 0 ? "text-[#FFD700]" : "text-[#A9A9A9]", "cat-gallery"]}>
-                            {category.name}
-                        </button>
-                    </li>
+                Categories.map(({name, href}, index) => (
+                    <a
+                    href={href}
+                    class:list={["px-4 py-1 font-semibold h-full hover:scale-110 hover:text-purple-300 transition bg-[#1E1E1E] rounded-full duration-300"]}>
+                        {name}
+                    </a>
                 ))
             }
-        </ul>
+        </div>
     </div>
 </SectionContainer>
 
@@ -24,28 +24,3 @@ import Categories from "@/db/index_categories"
         scrollbar-width: none;
     }
 </style>
-
-<script>
-    function initCatGallery() {
-        const catGallery = document.querySelectorAll('.cat-gallery');
-
-        function handleCat(event: Event) {
-            catGallery.forEach((cat) => {
-                cat.classList.remove('text-[#FFD700]');
-                cat.classList.add('text-[#A9A9A9]');
-            });
-
-            const clickedCat = event.currentTarget as HTMLElement;
-            clickedCat.classList.remove('text-[#A9A9A9]');
-            clickedCat.classList.add('text-[#FFD700]');
-        }
-
-        catGallery.forEach((cat) => {
-            cat.removeEventListener("click", handleCat);
-            cat.addEventListener("click", handleCat);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', initCatGallery);
-    document.addEventListener('astro:after-swap', initCatGallery);
-</script>

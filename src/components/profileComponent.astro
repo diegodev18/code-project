@@ -80,17 +80,14 @@ const { name, username, img, link, certificates } = Astro.props;
 </SectionContainer>
 
 <script>
-    async function initSignOut() {
+    document.addEventListener('astro:page-load', async () => {        
         const { signOut } = await import("auth-astro/client");
         const signoutButton = document.querySelector("#github-signout");
-
+        
         signoutButton?.removeEventListener("click", handleSignOut);
         async function handleSignOut() {
             await signOut();
         }
         signoutButton?.addEventListener("click", handleSignOut);
-    }
-
-    document.addEventListener('DOMContentLoaded', initSignOut);
-    document.addEventListener('astro:after-swap', initSignOut);
+    });
 </script>
