@@ -1,0 +1,35 @@
+---
+interface Props {
+    href: string;
+    title: string;
+    description: string;
+    icon: {
+        width: number;
+        height: number;
+        component: any;
+    };
+}
+const { href, title, description, icon: { width, height, component: Icon } } = Astro.props;
+---
+
+<li class="snap-center">
+    <a
+    class="group w-[90svw] h-[8.8rem] bg-[#1E1E1E] px-5 rounded-lg flex gap-x-4 justify-center items-center"
+    href={href}
+    >
+        <div class="">
+            <h3 class="font-semibold leading-7 line-clamp-2 text-2xl">
+                {title}
+            </h3>
+            <p class="text-sm line-clamp-2">
+                {description}
+            </p>
+            <div class="relative w-full h-3 bg-white rounded-full mt-2">
+                <div class="absolute bg-slate-500 h-full w-1/2 rounded-full" />
+            </div>
+        </div>
+        <div>
+            <Icon width={width} height={height} />
+        </div>
+    </a>
+</li>
