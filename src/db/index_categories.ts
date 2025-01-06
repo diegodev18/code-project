@@ -1,7 +1,7 @@
 const categories = [
     {
         name: "Todas",
-        href: "/",
+        href: "/search",
     },
     {
         name: "Bajo nivel",
