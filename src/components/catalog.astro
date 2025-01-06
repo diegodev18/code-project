@@ -1,7 +1,12 @@
 ---
 import SearchVar from "@/components/searchVar.astro";
 import CategoriesGallery from "@/components/categoriesGallery.astro";
+import ProjectsGallery from "./projectsGallery.astro";
+import Projects from "@/db/projects";
 ---
 
 <SearchVar />
 <CategoriesGallery />
+<ProjectsGallery
+cards={[...Projects]}
+/>
