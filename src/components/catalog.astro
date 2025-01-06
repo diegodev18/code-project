@@ -4,8 +4,10 @@ import CategoriesGallery from "@/components/categoriesGallery.astro";
 import ProjectsGallery from "./projectsGallery.astro";
 import Projects from "@/db/projects";
 import getProgress from "@/utils/getProgressProjects";
+import { getSession } from "auth-astro/server";
 
-const user_progress = getProgress(1);
+const session = await getSession(Astro.request);
+const user_progress = getProgress(session?.user?.email || "");
 ---
 
 <SearchVar />
