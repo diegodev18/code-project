@@ -30,18 +30,22 @@ description="Help page for Code Project"
             <ul class="flex flex-col gap-y-2 md:gap-y-6" id="faq">
                 {
                     frenquently_questions.map((question) => (
-                        <li class="flex flex-col gap-y-1 cursor-pointer group frenq-question">
-                            <button class="flex items-center text-start text-yellow-300 text-xl gap-x-1 font-semibold">
-                                <span class="md:-rotate-90 md:group-hover:rotate-0 transition-transform duration-300">
-                                    <ArrowBottom />
-                                </span>
-                                <h3 class="text-yellow-100">
-                                    {question.title}
-                                </h3>
+                        <li>
+                            <button
+                            onclick="this.classList.toggle('open')"
+                            class="flex flex-col justify-center text-start gap-x-1">
+                                <div class="flex items-center gap-x-1 text-yellow-300 text-xl font-semibold">
+                                    <span class="md:-rotate-90 md:group-hover:rotate-0 transition-transform duration-300">
+                                        <ArrowBottom />
+                                    </span>
+                                    <h3 class="text-yellow-100">
+                                        {question.title}
+                                    </h3>
+                                </div>
+                                <p class="pl-9 h-0 frenq-answer overflow-hidden text-pretty transition-all duration-300">
+                                    {question.content}
+                                </p>
                             </button>
-                            <p class="pl-9 frenq-answer overflow-hidden h-0 text-pretty transition-all duration-300">
-                                {question.content}
-                            </p>
                         </li>
                     ))
                 }
@@ -65,17 +69,3 @@ description="Help page for Code Project"
         transform: rotate(180deg);
     }
 </style>
-
-<script>
-    function initFrenq() {
-        const question = document.querySelectorAll('.frenq-question');
-    
-        question.forEach((item) => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('open');
-            });
-        });
-    }
-    document.addEventListener('DOMContentLoaded', initFrenq);
-    document.addEventListener('astro:after-swap', initFrenq);
-</script>
