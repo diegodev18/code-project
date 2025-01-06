@@ -1,7 +1,7 @@
 ---
 import SectionContainer from "@/components/sectionContainer.astro";
-import ProjectsSmallCard from "./projectsSmallCard.astro";
-import ProjectsLargeCard from "./projectsLargeCard.astro";
+import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
+import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
 
 interface Props {
     title?: string;
@@ -14,6 +14,7 @@ interface Props {
         title: string;
         description: string;
         href: string;
+        id: string;
     }[];
     small?: boolean;
 }
@@ -31,11 +32,11 @@ const { title, cards, small = true } = Astro.props;
     <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery">
         <ul class="flex gap-x-4 px-5 md:px-0">
             {
-                cards.map(({icon: { width, height, component: Icon }, title, description, href}) => {
+                cards.map(({icon: { width, height, component: Icon }, title, description, href, id}) => {
                     return small ? (
-                        <ProjectsSmallCard href={href} title={title} icon={{ width, height, component: Icon }} />
+                        <ProjectsSmallCard id={id} href={href} title={title} icon={{ width, height, component: Icon }} />
                     ) : (
-                        <ProjectsLargeCard href={href} title={title} description={description ?? "hola"} icon={{ width, height, component: Icon }} />
+                        <ProjectsLargeCard id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component: Icon }} />
                     )
                 })
             }

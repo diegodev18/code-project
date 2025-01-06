@@ -1,5 +1,8 @@
 ---
+import getProgressFromAProject from '@/utils/getProgressFromAProject';
+
 interface Props {
+    id: string;
     href: string;
     title: string;
     icon: {
@@ -8,7 +11,9 @@ interface Props {
         component: any;
     };
 }
-const { href, title, icon: { width, height, component: Icon } } = Astro.props;
+const { id, href, title, icon: { width, height, component: Icon } } = Astro.props;
+
+const progress = getProgressFromAProject(id, 1);
 ---
 
 <li class="mt-5 snap-center">
@@ -24,7 +29,7 @@ const { href, title, icon: { width, height, component: Icon } } = Astro.props;
                 {title}
             </h3>
             <div class="relative w-full h-3 bg-white rounded-full mt-2">
-                <div class="absolute bg-slate-500 h-full w-1/2 rounded-full" />
+                <div class="absolute bg-slate-500 h-full rounded-full" style={`width: ${progress}%`} />
             </div>
         </div>
     </a>
