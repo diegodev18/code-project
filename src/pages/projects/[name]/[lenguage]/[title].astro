@@ -2,27 +2,23 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
+import getProjectsContent from "@/utils/getProjectsContent";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
-const collections = await getCollection('projects', (entry) => {
-    if (entry.id.slice(0, entry.id.lastIndexOf("/")) === `${params.name}/${params.lenguage}`) {
-        return entry;
-    }
-});
-
-const info = collections.find(task => task.id === `${params.name}/${params.lenguage}/${params.title}.md`);
-
-
-if (!info) {
+if (!params.name || !params.lenguage || !params.title) {
     return Astro.redirect("/404");
 }
 
-const { Content } = await info.render();
+const data = await getProjectsContent(params.name, params.lenguage, params.title);
 
-if (!collections) {
+if (!data) {
     return Astro.redirect("/404");
 }
+
+const { Content } = await data.info.render();
+
+const { info, collections } = data;
 
 const opts = [
     {  title: "Introducción", href: `#` },
