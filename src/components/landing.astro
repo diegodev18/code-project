@@ -1,27 +1,29 @@
 ---
 import SectionContainer from "@/components/sectionContainer.astro";
 import ProgrammingIcon2 from "@/components/icons/programmingIcon2.astro";
-import Login from "./login.astro";
+import Login from "@/components/login.astro";
 
 ---
 
 <SectionContainer>
-    <div class="text-center font-semibold z-20 relative py-20">
-        <h1 class="flex flex-col text-yellow-300 text-[2.5rem] font-bold text-center">
-            <span class="text-xl text-yellow-300/65">
-                Bienvenido
-            </span>
-            {'<CodeProject/>'}
-        </h1>
-        <p class="text-xl pt-2">
-            La plataforma donde podras mejorar tus habilidades en Desarrollo de Software con proyectos reales.
-        </p>
-        <p class="pt-2 text-sm italic opacity-65">
-            Estamos en construcción, pero puedes registrarte y ser parte de la comunidad.
-        </p>
-    </div>
-    <div class="absolute -top-[14rem] left-0 right-0 bottom-0 -z-50 flex justify-center items-center text-yellow-300/30">
-        <ProgrammingIcon2 />
+    <div class="flex items-center justify-center relative -z-50">
+        <div class="scale-75 text-yellow-300 opacity-30">
+            <ProgrammingIcon2 />
+        </div>
+        <div class="text-center font-semibold z-20 absolute top-1/4">
+            <h1 class="flex flex-col text-yellow-300 text-[2.5rem] font-bold text-center">
+                <span class="text-xl text-yellow-300/65">
+                    Bienvenido
+                </span>
+                {'<CodeProject/>'}
+            </h1>
+            <p class="text-xl pt-2">
+                La plataforma donde podras mejorar tus habilidades en Desarrollo de Software con proyectos reales.
+            </p>
+            <p class="pt-2 text-sm italic opacity-65">
+                Estamos en construcción, pero puedes registrarte y ser parte de la comunidad.
+            </p>
+        </div>
     </div>
 </SectionContainer>
 <SectionContainer class="py-20">
