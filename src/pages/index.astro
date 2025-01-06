@@ -8,8 +8,8 @@ const session = await getSession(Astro.request);
 ---
 
 <Layout
-title="Inicio - CodeProject"
-description=""
+title={`${session ? "Inicio" : "Landing Page"} - CodeProject`}
+description={session ? "Explora los proyectos de CodeProject" : "Inicia ahora a aprender a programar y mejorar en tu campo con CodeProject"}
 >
     { session ? <Catalog /> : <Landing /> }
 </Layout>
