@@ -12,17 +12,12 @@ const { fullHeight = false } = Astro.props;
 </section>
 
 <script>
-    async function initSignIn() {
-        const { signIn } = await import("auth-astro/client");
+    document.addEventListener('astro:page-load', async () => {
         const loginButton = document.querySelector("#github-signin");
-
-        loginButton?.removeEventListener("click", initSignIn);
-        async function initSignIn() {
+        const { signIn } = await import("auth-astro/client");
+        
+        loginButton?.addEventListener("click", async () => {
             await signIn("github");
-        }
-        loginButton?.addEventListener("click", initSignIn);
-    }
-
-    document.addEventListener('DOMContentLoaded', initSignIn);
-    document.addEventListener('astro:after-swap', initSignIn);
+        });
+    });
 </script>
