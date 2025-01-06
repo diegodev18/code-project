@@ -3,6 +3,9 @@ import SearchVar from "@/components/searchVar.astro";
 import CategoriesGallery from "@/components/categoriesGallery.astro";
 import ProjectsGallery from "./projectsGallery.astro";
 import Projects from "@/db/projects";
+import getProgress from "@/utils/getProgressProjects";
+
+const user_progress = getProgress(1);
 ---
 
 <SearchVar />
@@ -15,10 +18,14 @@ title="Podrian gustarte"
 cards={[...Projects]}
 small={false}
 />
-<ProjectsGallery
-title="Seguir aprendiendo"
-cards={[...Projects]}
-/>
+{
+    user_progress?.length != 0 && (
+        <ProjectsGallery
+        title="Seguir aprendiendo"
+        cards={[...(user_progress ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
+        />
+    )
+}
 <ProjectsGallery
 title="Favoritos"
 cards={[...Projects]}
