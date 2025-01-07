@@ -5,29 +5,33 @@ interface Props {
     id: string;
     href: string;
     title: string;
+    description: string;
     icon: {
         width: number;
         height: number;
         component: any;
     };
 }
-const { id, href, title, icon: { width, height, component: Icon } } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon } } = Astro.props;
 
 const progress = getProgressFromAProject(id, 1);
 ---
 
-<li class="mt-5 md:mt-2 snap-center">
+<li class="mt-5 md:mt-2 lg:mt-3 snap-center">
     <a
-    class="group w-[120px] md:w-[150px] aspect-[9/10] hover:bg-[#1B1B1B] bg-[#1E1E1E] rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
+    class="group w-[120px] md:w-[150px] lg:w-[200px] aspect-[9/10] hover:bg-[#1B1B1B] bg-[#1E1E1E] rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
     href={href}
     >
-        <div class="absolute -top-6 md:-top-2 md:group-hover:scale-105 md:group-hover:pb-16 transition-all duration-300 ease-in-out">
+        <div class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition-all duration-300 ease-in-out">
             <Icon width={width} height={height} />
         </div>
-        <div class="pt-16 md:pt-20 px-2 z-10 flex flex-col h-full">
+        <div class="pt-16 md:pt-20 lg:pt-[4.2rem] px-2 z-10 flex flex-col h-full lg:gap-y-1">
             <h3 class="font-semibold leading-5 md:text-xl line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
                 {title}
             </h3>
+            <p class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 line-clamp-3 min-h-[60px] leading-5 tranistion duration-300 ease-in-out">
+                {description}
+            </p>
             <div class="relative w-full h-3 bg-white rounded-full mt-2">
                 <div class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition duration-300 ease-in-out h-full rounded-full" style={`width: ${progress}%`} />
             </div>

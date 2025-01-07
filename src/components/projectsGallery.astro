@@ -48,7 +48,7 @@ const { id, title, cards, small = true } = Astro.props;
             {
                 cards.map(({icon: { width, height, component: Icon }, title, description, href, id}) => {
                     return small ? (
-                        <ProjectsSmallCard id={id} href={href} title={title} icon={{ width, height, component: Icon }} />
+                        <ProjectsSmallCard id={id} href={href} title={title} description={description} icon={{ width, height, component: Icon }} />
                     ) : (
                         <ProjectsLargeCard id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component: Icon }} />
                     )
