@@ -3,7 +3,13 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
-
+			textColor: {
+				
+			},
+			backgroundColor: {
+				main: "#28292B",
+				secondary: "#1E1E1E"
+			}
 		},
 	},
 	plugins: [],
