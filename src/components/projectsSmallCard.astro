@@ -16,7 +16,7 @@ const { id, href, title, icon: { width, height, component: Icon } } = Astro.prop
 const progress = getProgressFromAProject(id, 1);
 ---
 
-<li class="mt-5 snap-center">
+<li class="mt-5 md:mt-2 snap-center">
     <a
     class="group w-[120px] md:w-[150px] aspect-[9/10] hover:bg-[#1B1B1B] bg-[#1E1E1E] rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
     href={href}
