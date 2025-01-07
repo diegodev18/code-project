@@ -26,9 +26,14 @@ const progress = getProgressFromAProject(id, 1);
             <Icon width={width} height={height} />
         </div>
         <div class="pt-16 md:pt-20 lg:pt-[4.2rem] px-2 z-10 flex flex-col h-full lg:gap-y-1">
-            <h3 class="font-semibold leading-5 md:text-xl line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
-                {title}
-            </h3>
+            <div class="relative title-project">
+                <h3 class="font-semibold leading-5 md:text-xl line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
+                    {title}
+                </h3>
+                <p class="items-end absolute -inset-[60px] font-semibold text-purple-300 h-fit w-[185px] text-center bg-[#2B2B2B] left-0 rounded-md title-full-project">
+                    {title}
+                </p>
+            </div>
             <p class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 line-clamp-3 min-h-[60px] leading-5 tranistion duration-300 ease-in-out">
                 {description}
             </p>
@@ -48,3 +53,39 @@ const progress = getProgressFromAProject(id, 1);
         </div> -->
     </a>
 </li>
+
+<style>
+    .title-project:hover {
+        .title-full-project {
+            display: flex;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+
+            @starting-style {
+                opacity: 0;
+            }
+        }
+    }
+
+    .title-full-project {
+        display: none;
+        transition: opacity 0.3s, display 0.3s allow-discrete;
+        opacity: 0;
+    }
+
+
+    /* #mobile-menu[open] {
+        display: block;
+        opacity: 1;
+        transition: opacity 0.3s;
+        
+        @starting-style {
+            opacity: 0;
+        }
+    }
+    #mobile-menu {
+        display: none;
+        transition: opacity 0.3s, display 0.3s allow-discrete;
+        opacity: 0;
+    } */
+</style>
