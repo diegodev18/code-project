@@ -3,7 +3,7 @@ interface Props {
     color?: string
     weight?: string
 }
-const { color = 'yellow-300', weight = 'semibold' }: Props = {}
+const { color = 'main', weight = 'semibold' }: Props = {}
 ---
 <span class:list={[`text-${color}`, `font-${weight}`]}>
     <slot />
