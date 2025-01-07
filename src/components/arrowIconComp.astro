@@ -1,0 +1,13 @@
+---
+interface Props {
+    id: string;
+}
+const { id } = Astro.props;
+---
+
+<button
+class="hover:scale-110 hover:text-blue-300 active:scale-100 transition duration-300 ease-in-out"
+id={id}
+>
+    <slot />
+</button>

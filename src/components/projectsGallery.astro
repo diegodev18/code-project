@@ -2,8 +2,12 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
 import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
+import ArrowIconComp from "./arrowIconComp.astro";
+import LeftCaret from "./icons/leftCaret.astro";
+import RightCaret from "./icons/rightCaret.astro";
 
 interface Props {
+    id: string;
     title?: string;
     cards: {
         icon: {
@@ -18,18 +22,28 @@ interface Props {
     }[];
     small?: boolean;
 }
-const { title, cards, small = true } = Astro.props;
+const { id, title, cards, small = true } = Astro.props;
 ---
 
 <SectionContainer class="!px-0 md:!px-20 lg:!px-40">
-    {
-        title && (
-            <h2 class="text-2xl font-bold pt-4 px-5 md:px-0">
-                {title}
-            </h2>
-        )
-    }
-    <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery">
+    <div class:list={["flex items-center", title ? "justify-between" : "justify-end"]}>
+        {
+            title && (
+                <h2 class="text-2xl font-bold pt-4 px-5 md:px-0">
+                    {title}
+                </h2>
+            )
+        }
+        <div class="hidden md:flex">
+            <ArrowIconComp id={`${id}-left`}>
+                <LeftCaret />
+            </ArrowIconComp>
+            <ArrowIconComp id={`${id}-right`}>
+                <RightCaret />
+            </ArrowIconComp>
+        </div>
+    </div>
+    <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery" id={`${id}-gallery`}>
         <ul class="flex gap-x-4 px-5 md:px-0">
             {
                 cards.map(({icon: { width, height, component: Icon }, title, description, href, id}) => {
@@ -49,3 +63,25 @@ const { title, cards, small = true } = Astro.props;
         scrollbar-width: none;
     }
 </style>
+
+<script is:inline define:vars={{ id }}>
+    document.addEventListener('astro:page-load', () => {
+        const gallery = document.getElementById(`${id}-gallery`);
+        const left = document.getElementById(`${id}-left`);
+        const right = document.getElementById(`${id}-right`);
+
+        left.addEventListener('click', () => {
+            gallery.scrollBy({
+                left: -gallery.offsetWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        right.addEventListener('click', () => {
+            gallery.scrollBy({
+                left: gallery.offsetWidth,
+                behavior: 'smooth'
+            });
+        });
+    })
+</script>
