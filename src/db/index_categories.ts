@@ -5,15 +5,15 @@ const categories = [
     },
     {
         name: "Bajo nivel",
-        href: "/search?search=bajo+nivel",
+        href: "/search?search=Bajo+Nivel",
     },
     {
         name: "Alto nivel",
-        href: "/search?search=alto+nivel",
+        href: "/search?search=Alto+Nivel",
     },
     {
         name: "Especial",
-        href: "/search?search=especial",
+        href: "/search?search=Especial",
     },
 ]
 

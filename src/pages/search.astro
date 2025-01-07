@@ -3,7 +3,11 @@ import SearchVar from '@/components/searchVar.astro'
 import SectionContainer from '@/components/sectionContainer.astro';
 import Layout from '@/layouts/Layout.astro'
 
-const searched = Astro.url.searchParams.get('search');
+let searched = Astro.url.searchParams.get('search');
+
+if (!searched) {
+    searched = "Todos";
+}
 ---
 
 <Layout
