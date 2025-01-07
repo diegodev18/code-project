@@ -18,7 +18,7 @@ id="mobile-menu"
     <div class="flex flex-col justify-between h-full">
         <aside>
             <button
-            class="text-yellow-300"
+            class="text-main"
             onclick="document.querySelector('#mobile-menu').removeAttribute('open')"
             >
                 <XLetterIcon />
@@ -31,7 +31,7 @@ id="mobile-menu"
                         <li class="text-4xl font-bold py-2">
                             <a
                             href={opt.link}
-                            class={location === opt.link ? 'text-yellow-300' : 'opacity-65 text-white'}
+                            class={location === opt.link ? 'text-main' : 'opacity-65 text-white'}
                             >
                                 {opt.name}
                             </a>

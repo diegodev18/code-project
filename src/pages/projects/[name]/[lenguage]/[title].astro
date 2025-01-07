@@ -31,13 +31,13 @@ description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
         <var class="hidden md:block py-5 px-2 bg-[#1E1E1E] rounded-lg">
-            <h3 class="text-center text-2xl not-italic font-semibold text-yellow-300 border-b-2 pb-1">
+            <h3 class="text-center text-2xl not-italic font-semibold text-main border-b-2 pb-1">
                 Tareas
             </h3>
             <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
                 {
                     collections.sort((a, b) => a.data.num - b.data.num).map(task => (
-                        <li class={task.data.title === info?.data.title ? "text-yellow-300 rounded-xl" : "hover:text-yellow-100"}>
+                        <li class={task.data.title === info?.data.title ? "text-main rounded-xl" : "hover:text-yellow-100"}>
                             <a
                             class="font-semibold text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
                             href={`/projects/${params.name}/${params.lenguage}/${task.data.id}`}>
@@ -49,10 +49,10 @@ description="This is a project page"
             </ul>
         </var>
         <section class="pb-3 w-full">
-            <h3 class="text-md md:text-lg italic font-semibold text-yellow-300/50">
+            <h3 class="text-md md:text-lg italic font-semibold text-main/50">
                 {params.name?.toUpperCase()}
             </h3>
-            <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-yellow-300">
+            <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-main">
                 {info?.data.title ?? ""}
                 <span class="text-lg text-yellow-200/65">
                     {`#${info?.data.num ?? ""}`}
@@ -70,7 +70,7 @@ description="This is a project page"
                 }
             </ul>
             <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
-                <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-yellow-300">
+                <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-main">
                     Tarea
                 </h2>
                 <div

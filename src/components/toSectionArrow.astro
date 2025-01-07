@@ -9,7 +9,7 @@ interface Props {
 const { href: linkRefer, divClass, aClass } = Astro.props;
 ---
 <div class:list={["flex justify-center", divClass]}>
-    <a href={linkRefer} class:list={["w-fit text-yellow-300 animate-pulse", aClass]}>
+    <a href={linkRefer} class:list={["w-fit text-main animate-pulse", aClass]}>
         <ArrowBadgeDown />
     </a>
 </div>
