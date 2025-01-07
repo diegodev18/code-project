@@ -9,6 +9,9 @@ const profiles = [
             { id_project: "your-own-git", status: 2 },
             { id_project: "your-own-linux-distro", status: 5 },
         ],
+        favorites: [
+            { id_project: "your-own-git" },
+        ],
         certificates: [
             // { title: "", description: "", img: { src: "", alt: "" } },
         ]
