@@ -30,7 +30,7 @@ const progress = getProgressFromAProject(id, 1);
                 <h3 class="font-semibold leading-5 md:text-xl line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
                     {title}
                 </h3>
-                <p class="items-end absolute -inset-[60px] font-semibold text-purple-300 h-fit w-[185px] text-center bg-[#2B2B2B] left-0 rounded-md title-full-project">
+                <p class="items-end shadow-md absolute -inset-[60px] font-semibold text-purple-300 h-fit w-[185px] text-center bg-[#2B2B2B] left-0 rounded-md title-full-project">
                     {title}
                 </p>
             </div>
@@ -55,37 +55,26 @@ const progress = getProgressFromAProject(id, 1);
 </li>
 
 <style>
-    .title-project:hover {
-        .title-full-project {
-            display: flex;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-
-            @starting-style {
-                opacity: 0;
+    @media (min-width: 1024px) {
+        .title-project:hover {
+            .title-full-project {
+                display: flex;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+    
+                @starting-style {
+                    opacity: 0;
+                }
             }
+        }
+    
+        .title-full-project {
+            transition: opacity 0.3s, display 0.3s allow-discrete;
+            opacity: 0;
         }
     }
 
     .title-full-project {
         display: none;
-        transition: opacity 0.3s, display 0.3s allow-discrete;
-        opacity: 0;
     }
-
-
-    /* #mobile-menu[open] {
-        display: block;
-        opacity: 1;
-        transition: opacity 0.3s;
-        
-        @starting-style {
-            opacity: 0;
-        }
-    }
-    #mobile-menu {
-        display: none;
-        transition: opacity 0.3s, display 0.3s allow-discrete;
-        opacity: 0;
-    } */
 </style>
