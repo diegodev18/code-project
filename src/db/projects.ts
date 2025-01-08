@@ -29,7 +29,7 @@ const projects = [
             component: BashIcon
         },
         lenguages: [
-            'c'
+
         ],
         href: '/projects/your-own-shell'
     },
@@ -44,7 +44,7 @@ const projects = [
             component: LinuxIcon
         },
         lenguages: [
-            'c'
+
         ],
         href: '/projects/your-own-linux-distro'
     },

@@ -31,7 +31,7 @@ const { id, lenguages } = Astro.props;
 ---
 
 <div class="overflow-x-scroll w-full">
-    <ul class="flex items-center sm:justify-center gap-x-4 py-4">
+    <ul class="flex lg:justify-center gap-x-4 py-4">
         {
             lenguages.map((lang: string) => {
                 const Icon = lenIcons.find(({ name }) => name === lang);

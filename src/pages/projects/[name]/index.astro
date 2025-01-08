@@ -31,9 +31,9 @@ description="This is a project page"
             <info.icon.component width={info.icon.width + 40} height={info.icon.height + 40} />
         </MyArticle>
     </SectionContainer>
-    <SectionContainer class="flex flex-col items-center justify-center min-h-[45vh] md:min-h-[38vh]">
-        <h2 class="text-center text-3xl md:text-4xl font-bold text-main">
-            Iniciar proyecto
+    <SectionContainer class="flex flex-col justify-center min-h-[45vh] md:min-h-[38vh]">
+        <h2 class="text-start lg:text-center text-3xl md:text-4xl font-bold text-main">
+            {info.lenguages.length >= 1 ? "Iniciar proyecto" : "Proyecto aun no disponible :("}
         </h2>
         <LenguagesGallery id={info.id} lenguages={info.lenguages} />
     </SectionContainer>
