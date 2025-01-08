@@ -1,8 +1,26 @@
 ---
-import CIcon from '@/components/icons/lenguages/CIcon.astro';
+import CIcon from '@/components/icons/lenguages/cIcon.astro';
+import RustIcon from '@/components/icons/lenguages/rustIcon.astro';
+import PythonIcon from '@/components/icons/lenguages/pythonIcon.astro';
+import JavaScriptIcon from '@/components/icons/lenguages/javaScriptIcon.astro';
+import TypeScriptIcon from '@/components/icons/lenguages/typeScriptIcon.astro';
+import JavaIcon from '@/components/icons/lenguages/javaIcon.astro';
+import CPlusIcon from '@/components/icons/lenguages/cPlusPlusIcon.astro';
+import CSharpIcon from '@/components/icons/lenguages/cSharpIcon.astro';
+import GoIcon from '@/components/icons/lenguages/goIcon.astro';
+import RubyIcon from '@/components/icons/lenguages/rubyIcon.astro';
 
 const lenIcons = [
-    { name: "c", icon: CIcon, width: 60, height: 60 }
+    { name: "c", icon: CIcon, width: 60, height: 60 },
+    { name: "rust", icon: RustIcon, width: 60, height: 60 },
+    { name: "python", icon: PythonIcon, width: 60, height: 60 },
+    { name: "javascript", icon: JavaScriptIcon, width: 60, height: 60 },
+    { name: "typescript", icon: TypeScriptIcon, width: 60, height: 60 },
+    { name: "java", icon: JavaIcon, width: 60, height: 60 },
+    { name: "c++", icon: CPlusIcon, width: 60, height: 60 },
+    { name: "c#", icon: CSharpIcon, width: 60, height: 60 },
+    { name: "go", icon: GoIcon, width: 60, height: 60 },
+    { name: "ruby", icon: RubyIcon, width: 60, height: 60 },
 ]
 
 interface Props {
@@ -12,21 +30,23 @@ interface Props {
 const { id, lenguages } = Astro.props;
 ---
 
-<ul class="flex items-center justify-center gap-x-4 py-4">
-    {
-        lenguages.map((lang: string) => {
-            const Icon = lenIcons.find(({ name }) => name === lang);
-            if (!Icon) return null;
-
-            return (
-                <li class="hover:scale-125 transition ease-in-out duration-300">
-                    <a
-                    class=""
-                    href={`/projects/${id}/${lang}/inicio`}>
-                        <Icon.icon width={Icon.width ?? 50} height={Icon.height ?? 50} />
-                    </a>
-                </li>
-            )
-        })
-    }
-</ul>
+<div class="overflow-x-scroll w-full">
+    <ul class="flex items-center sm:justify-center gap-x-4 py-4">
+        {
+            lenguages.map((lang: string) => {
+                const Icon = lenIcons.find(({ name }) => name === lang);
+                if (!Icon) return null;
+    
+                return (
+                    <li class="hover:scale-125 transition ease-in-out duration-300">
+                        <a
+                        class=""
+                        href={`/projects/${id}/${lang}/inicio`}>
+                            <Icon.icon width={Icon.width ?? 50} height={Icon.height ?? 50} />
+                        </a>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</div>
