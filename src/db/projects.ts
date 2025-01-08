@@ -1,5 +1,6 @@
 import GitIcon from "@/components/icons/brands/gitIcon.astro"
 import LinuxIcon from "@/components/icons/brands/linuxIcon.astro"
+import BashIcon from "@/components/icons/brands/bashIcon.astro"
 
 const projects = [
     {
@@ -12,7 +13,10 @@ const projects = [
             height: 80,
             component: GitIcon
         },
-        href: '/projects/your-own-git/c/introduction'
+        lenguages: [
+            'C'
+        ],
+        href: '/projects/your-own-git'
     },
     {
         num: 2,
@@ -22,9 +26,12 @@ const projects = [
         icon: {
             width: 80,
             height: 80,
-            component: GitIcon
+            component: BashIcon
         },
-        href: '/projects/your-own-git/c/introduction'
+        lenguages: [
+            'C'
+        ],
+        href: '/projects/your-own-shell'
     },
     {
         num: 3,
@@ -36,7 +43,10 @@ const projects = [
             height: 90,
             component: LinuxIcon
         },
-        href: '/projects/your-own-git/c/introduction'
+        lenguages: [
+            'C'
+        ],
+        href: '/projects/your-own-linux-distro'
     },
 ]
 
