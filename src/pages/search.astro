@@ -1,4 +1,6 @@
 ---
+import GitIcon from '@/components/icons/brands/gitIcon.astro';
+import SearchCard from '@/components/searchCard.astro';
 import SearchVar from '@/components/searchVar.astro'
 import SectionContainer from '@/components/sectionContainer.astro';
 import Layout from '@/layouts/Layout.astro'
@@ -24,5 +26,8 @@ description='Search for products'
                 {searched}
             </span>
         </p>
+    </SectionContainer>
+    <SectionContainer class="grid grid-cols-1 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+        <SearchCard title="Hola" description="Salud" icon={{ width:"180", height: "180", component: GitIcon }} />
     </SectionContainer>
 </Layout>
