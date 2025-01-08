@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Projects from "@/db/projects";
 import SectionContainer from "@/components/sectionContainer.astro";
 import MyArticle from "@/components/myArticle.astro";
+import LenguagesGallery from "@/components/lenguagesGallery.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
@@ -20,20 +21,20 @@ description="This is a project page"
     <SectionContainer>
         <MyArticle class="flex items-center justify-between">
             <div>
-                <h1 class="text-3xl md:text-[3rem] font-bold text-main mt-4">
+                <h1 class="text-3xl md:text-[3rem] leading-tight font-bold text-main mt-4">
                     {info.title}
                 </h1>
-                <p class="text-lg md:text-[1.8rem] font-medium mt-2 md:mt-5">
+                <p class="text-lg md:text-[1.8rem] opacity-75 font-medium mt-2">
                     {info.description}
                 </p>
             </div>
             <info.icon.component width={info.icon.width + 40} height={info.icon.height + 40} />
         </MyArticle>
     </SectionContainer>
-    <SectionContainer class="mt-8">
+    <SectionContainer class="mt-16">
         <h2 class="text-center text-4xl font-bold text-main">
             Iniciar proyecto
         </h2>
-        
+        <LenguagesGallery id={info.id} lenguages={info.lenguages} />
     </SectionContainer>
 </Layout>

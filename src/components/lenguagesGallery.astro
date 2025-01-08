@@ -1,0 +1,32 @@
+---
+import CIcon from '@/components/icons/lenguages/CIcon.astro';
+
+const lenIcons = [
+    { name: "c", icon: CIcon, width: 60, height: 60 }
+]
+
+interface Props {
+    id: string;
+    lenguages: string[]
+}
+const { id, lenguages } = Astro.props;
+---
+
+<ul class="flex items-center justify-center gap-x-4 py-5">
+    {
+        lenguages.map((lang: string) => {
+            const Icon = lenIcons.find(({ name }) => name === lang);
+            if (!Icon) return null;
+
+            return (
+                <li class="hover:scale-125 transition ease-in-out duration-300">
+                    <a
+                    class=""
+                    href={`/projects/${id}/${lang}/introduction`}>
+                        <Icon.icon width={Icon.width ?? 50} height={Icon.height ?? 50} />
+                    </a>
+                </li>
+            )
+        })
+    }
+</ul>
