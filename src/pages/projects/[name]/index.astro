@@ -19,7 +19,7 @@ title={`${info?.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer>
-        <MyArticle class="flex items-center justify-between">
+        <MyArticle class="flex flex-col gap-y-6 md:gap-y-0 md:flex-row items-center justify-center md:justify-between min-h-[45vh] md:min-h-[50vh]">
             <div>
                 <h1 class="text-3xl md:text-[3rem] leading-tight font-bold text-main mt-4">
                     {info.title}
@@ -31,10 +31,12 @@ description="This is a project page"
             <info.icon.component width={info.icon.width + 40} height={info.icon.height + 40} />
         </MyArticle>
     </SectionContainer>
-    <SectionContainer class="my-20">
+    <SectionContainer class="flex flex-col items-center justify-center min-h-[45vh] md:min-h-[38vh]">
         <h2 class="text-center text-3xl md:text-4xl font-bold text-main">
             Iniciar proyecto
         </h2>
-        <LenguagesGallery id={info.id} lenguages={info.lenguages} />
+        <div>
+            <LenguagesGallery id={info.id} lenguages={info.lenguages} />
+        </div>
     </SectionContainer>
 </Layout>
