@@ -35,17 +35,15 @@ import DesktopNav from "@/components/desktopNav.astro";
 </SectionContainer>
 <div class="pb-20" />
 
-<script is:inline>
-    function toggleHeaderBackground() {
-        const header = document.querySelector('#header-nav');
-        if (window.scrollY > 10) {
-            header?.classList.add('bg-black/50');
-        } else {
-            header?.classList.remove('bg-black/50');
-        }
-    }
-    window.addEventListener('scroll', () => {
-        toggleHeaderBackground();
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.addEventListener('scroll', () => {
+            const header = document.querySelector('#header-nav');
+            if (window.scrollY > 10) {
+                header?.classList.add('bg-black/50');
+            } else {
+                header?.classList.remove('bg-black/50');
+            }
+        })
     })
-    
 </script>
