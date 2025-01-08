@@ -1,6 +1,6 @@
 ---
 num: 1
-id: 'introduction'
+id: 'inicio'
 title: 'Introducción'
 description: 'Construye tu propio sistema de control de versiones desde cero.'
 ---
