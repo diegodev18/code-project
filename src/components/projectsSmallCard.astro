@@ -25,32 +25,17 @@ const progress = getProgressFromAProject(id, 1);
         <div class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition-all duration-300 ease-in-out">
             <Icon width={width} height={height} />
         </div>
-        <div class="pt-16 md:pt-20 lg:pt-[4.2rem] px-2 z-10 flex flex-col h-full lg:gap-y-1">
-            <div class="relative title-project">
-                <h3 class="font-semibold leading-5 min-h-[60px] md:min-h-[85px] md:text-xl lg:min-h-0 line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
-                    {title}
-                </h3>
-                <p class="items-end shadow-md absolute -inset-[60px] font-semibold text-purple-300 h-fit w-[185px] text-center bg-[#2B2B2B] left-0 rounded-md title-full-project">
-                    {title}
-                </p>
-            </div>
-            <p class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 line-clamp-3 min-h-[60px] leading-5 tranistion duration-300 ease-in-out">
+        <div class="pt-16 md:pt-20 lg:pt-[4.2rem] max-w-[130px] md:max-w-[170px] lg:max-w-[185px] px-2 z-10 flex flex-col h-full lg:gap-y-1">
+            <h3 class="font-semibold leading-5 min-h-[60px] md:min-h-[85px] md:text-xl lg:min-h-0 line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
+                {title}
+            </h3>
+            <p class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 line-clamp-3 h-[60px] leading-5 transition duration-300 ease-in-out">
                 {description}
             </p>
             <div class="relative w-full h-3 bg-white rounded-full mt-2">
                 <div class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition duration-300 ease-in-out h-full rounded-full" style={`width: ${progress}%`} />
             </div>
         </div>
-        <!-- <div class="hidden group-hover:flex items-center absolute bg-[#222222] rounded-lg inset-11 left-[110%] z-50 w-[15rem] max-h-[8rem]">
-            <p class="rounded-lg text-center">
-                <span class="text-yellow-200 font-semibold line-clamp-2">
-                    {title}
-                </span>
-                <span class="text-sm opacity-65 font-medium line-clamp-2">
-                    {description}
-                </span>
-            </p>
-        </div> -->
     </a>
 </li>
 
