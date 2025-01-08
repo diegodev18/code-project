@@ -12,7 +12,7 @@ interface Props {
 const { id, lenguages } = Astro.props;
 ---
 
-<ul class="flex items-center justify-center gap-x-4 py-5">
+<ul class="flex items-center justify-center gap-x-4 py-4">
     {
         lenguages.map((lang: string) => {
             const Icon = lenIcons.find(({ name }) => name === lang);
