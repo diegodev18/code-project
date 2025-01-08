@@ -43,9 +43,9 @@ const { name, username, img, link, certificates } = Astro.props;
                 <ShareIcon />
             </button> -->
         </div>
-        <a href={link ?? ""} target="_blank" class="flex w-fit pr-2 opacity-65 items-center font-medium pt-2">
-            <GitHubIcon />
-            <p class="pl-2 md:pl-4 text-xl">
+        <a href={link ?? ""} target="_blank" class="flex w-fit opacity-50 items-center font-medium md:hover:bg-buttonHov rounded-2xl md:px-3 py-2 transition duration-300 ease-in-out">
+            <GitHubIcon width="30" />
+            <p class="pl-3 md:pl-3 font-semibold text-xl md:text-2xl">
                 {username}
             </p>
         </a>
