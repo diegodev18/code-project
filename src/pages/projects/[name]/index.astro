@@ -1,0 +1,39 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Projects from "@/db/projects";
+import SectionContainer from "@/components/sectionContainer.astro";
+import MyArticle from "@/components/myArticle.astro";
+
+const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
+
+const info = Projects.find(project => project.id === params.name);
+
+if (!info) {
+    return Astro.redirect('/404');
+}
+---
+
+<Layout
+title={`${info?.title ?? "Proyecto"} - CodeProject`}
+description="This is a project page"
+>
+    <SectionContainer>
+        <MyArticle class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl md:text-[3rem] font-bold text-main mt-4">
+                    {info.title}
+                </h1>
+                <p class="text-lg md:text-[1.8rem] font-medium mt-2 md:mt-5">
+                    {info.description}
+                </p>
+            </div>
+            <info.icon.component width={info.icon.width + 40} height={info.icon.height + 40} />
+        </MyArticle>
+    </SectionContainer>
+    <SectionContainer class="mt-8">
+        <h2 class="text-center text-4xl font-bold text-main">
+            Iniciar proyecto
+        </h2>
+        
+    </SectionContainer>
+</Layout>

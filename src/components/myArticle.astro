@@ -1,3 +1,9 @@
-<article class="max-w-[80rem] mx-auto">
+---
+interface Props {
+    class?: string;
+}
+const { class: className } = Astro.props;
+---
+<article class:list={["max-w-[80rem] mx-auto", className]}>
     <slot />
 </article>
