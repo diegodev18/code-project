@@ -8,7 +8,8 @@ export default {
 			},
 			backgroundColor: {
 				main: "#28292B",
-				secondary: "#1E1E1E"
+				secondary: "#1E1E1E",
+				buttonHov: "#131313"
 			}
 		},
 	},
