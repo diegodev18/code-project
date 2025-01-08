@@ -14,7 +14,7 @@ const projects = [
             component: GitIcon
         },
         lenguages: [
-            'C'
+            'c'
         ],
         href: '/projects/your-own-git'
     },
@@ -29,7 +29,7 @@ const projects = [
             component: BashIcon
         },
         lenguages: [
-            'C'
+            'c'
         ],
         href: '/projects/your-own-shell'
     },
@@ -44,7 +44,7 @@ const projects = [
             component: LinuxIcon
         },
         lenguages: [
-            'C'
+            'c'
         ],
         href: '/projects/your-own-linux-distro'
     },
