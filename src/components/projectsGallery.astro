@@ -34,12 +34,12 @@ const { id, title, cards, small = true } = Astro.props;
                 </h2>
             )
         }
-        <div class="hidden md:flex">
+        <div class="hidden md:flex gap-x-1">
             <ArrowIconComp id={`${id}-left`}>
-                <LeftCaret />
+                <LeftCaret width="35" />
             </ArrowIconComp>
             <ArrowIconComp id={`${id}-right`}>
-                <RightCaret />
+                <RightCaret width="35" />
             </ArrowIconComp>
         </div>
     </div>
