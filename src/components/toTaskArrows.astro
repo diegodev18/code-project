@@ -1,0 +1,35 @@
+---
+import LeftCaret from '@/components/icons/leftCaret.astro'
+import RightCaret from '@/components/icons/rightCaret.astro'
+
+interface Props {
+    collection: {
+        data: {
+            title: string;
+            id: string;
+            num: number;
+        }
+        slug: string;
+    }[];
+    this_id: string;
+}
+
+const { collection, this_id } = Astro.props;
+
+const thisTask = collection.find(task => task.data.id === this_id)?.data.num ?? 0;
+const prevTask = collection.find(task => task.data.num === thisTask - 1)?.slug;
+const nextTask = collection.find(task => task.data.num === thisTask + 1)?.slug;
+---
+
+<div class="flex md:hidden">
+    <a
+    class:list={[prevTask ?? "hidden"]}
+    href={`/projects/${prevTask}`}>
+        <LeftCaret width="30" />
+    </a>
+    <a
+    class:list={[nextTask ?? "hidden"]}
+    href={`/projects/${nextTask}`}>
+        <RightCaret width="30" />
+    </a>
+</div>

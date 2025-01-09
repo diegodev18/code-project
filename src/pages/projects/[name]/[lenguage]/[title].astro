@@ -1,8 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import getProjectsContent from "@/utils/getProjectsContent";
+import ToTaskArrows from "@/components/toTaskArrows.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
@@ -51,9 +51,12 @@ description="This is a project page"
             </div>
         </var>
         <section class="pb-3 w-full">
-            <h3 class="text-md md:text-lg italic font-semibold text-main/50">
-                {params.name?.toUpperCase()}
-            </h3>
+            <div class="flex justify-between items-center">
+                <h3 class="text-md md:text-lg italic font-semibold text-main/50">
+                    {params.name?.toUpperCase()}
+                </h3>
+                <ToTaskArrows collection={collections} this_id={params.title} />
+            </div>
             <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-main">
                 {info?.data.title ?? ""}
                 <span class="text-lg text-yellow-200/65">
