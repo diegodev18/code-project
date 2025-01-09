@@ -4,7 +4,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import getProjectsContent from "@/utils/getProjectsContent";
 import ToTaskArrows from "@/components/toTaskArrows.astro";
 
-const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
+const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
 if (!params.name || !params.lenguage || !params.title) {
     return Astro.redirect("/404");
