@@ -18,7 +18,7 @@ const projects = [
         ],
         href: '/projects/your-own-git'
     },
-    {
+/*     {
         num: 2,
         id: 'your-own-shell',
         title: 'Creando tu propio Shell',
@@ -47,7 +47,7 @@ const projects = [
 
         ],
         href: '/projects/your-own-linux-distro'
-    },
+    }, */
 ]
 
 export default projects
