@@ -39,28 +39,3 @@ const progress = getProgressFromAProject(id, 1);
         </div>
     </a>
 </li>
-
-<style>
-    @media (min-width: 1024px) {
-        .title-project:hover {
-            .title-full-project {
-                display: flex;
-                opacity: 0.8;
-                transition: opacity 0.3s;
-    
-                @starting-style {
-                    opacity: 0;
-                }
-            }
-        }
-    
-        .title-full-project {
-            transition: opacity 0.3s, display 0.3s allow-discrete;
-            opacity: 0;
-        }
-    }
-
-    .title-full-project {
-        display: none;
-    }
-</style>
