@@ -2,6 +2,7 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
 import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
+import getIcon from "@/utils/getIcon";
 import ArrowIconComp from "./arrowIconComp.astro";
 import LeftCaret from "./icons/leftCaret.astro";
 import RightCaret from "./icons/rightCaret.astro";
@@ -10,11 +11,7 @@ interface Props {
     id: string;
     title?: string;
     cards: {
-        icon: {
-            width: number;
-            height: number;
-            component: any;
-        };
+        icon: string;
         title: string;
         description: string;
         href: string;
@@ -46,11 +43,13 @@ const { id, title, cards, small = true } = Astro.props;
     <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery" id={`${id}-gallery`}>
         <ul class="flex gap-x-4 px-5 md:px-0">
             {
-                cards.map(({icon: { width, height, component: Icon }, title, description, href, id}) => {
+                cards.map(({icon: string, title, description, href, id}) => {
+                    const { width, height, component } = getIcon('GitIcon');
+
                     return small ? (
-                        <ProjectsSmallCard id={id} href={href} title={title} description={description} icon={{ width, height, component: Icon }} />
+                        <ProjectsSmallCard id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
                     ) : (
-                        <ProjectsLargeCard id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component: Icon }} />
+                        <ProjectsLargeCard id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
                     )
                 })
             }
