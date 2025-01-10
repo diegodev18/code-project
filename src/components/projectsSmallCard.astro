@@ -1,6 +1,9 @@
 ---
 import getProgressFromAProject from '@/utils/getProgressFromAProject';
 import getProjectsContent from "@/utils/getProjectsContent";
+import { getSession } from 'auth-astro/server';
+
+const session = await getSession(Astro.request);
 
 interface Props {
     id: string;
@@ -25,8 +28,15 @@ const { collections } = data ?? { collections: [] };
     class="group w-[140px] md:w-[175px] lg:w-[200px] aspect-[9/10] hover:bg-buttonHov bg-secondary rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
-        progress === 0 ? href :
-        `${href}/${lenguage}/${collections.find(task => task.data.num === progress)?.data.id}`
+        session
+        ?
+            progress === 0
+            ?
+                href
+            :
+                `${href}/${lenguage}/${collections.find(task => task.data.num === progress)?.data.id}`
+        :
+            '/profile'
     }
     >
         <div class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition-all duration-300 ease-in-out">
