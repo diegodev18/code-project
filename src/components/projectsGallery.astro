@@ -3,9 +3,9 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
 import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
 import getIcon from "@/utils/getIcon";
-import ArrowIconComp from "./arrowIconComp.astro";
-import LeftCaret from "./icons/leftCaret.astro";
-import RightCaret from "./icons/rightCaret.astro";
+import ArrowIconComp from "@/components/arrowIconComp.astro";
+import LeftCaret from "@/components/icons/leftCaret.astro";
+import RightCaret from "@/components/icons/rightCaret.astro";
 
 interface Props {
     id: string;
@@ -18,8 +18,9 @@ interface Props {
         id: string;
     }[];
     small?: boolean;
+    session?: boolean;
 }
-const { id, title, cards, small = true } = Astro.props;
+const { id, title, cards, small = true, session = false } = Astro.props;
 ---
 
 <SectionContainer class="!px-0 md:!px-20 lg:!px-40">
@@ -47,9 +48,9 @@ const { id, title, cards, small = true } = Astro.props;
                     const { width, height, component } = getIcon(icon);
 
                     return small ? (
-                        <ProjectsSmallCard id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
+                        <ProjectsSmallCard session={session} id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
                     ) : (
-                        <ProjectsLargeCard id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
+                        <ProjectsLargeCard session={session} id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
                     )
                 })
             }

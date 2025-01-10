@@ -1,9 +1,6 @@
 ---
 import getProgressFromAProject from '@/utils/getProgressFromAProject';
 import getProjectsContent from "@/utils/getProjectsContent";
-import { getSession } from 'auth-astro/server';
-
-const session = await getSession(Astro.request);
 
 interface Props {
     id: string;
@@ -15,8 +12,9 @@ interface Props {
         height: number;
         component: any;
     };
+    session?: boolean;
 }
-const { id, href, title, description, icon: { width, height, component: Icon } } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon }, session = false } = Astro.props;
 
 const { progress, percentaje, lenguage } = getProgressFromAProject(id, 1);
 const data = await getProjectsContent(id, lenguage, 'inicio');

@@ -17,12 +17,14 @@ const user_fav = getFavorites(session?.user?.email || "");
 <ProjectsGallery
 id="main"
 cards={[...Projects]}
+session={true}
 />
 <ProjectsGallery
 id="love"
 title="Podrian gustarte"
 cards={[...Projects]}
 small={false}
+session={true}
 />
 {
     user_progress?.length != 0 && (
@@ -30,6 +32,7 @@ small={false}
         id="continue"
         title="Seguir aprendiendo"
         cards={[...(user_progress ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
+        session={true}
         />
     )
 }
@@ -37,4 +40,5 @@ small={false}
 id="fav"
 title="Favoritos"
 cards={[...(user_fav ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
+session={true}
 />

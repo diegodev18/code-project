@@ -12,8 +12,9 @@ interface Props {
         height: number;
         component: any;
     };
+    session?: boolean;
 }
-const { id, href, title, description, icon: { width, height, component: Icon } } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon }, session } = Astro.props;
 
 const { progress, percentaje, lenguage } = getProgressFromAProject(id, 1);
 const data = await getProjectsContent(id, lenguage, 'inicio');
@@ -25,8 +26,15 @@ const { collections } = data ?? { collections: [] };
     class="group w-[330px] md:w-[400px] aspect-[16/7] hover:bg-buttonHov bg-secondary px-5 md:px-2 rounded-lg flex gap-x-4 justify-center items-center transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
-        progress === 0 ? href :
-        `${href}/${lenguage}/${collections.find(task => task.data.num === progress)?.data.id}`
+        session
+        ?
+            progress === 0
+            ?
+                href
+            :
+                `${href}/${lenguage}/${collections.find(task => task.data.num === progress)?.data.id}`
+        :
+            '/profile'
     }
     >
         <div class="md:max-w-[240px]">
