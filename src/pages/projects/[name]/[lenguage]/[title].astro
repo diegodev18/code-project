@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import getProjectsContent from "@/utils/getProjectsContent";
 import ToTaskArrows from "@/components/toTaskArrows.astro";
+import ProjectsTasksGallery from "@/components/projectsTasksGallery.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
@@ -30,26 +31,9 @@ title={`${info?.data.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
-        <var class="hidden md:block mt-3">
-            <div class="fixed bg-[#1E1E1E] rounded-lg py-5 px-2 w-[220px]">
-                <h3 class="text-center text-2xl not-italic font-semibold text-main border-b-2 pb-1">
-                    Tareas
-                </h3>
-                <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
-                    {
-                        collections.sort((a, b) => a.data.num - b.data.num).map(task => (
-                            <li class={task.data.title === info?.data.title ? "text-main rounded-xl" : "hover:text-yellow-100"}>
-                                <a
-                                class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
-                                href={`/projects/${params.name}/${params.lenguage}/${task.data.id}`}>
-                                    {task.data.title}
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        </var>
+        <ProjectsTasksGallery
+        title={info.data.title} name={params.name} lenguage={params.lenguage} collections={collections}
+        />
         <section class="pb-3 w-full">
             <div class="flex justify-between items-center">
                 <h3 class="text-md md:text-lg italic font-semibold text-main/50">
