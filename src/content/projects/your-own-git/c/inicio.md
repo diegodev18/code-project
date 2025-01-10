@@ -19,3 +19,6 @@ Un sistema de control de versiones (VCS) es una herramienta que te ayuda a rastr
 ## ¿Por qué construir tu propio sistema de control de versiones?
 
 Construir tu propio sistema de control de versiones te ayudará a entender cómo funcionan las herramientas de control de versiones modernas como Git. A lo largo de este proyecto, aprenderás cómo funcionan los comandos de Git como `git init`, `git add`, `git commit`, `git push`, `git pull`, y más.
+
+
+> Para este proyecto, usaremos la SHELL de Linux. Si estás en Windows, podras usar POWERSHELL.

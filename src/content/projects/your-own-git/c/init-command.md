@@ -1,5 +1,5 @@
 ---
-num: 4
+num: 5
 id: 'init-command'
 title: 'Implementando el comando init'
 description: 'Crea un nuevo repositorio Git vacío.'
@@ -42,7 +42,7 @@ La sintaxis básica del comando `init` es la siguiente:
 git init
 ```
 
-En este caso, `git` es el comando de Git **pero en tu programa, se remplzara por tu programa**, y `init` es el subcomando que se utiliza para inicializar un nuevo repositorio. No se requieren argumentos adicionales para este comando.
+En este caso, `git` es el comando de Git **pero en tu programa, se remplazara por tu programa**, y `init` es el subcomando que se utiliza para inicializar un nuevo repositorio. No se requieren argumentos adicionales para este comando.
 
 ### Ejecutando tu programa
 
@@ -54,4 +54,4 @@ Para ejecutar tu programa, simplemente navega al directorio raíz de tu proyecto
 
 ## Tu turno
 
-- [ ] Haz que tu programa cree el directorio `.git` en tu proyecto, al recibir `git init` como argumento.
+- [ ] Haz que tu programa cree el directorio `.git` en tu proyecto, al recibir `init` como argumento.

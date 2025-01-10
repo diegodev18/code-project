@@ -1,5 +1,5 @@
 ---
-num: 3
+num: 4
 id: 'get-args'
 title: 'Obteniendo argumentos'
 description: 'Obtén los argumentos de la línea de comandos.'
@@ -20,6 +20,8 @@ Para que nuestro programa pueda recibir argumentos de la línea de comandos, nec
 - `argc` siempre será al menos 1, ya que el primer argumento es el nombre del programa.
 - Los argumentos adicionales se almacenan en las posiciones siguientes del arreglo `argv`.
 - Los argumentos se separan por espacios en la línea de comandos.
+
+> Recuerda que los argumentos que recibira su plataforma ayudaran a que el usuario pueda definir cual es la accion que desea realizar con su programa.
 
 ## Tu turno
 
