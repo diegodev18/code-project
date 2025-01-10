@@ -1,0 +1,21 @@
+---
+interface Props {
+    opts: {
+        title: string;
+        href: string;
+    }[];
+}
+const { opts } = Astro.props;
+---
+
+<ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
+    {
+        opts.map(opt => (
+            <li class="pb-1 px-3 rounded-b-lg bg-[#1E1E1E] md:hover:text-yellow-100 transition duration-300">
+                <a class="font-semibold" href={opt.href}>
+                    {opt.title}
+                </a>
+            </li>
+        ))
+    }
+</ul>

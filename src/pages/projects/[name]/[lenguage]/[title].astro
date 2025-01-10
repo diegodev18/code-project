@@ -4,6 +4,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import getProjectsContent from "@/utils/getProjectsContent";
 import ToTaskArrows from "@/components/toTaskArrows.astro";
 import ProjectsTasksGallery from "@/components/projectsTasksGallery.astro";
+import ProjectsOptsGallery from "@/components/projectsOptsGallery.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
@@ -47,17 +48,7 @@ description="This is a project page"
                     {`#${info?.data.num ?? ""}`}
                 </span>
             </h1>
-            <ul class="flex gap-x-2 border-t-2 border-[#1E1E1E]">
-                {
-                    opts.map(opt => (
-                        <li class="pb-1 px-3 rounded-b-lg bg-[#1E1E1E] md:hover:text-yellow-100 transition duration-300">
-                            <a class="font-semibold" href={opt.href}>
-                                {opt.title}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
+            <ProjectsOptsGallery opts={opts} />
             <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
                 <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-main">
                     Tarea
