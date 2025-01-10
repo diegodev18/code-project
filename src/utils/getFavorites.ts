@@ -16,7 +16,8 @@ export default function (user_email: string) {
             height: 90,
             component: CircleDashedPlus
         },
-        href: ''
+        href: undefined,
+        lenguages: [],
     };
 
     return progress_projects?.concat(addFav);
