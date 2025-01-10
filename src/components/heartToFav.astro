@@ -1,0 +1,31 @@
+---
+import HeartButton from '@/components/heartButton.astro';
+import HeartBasic from '@/components/icons/heartBasic.astro';
+import HeartBroken from '@/components/icons/heartBroken.astro';
+import HeartFilled from '@/components/icons/heartFilled.astro';
+
+interface Props {
+    id: string;
+    width: number;
+    height: number;
+}
+const { id, width, height } = Astro.props;
+---
+
+<aside>
+    <HeartButton id="basic">
+        <HeartBasic width={width} height={height} />
+    </HeartButton>
+    <HeartButton id="filled">
+        <HeartFilled width={width} height={height} />
+    </HeartButton>
+    <HeartButton id="broken">
+        <HeartBroken width={width} height={height} />
+    </HeartButton>
+</aside>
+
+<script is:inline define:vars={{ id }}>
+    document.addEventListener('astro:page-load', () => {
+        
+    })
+</script>
