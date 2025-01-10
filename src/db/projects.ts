@@ -4,7 +4,7 @@ const projects = [
         id: 'your-own-git',
         title: 'Construye tu propio Git',
         description: 'Construye tu propio sistema de control de versiones desde cero.',
-        icon: 'GitIcon',
+        icon: 'Git',
         lenguages: [
             'c'
         ],
