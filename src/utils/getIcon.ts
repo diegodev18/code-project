@@ -1,6 +1,7 @@
 import BashIcon from "@/components/icons/brands/bashIcon.astro";
 import GitIcon from "@/components/icons/brands/gitIcon.astro";
 import LinuxIcon from "@/components/icons/brands/linuxIcon.astro";
+import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 
 const icons = {
     Git: {
@@ -17,6 +18,11 @@ const icons = {
         width: 90,
         height: 90,
         component: LinuxIcon
+    },
+    CircleDashedPlus: {
+        width: 90,
+        height: 90,
+        component: CircleDashedPlus
     }
 } as const;
 

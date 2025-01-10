@@ -11,11 +11,7 @@ export default function (user_email: string) {
         id: 'add-fav',
         title: 'Añade tus proyectos favoritos',
         description: 'Añade tus proyectos favoritos para tenerlos siempre a mano.',
-        icon: {
-            width: 90,
-            height: 90,
-            component: CircleDashedPlus
-        },
+        icon: 'CircleDashedPlus',
         href: undefined,
         lenguages: [],
     };
