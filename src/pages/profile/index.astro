@@ -6,9 +6,7 @@ import getSession from "@/utils/getSession";
 
 const certificates: { title: string; description: string; img: { src: string; alt: string } }[] = [];
 
-const { user_metadata } = await getSession(Astro);
-
-console.log(user_metadata);
+const session = await getSession(Astro);
 ---
 
 <Layout
@@ -16,12 +14,12 @@ title="Profile"
 description="Profile page"
 >
     {
-        user_metadata ?
+        session ?
         <ProfileComponent
-        name={user_metadata.full_name ?? "Cool name"}
-        username={user_metadata.user_name ?? "Cool username"}
-        img={user_metadata.avatar_url ?? ""}
-        link={user_metadata.user_name ? `https://github.com/${user_metadata.user_name}` : "https://github.com/"}
+        name={session.user_metadata.full_name ?? "Cool name"}
+        username={session.user_metadata.user_name ?? "Cool username"}
+        img={session.user_metadata.avatar_url ?? ""}
+        link={session.user_metadata.user_name ? `https://github.com/${session.user_metadata.user_name}` : "https://github.com/"}
         certificates={certificates ?? []}
         /> :
         <Login
