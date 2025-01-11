@@ -27,9 +27,17 @@ const { name, username, img, link, certificates } = Astro.props;
         style={{ backgroundImage: `url(${img})` }}
         class="aspect-square w-44 md:w-72 bg-center bg-cover bg-no-repeat rounded-lg bg-white"
         />
-        <button class="py-2 px-3 bg-secondary hover:bg-buttonHov font-bold rounded-lg lg:w-full transition ease-in-out duration-300" id="github-signout">
-            Cerrar sesion
-        </button>
+        <form
+        action="/api/auth/signout"
+        class="lg:w-full"
+        >
+            <button
+            class="py-2 px-3 bg-secondary hover:bg-buttonHov font-bold rounded-lg lg:w-full transition ease-in-out duration-300"
+            type="submit"
+            >
+                Cerrar sesion
+            </button>
+        </form>
     </div>
     <div class="md:flex md:flex-col md:justify-center md:gap-y-2">
         <div class="flex items-center gap-x-3 md:gap-x-4 pt-4">
@@ -78,16 +86,3 @@ const { name, username, img, link, certificates } = Astro.props;
         }
     </ul>
 </SectionContainer>
-
-<script>
-    document.addEventListener('astro:page-load', async () => {        
-        const { signOut } = await import("auth-astro/client");
-        const signoutButton = document.querySelector("#github-signout");
-        
-        signoutButton?.removeEventListener("click", handleSignOut);
-        async function handleSignOut() {
-            await signOut();
-        }
-        signoutButton?.addEventListener("click", handleSignOut);
-    });
-</script>
