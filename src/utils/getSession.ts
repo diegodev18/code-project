@@ -1,6 +1,8 @@
 import { supabase } from "@/lib/supabase";
 
-export default async function getSession(refreshToken: { value: string }, accessToken: { value: string }) {
+export default async function getSession({ cookies }) {
+    const accessToken = cookies.get("sb-access-token");
+    const refreshToken = cookies.get("sb-refresh-token");
     let session;
     try {
         session = await supabase.auth.setSession({
@@ -10,7 +12,7 @@ export default async function getSession(refreshToken: { value: string }, access
         if (session.error) {
             return null;
         }
-        return session;
+        return session.data.user;
     } catch (error) {
         return null;
     }
