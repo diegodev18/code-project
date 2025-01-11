@@ -1,4 +1,4 @@
-import { supabase } from "../lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 export default async function getSession(refreshToken: { value: string }, accessToken: { value: string }) {
     let session;
