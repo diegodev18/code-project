@@ -6,7 +6,9 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github' as Provider,
         options: {
-            redirectTo: "https://code-project-sigma.vercel.app/api/auth/callback"
+            redirectTo: import.meta.env.DEV
+                ? "http://localhost:4321/api/auth/callback"
+                : "https://code-project-sigma.vercel.app/api/auth/callback",
         },
     });
 
