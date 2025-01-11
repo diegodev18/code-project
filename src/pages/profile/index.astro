@@ -21,7 +21,7 @@ description="Profile page"
         name={user_metadata.full_name ?? "Cool name"}
         username={user_metadata.user_name ?? "Cool username"}
         img={user_metadata.avatar_url ?? ""}
-        link={user_metadata.id ? `https://github.com/${user_metadata.user?.id}` : "https://github.com/"}
+        link={user_metadata.user_name ? `https://github.com/${user_metadata.user_name}` : "https://github.com/"}
         certificates={certificates ?? []}
         /> :
         <Login
