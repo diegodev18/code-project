@@ -1,4 +1,3 @@
-import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 import profiles from "@/db/profiles";
 import projects from "@/db/projects";
 
@@ -16,5 +15,6 @@ export default function (user_email: string) {
         lenguages: [],
     };
 
+    if (!progress_projects) return [addFav];
     return progress_projects?.concat(addFav);
 }
