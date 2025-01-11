@@ -8,7 +8,13 @@ const projects = [
         lenguages: [
             'c'
         ],
-        href: '/projects/your-own-git'
+        tags: [
+            'c',
+            'git',
+            'version-control',
+            'bajo-nivel'
+        ],
+        href: '/projects/your-own-git',
     },
 /*     {
         num: 2,
