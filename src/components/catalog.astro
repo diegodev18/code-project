@@ -5,9 +5,8 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import Projects from "@/db/projects";
 import getProgress from "@/utils/getProgressProjects";
 import getFavorites from "@/utils/getFavorites";
-import { getSession } from "auth-astro/server";
 
-const session = await getSession(Astro.request);
+const session = null;
 const user_progress = getProgress(session?.user?.email || "");
 const user_fav = getFavorites(session?.user?.email || "");
 ---
