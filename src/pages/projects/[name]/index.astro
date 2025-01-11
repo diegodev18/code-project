@@ -5,14 +5,13 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import MyArticle from "@/components/myArticle.astro";
 import LenguagesGallery from "@/components/lenguagesGallery.astro";
 import HeartToFav from "@/components/heartToFav.astro";
+import getIcon from "@/utils/getIcon";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
 const info = Projects.find(project => project.id === params.name);
+const { width, height, component: Icon } = getIcon(info?.icon);
 
-if (!info) {
-    return Astro.redirect('/404');
-}
 ---
 
 <Layout
@@ -30,7 +29,7 @@ description="This is a project page"
                 </p>
             </div>
             <div class="md:group-hover:scale-125 transition-transform duration-[400ms] ease-in-out">
-                <info.icon.component width={info.icon.width + 40} height={info.icon.height + 40} />
+                <Icon width={width + 40} height={height + 40} />
             </div>
         </MyArticle>
     </SectionContainer>

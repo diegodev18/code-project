@@ -2,9 +2,9 @@
 import Catalog from '@/components/catalog.astro';
 import Landing from '@/components/landing.astro';
 import Layout from '@/layouts/Layout.astro';
-import { getSession } from "auth-astro/server";
+import getSession from '@/utils/getSession';
 
-const session = await getSession(Astro.request);
+const session = await getSession(Astro);
 ---
 
 <Layout

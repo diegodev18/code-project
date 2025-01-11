@@ -2,11 +2,11 @@
 import Layout from "@/layouts/Layout.astro";
 import ProfileComponent from "@/components/profileComponent.astro";
 import Login from "@/components/login.astro";
-import { getSession } from "auth-astro/server";
+import getSession from "@/utils/getSession";
 
 const certificates: { title: string; description: string; img: { src: string; alt: string } }[] = [];
 
-const session = await getSession(Astro.request);
+const session = await getSession(Astro);
 ---
 
 <Layout
@@ -16,10 +16,10 @@ description="Profile page"
     {
         session ?
         <ProfileComponent
-        name={session.user?.name ?? "Cool name"}
-        username={session.user?.id ?? "Cool username"}
-        img={session.user?.image ?? ""}
-        link={session.user?.id ? `https://github.com/${session.user?.id}` : "https://github.com/"}
+        name={session.user_metadata.full_name ?? "Cool name"}
+        username={session.user_metadata.user_name ?? "Cool username"}
+        img={session.user_metadata.avatar_url ?? ""}
+        link={session.user_metadata.user_name ? `https://github.com/${session.user_metadata.user_name}` : "https://github.com/"}
         certificates={certificates ?? []}
         /> :
         <Login

@@ -5,12 +5,16 @@ import getProjectsContent from "@/utils/getProjectsContent";
 import ToTaskArrows from "@/components/toTaskArrows.astro";
 import ProjectsTasksGallery from "@/components/projectsTasksGallery.astro";
 import ProjectsOptsGallery from "@/components/projectsOptsGallery.astro";
+import getSession from "@/utils/getSession";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
 if (!params.name || !params.lenguage || !params.title) {
     return Astro.redirect("/404");
 }
+
+const session = await getSession(Astro);
+if (!session) { return Astro.redirect("/profile"); }
 
 const data = await getProjectsContent(params.name, params.lenguage, params.title);
 
