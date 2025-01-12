@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const progress = User?.progress;
 
     if (progress && progress.find((item: any) => item.id_project === data.id_project)) {
-        console.log('Ya existe un progreso para este proyecto');
+        // console.log('Ya existe un progreso para este proyecto');
         return redirect(`/projects/${data.id_project}/${data.lang}/inicio`);
     }
 
