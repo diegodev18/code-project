@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 export default async function (user_name: string) {
     let { data: User } = await supabase
         .from("users")
-        .select("user_name, progress")
+        .select("progress")
         .eq("user_name", user_name)
         .single();
     const progress = User?.progress;
