@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 
-export default async function getSession({ cookies }) {
+export default async function getSession({ cookies }: { cookies: any }) {
     const accessToken = cookies.get("sb-access-token");
     const refreshToken = cookies.get("sb-refresh-token");
     let session;
