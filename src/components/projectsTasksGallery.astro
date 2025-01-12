@@ -10,8 +10,9 @@ interface Props {
             id: string;
         };
     }[];
+    onProgress?: number;
 }
-const { title, name, lenguage, collections } = Astro.props;
+const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
 ---
 
 <var class="hidden md:block mt-3">
@@ -22,7 +23,10 @@ const { title, name, lenguage, collections } = Astro.props;
         <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
             {
                 collections.sort((a, b) => a.data.num - b.data.num).map(task => (
-                    <li class={task.data.title === title ? "text-main rounded-xl" : "hover:text-yellow-100"}>
+                    <li class:list={[
+                        task.data.title === title && onProgress !== task.data.num && "text-purple-300 rounded-xl",
+                        onProgress === task.data.num && "text-main"
+                    ]}>
                         <a
                         class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
                         title={task.data.title}

@@ -6,12 +6,16 @@ import ToTaskArrows from "@/components/toTaskArrows.astro";
 import ProjectsTasksGallery from "@/components/projectsTasksGallery.astro";
 import ProjectsOptsGallery from "@/components/projectsOptsGallery.astro";
 import getSession from "@/utils/getSession";
+import SendFly from "@/components/icons/sendFly.astro";
+import getProgressFromAProject from "@/utils/getProgressFromAProject";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
 if (!params.name || !params.lenguage || !params.title) {
     return Astro.redirect("/404");
 }
+
+const progress = await getProgressFromAProject(params.name, 'diego-dev018')
 
 const session = await getSession(Astro);
 if (!session) { return Astro.redirect("/profile"); }
@@ -37,7 +41,7 @@ description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
         <ProjectsTasksGallery
-        title={info.data.title} name={params.name} lenguage={params.lenguage} collections={collections}
+        title={info.data.title} name={params.name} lenguage={params.lenguage} collections={collections} onProgress={progress.progress}
         />
         <section class="pb-3 w-full">
             <div class="flex justify-between items-center">
@@ -62,6 +66,15 @@ description="This is a project page"
                 id="content"
                 >
                     <Content />
+                    {
+                        progress.progress === info.data.num && (
+                            <form action="">
+                                <button class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out">
+                                    Terminar tarea <SendFly width="20" />
+                                </button>
+                            </form>
+                        )
+                    }
                 </div>
             </div>
         </section>
