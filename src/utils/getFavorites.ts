@@ -1,9 +1,11 @@
 import profiles from "@/db/profiles";
-import projects from "@/db/projects";
+import getProjects from "@/lib/getProjects";
+
+const Projects = await getProjects();
 
 export default function (user_name: string) {
     const profile = profiles.find((profile) => profile.user_name === user_name);    
-    const progress_projects = profile?.favorites?.map((fav) => projects.find((project) => project.id === fav.id_project));
+    const progress_projects = profile?.favorites?.map((fav) => Projects?.find((project) => project.id === fav.id_project));
 
     const addFav = {
         num: 1,
