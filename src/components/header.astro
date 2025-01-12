@@ -6,7 +6,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import DesktopNav from "@/components/desktopNav.astro";
 ---
 
-<SectionContainer class="fixed top-0 left-0 right-0 z-50 transition-colors backdrop-blur-sm rounded-b-md duration-500" id="header-nav">
+<SectionContainer class="fixed top-0 left-0 right-0 z-50 transition-colors rounded-b-md duration-500" id="header-nav">
     <header class="py-4">
         <ul class="flex lg:grid lg:grid-cols-[1fr_350px_1fr] justify-between items-center text-main" id="header-nav">
             <li class="lg:hidden">
@@ -36,14 +36,16 @@ import DesktopNav from "@/components/desktopNav.astro";
 <div class="pb-[68px] md:pb-[62px]" />
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        document.addEventListener('scroll', () => {
-            const header = document.querySelector('#header-nav');
-            if (window.scrollY > 10) {
-                header?.classList.add('bg-black/50');
-            } else {
-                header?.classList.remove('bg-black/50');
-            }
-        })
+    // document.addEventListener('astro:page-load', () => {
+    document.addEventListener('scroll', () => {
+        const header = document.querySelector('#header-nav');
+        if (window.scrollY > 10) {
+            header?.classList.add('bg-black/50');
+            header?.classList.add('backdrop-blur-sm');
+        } else {
+            header?.classList.remove('bg-black/50');
+            header?.classList.remove('backdrop-blur-sm');
+        }
     })
+    // })
 </script>
