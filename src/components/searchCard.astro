@@ -2,17 +2,18 @@
 interface Props {
     title: string;
     description: string;
+    href?: string;
     icon: {
-        width: string;
-        height: string;
+        width: number;
+        height: number;
         component: any;
     };
 }
-const { title, description, icon } = Astro.props;
+const { title, description, href, icon } = Astro.props;
 ---
 
 <a
-href="/"
+href={href ?? '/'}
 title={`${title} - ${description}`}
 class="flex items-center w-full h-56 bg-secondary hover:bg-buttonHov rounded-3xl gap-x-8 px-8 transition duration-300 ease-in-out">
     <icon.component width={icon.width} height={icon.height} />

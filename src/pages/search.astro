@@ -5,6 +5,7 @@ import SearchVar from '@/components/searchVar.astro'
 import SectionContainer from '@/components/sectionContainer.astro';
 import Projects from '@/db/projects';
 import Layout from '@/layouts/Layout.astro'
+import getIcon from '@/utils/getIcon';
 
 const searched = Astro.url.searchParams.get('search') ?? "Todos";
 
@@ -37,9 +38,12 @@ description='Search for products'
         found.length > 0 && (
             <SectionContainer class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 2xl:grid-cols-3 min-h-[70vh] md:min-h-[78vh]">
                 {
-                    found.map(project => (
-                        <SearchCard title={project.title} description={project.description} icon={{ width:"180", height: "180", component: GitIcon }} />
-                    ))
+                    found.map(project => {
+                        const { width, height, component: Icon } = getIcon(project.icon);
+                        return (
+                            <SearchCard title={project.title} description={project.description} href={project.href} icon={{ width: width + 100, height: height + 100, component: Icon }} />
+                        )
+                    })
                 }
             </SectionContainer>
         )
