@@ -3,10 +3,11 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import ProgrammingIcon2 from "@/components/icons/programmingIcon2.astro";
 import Login from "@/components/login.astro";
 import ProjectsGallery from "@/components/projectsGallery.astro";
-import Projects from "@/db/projects";
-import MyArticle from "./myArticle.astro";
-import ToSectionArrow from "./toSectionArrow.astro";
+import getProjects from "@/lib/getProjects";
+import MyArticle from "@/components/myArticle.astro";
+import ToSectionArrow from "@/components/toSectionArrow.astro";
 
+const Projects = await getProjects() ?? [];
 ---
 
 <MyArticle>

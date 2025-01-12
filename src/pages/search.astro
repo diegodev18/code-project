@@ -3,10 +3,11 @@ import GitIcon from '@/components/icons/brands/gitIcon.astro';
 import SearchCard from '@/components/searchCard.astro';
 import SearchVar from '@/components/searchVar.astro'
 import SectionContainer from '@/components/sectionContainer.astro';
-import Projects from '@/db/projects';
+import getProjects from '@/lib/getProjects';
 import Layout from '@/layouts/Layout.astro'
 import getIcon from '@/utils/getIcon';
 
+const Projects = await getProjects() ?? [];
 const searched = Astro.url.searchParams.get('search') ?? "Todos";
 
 let found = [];

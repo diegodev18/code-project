@@ -12,8 +12,6 @@ const session = await getSession(Astro);
 const Projects = await getProjects();
 const user_progress = getProgress(session?.user_metadata.user_name || "");
 const user_fav = getFavorites(session?.user_metadata.user_name || "");
-
-console.log(Projects);
 ---
 
 <SearchVar />
