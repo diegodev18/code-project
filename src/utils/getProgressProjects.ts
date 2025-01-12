@@ -1,8 +1,4 @@
-import profiles from "@/db/profiles";
 import { supabase } from "@/lib/supabase";
-import getProjects from "@/utils/getProjects";
-
-const Projects = await getProjects();
 
 export default async function (user_name: string) {
     let { data: User } = await supabase
