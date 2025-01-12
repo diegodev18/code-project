@@ -1,5 +1,4 @@
 import { supabase } from "@/lib/supabase";
-import profiles from "@/db/profiles";
 
 export default async function (user_name: string) {
     let { data: user } = await supabase

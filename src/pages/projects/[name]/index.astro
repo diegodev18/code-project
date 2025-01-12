@@ -15,7 +15,7 @@ let { data: Project } = await supabase
         .single();
 
 if (!Project) {
-    return redirect("/");
+    return Astro.redirect("/404");
 }
 
 const { width, height, component: Icon } = getIcon(Project?.icon);
