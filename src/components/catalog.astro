@@ -16,7 +16,7 @@ let { data: Projects } = await supabase
 const session = await getSession(Astro);
 
 const user_fav = await getFavorites(session?.user_metadata.user_name || "");
-const user_progress = getProgress(session?.user_metadata.user_name || "");
+const user_progress = await getProgress(session?.user_metadata.user_name || "");
 ---
 
 <SearchVar />
