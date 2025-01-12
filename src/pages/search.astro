@@ -33,15 +33,19 @@ description='Search for products'
             </span>
         </p>
     </SectionContainer>
-    <SectionContainer class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 2xl:grid-cols-3 min-h-[70vh] md:min-h-[78vh]">
-        {
-            found.length != 0 && (found.map(project => (
-                <SearchCard title={project.title} description={project.description} icon={{ width:"180", height: "180", component: GitIcon }} />
-            )))
-        }
-    </SectionContainer>
     {
-        found.length == 0 && (
+        found.length > 0 && (
+            <SectionContainer class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 2xl:grid-cols-3 min-h-[70vh] md:min-h-[78vh]">
+                {
+                    found.map(project => (
+                        <SearchCard title={project.title} description={project.description} icon={{ width:"180", height: "180", component: GitIcon }} />
+                    ))
+                }
+            </SectionContainer>
+        )
+    }
+    {
+        found.length === 0 && (
             <SectionContainer class="flex items-center justify-center h-[70vh] md:h-[78vh]">
                 <p class="text-2xl text-center font-bold text-purple-300">
                     No se encontraron resultados
