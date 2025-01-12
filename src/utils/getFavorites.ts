@@ -1,8 +1,8 @@
 import profiles from "@/db/profiles";
 import projects from "@/db/projects";
 
-export default function (user_email: string) {
-    const profile = profiles.find((profile) => profile.email === user_email);    
+export default function (user_name: string) {
+    const profile = profiles.find((profile) => profile.user_name === user_name);    
     const progress_projects = profile?.favorites?.map((fav) => projects.find((project) => project.id === fav.id_project));
 
     const addFav = {
@@ -11,8 +11,9 @@ export default function (user_email: string) {
         title: 'Añade tus proyectos favoritos',
         description: 'Añade tus proyectos favoritos para tenerlos siempre a mano.',
         icon: 'CircleDashedPlus',
-        href: undefined,
+        href: '',
         lenguages: [],
+        tags: [],
     };
 
     if (!progress_projects) return [addFav];

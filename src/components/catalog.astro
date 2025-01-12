@@ -5,10 +5,12 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import Projects from "@/db/projects";
 import getProgress from "@/utils/getProgressProjects";
 import getFavorites from "@/utils/getFavorites";
+import getSession from "@/utils/getSession";
 
-const session = null;
-const user_progress = getProgress(session?.user?.email || "");
-const user_fav = getFavorites(session?.user?.email || "");
+const session = await getSession(Astro);
+
+const user_progress = getProgress(session?.user_metadata.user_name || "");
+const user_fav = getFavorites(session?.user_metadata.user_name || "");
 ---
 
 <SearchVar />

@@ -2,7 +2,7 @@ const profiles = [
     {
         acc_id: 1,
         name: "Diego Sanchez",
-        id: null,
+        user_name: 'diego-dev018',
         email: "diegosanchez.dev018@gmail.com",
         img: "https://avatars.githubusercontent.com/u/175571311?v=4",
         progress: [
