@@ -1,31 +1,39 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Projects from "@/db/projects";
 import SectionContainer from "@/components/sectionContainer.astro";
 import MyArticle from "@/components/myArticle.astro";
 import LenguagesGallery from "@/components/lenguagesGallery.astro";
-import HeartToFav from "@/components/heartToFav.astro";
 import getIcon from "@/utils/getIcon";
+import { supabase } from "@/lib/supabase";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/introduction
 
-const info = Projects.find(project => project.id === params.name);
-const { width, height, component: Icon } = getIcon(info?.icon);
+let { data: Project } = await supabase
+        .from("projects")
+        .select("id, icon, description, title, lenguages")
+        .eq("id", params.name)
+        .single();
+
+if (!Project) {
+    return redirect("/");
+}
+
+const { width, height, component: Icon } = getIcon(Project?.icon);
 
 ---
 
 <Layout
-title={`${info?.title ?? "Proyecto"} - CodeProject`}
+title={`${Project?.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer>
         <MyArticle class="group flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-2 md:flex-row items-center justify-center md:justify-between min-h-[45vh] md:min-h-[50vh]">
             <div>
                 <h1 class="text-3xl sm:text-4xl md:text-[3rem] leading-tight md:leading-[3.2rem] font-bold text-main mt-4">
-                    {info.title}
+                    {Project?.title}
                 </h1>
                 <p class="text-xl sm:text-2xl md:text-[1.8rem] opacity-75 font-medium mt-2 xl:mt-4">
-                    {info.description}
+                    {Project?.description}
                 </p>
             </div>
             <div class="md:group-hover:scale-125 transition-transform duration-[400ms] ease-in-out">
@@ -35,9 +43,9 @@ description="This is a project page"
     </SectionContainer>
     <SectionContainer class="flex flex-col justify-center min-h-[45vh] md:min-h-[38vh]">
         <h2 class="text-start lg:text-center text-3xl md:text-4xl font-bold text-main">
-            {info.lenguages.length >= 1 ? "Iniciar proyecto" : "Proyecto aun no disponible :("}
+            {Project?.lenguages.length >= 1 ? "Iniciar proyecto" : "Proyecto aun no disponible :("}
         </h2>
-        <LenguagesGallery id={info.id} lenguages={info.lenguages} />
+        <LenguagesGallery id={Project?.id} lenguages={Project?.lenguages} />
     </SectionContainer>
     <!-- <SectionContainer class="flex flex-col text-center md:flex-row justify-center items-center gap-y-2 md:gap-x-6 min-h-[13vh] md:min-h-[10vh]">
         <h3 class="text-2xl">
