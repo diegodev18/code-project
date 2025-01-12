@@ -1,14 +1,18 @@
 ---
-import GitIcon from '@/components/icons/brands/gitIcon.astro';
 import SearchCard from '@/components/searchCard.astro';
 import SearchVar from '@/components/searchVar.astro'
 import SectionContainer from '@/components/sectionContainer.astro';
-import getProjects from '@/lib/getProjects';
 import Layout from '@/layouts/Layout.astro'
 import getIcon from '@/utils/getIcon';
+import { supabase } from "@/lib/supabase";
 
-const Projects = await getProjects() ?? [];
 const searched = Astro.url.searchParams.get('search') ?? "Todos";
+
+let { data: Projects } = await supabase
+        .from("projects")
+        .select("icon, title, description, href")
+        .limit(10);
+Projects = Projects ?? [];
 
 let found = [];
 if (searched == "Todos") {
