@@ -23,40 +23,44 @@ interface Props {
 const { id, title, cards, small = true, session = false } = Astro.props;
 ---
 
-<SectionContainer class="!px-0 md:!px-20 lg:!px-40">
-    <div class:list={["flex items-center", title ? "justify-between" : "justify-end"]}>
-        {
-            title && (
-                <h2 class="text-2xl font-bold pt-4 px-5 md:px-0">
-                    {title}
-                </h2>
-            )
-        }
-        <div class="hidden md:flex gap-x-1">
-            <ArrowIconComp id={`${id}-left`}>
-                <LeftCaret width="35" />
-            </ArrowIconComp>
-            <ArrowIconComp id={`${id}-right`}>
-                <RightCaret width="35" />
-            </ArrowIconComp>
-        </div>
-    </div>
-    <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery" id={`${id}-gallery`}>
-        <ul class="flex gap-x-4 px-5 md:px-0">
-            {
-                cards.map(({icon, title, description, href, id}) => {
-                    const { width, height, component } = getIcon(icon);
-
-                    return small ? (
-                        <ProjectsSmallCard session={session} id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
-                    ) : (
-                        <ProjectsLargeCard session={session} id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
+{
+    cards.length !== 0 && (
+        <SectionContainer class="!px-0 md:!px-20 lg:!px-40">
+            <div class:list={["flex items-center", title ? "justify-between" : "justify-end"]}>
+                {
+                    title && (
+                        <h2 class="text-2xl font-bold pt-4 px-5 md:px-0">
+                            {title}
+                        </h2>
                     )
-                })
-            }
-        </ul>
-    </div>
-</SectionContainer>
+                }
+                <div class="hidden md:flex gap-x-1">
+                    <ArrowIconComp id={`${id}-left`}>
+                        <LeftCaret width="35" />
+                    </ArrowIconComp>
+                    <ArrowIconComp id={`${id}-right`}>
+                        <RightCaret width="35" />
+                    </ArrowIconComp>
+                </div>
+            </div>
+            <div class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery" id={`${id}-gallery`}>
+                <ul class="flex gap-x-4 px-5 md:px-0">
+                    {
+                        cards.map(({icon, title, description, href, id}) => {
+                            const { width, height, component } = getIcon(icon);
+
+                            return small ? (
+                                <ProjectsSmallCard session={session} id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
+                            ) : (
+                                <ProjectsLargeCard session={session} id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+        </SectionContainer>
+    )
+}
 
 <style>
     .project-gallery {
