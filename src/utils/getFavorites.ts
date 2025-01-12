@@ -11,7 +11,7 @@ export default function (user_name: string) {
         title: 'Añade tus proyectos favoritos',
         description: 'Añade tus proyectos favoritos para tenerlos siempre a mano.',
         icon: 'CircleDashedPlus',
-        href: '',
+        href: '#fav',
         lenguages: [],
         tags: [],
     };
