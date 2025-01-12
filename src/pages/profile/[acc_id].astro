@@ -3,22 +3,27 @@ import Layout from "@/layouts/Layout.astro";
 import ProfileComponent from "@/components/profileComponent.astro";
 import Adv from "@/components/adv.astro";
 import Profiles from "@/db/profiles";
+import { supabase } from "@/lib/supabase";
 
 const params = Astro.params;
 
-const session = Profiles.find((profile) => profile.acc_id.toString() === params.acc_id);
+let { data: session } = await supabase
+    .from("users")
+    .select("user_name, full_name, avatar_url, certificates")
+    .eq("user_name", params.acc_id)
+    .single();
 ---
 <Layout
-title={session?.name ?? "Profile - CodeProject"}
-description={`Pagina de perfil de ${session?.name ?? "CodeProject"}`}
+title={session?.full_name ?? "Profile - CodeProject"}
+description={`Pagina de perfil de ${session?.full_name ?? "CodeProject"}`}
 >
     {
         session ?
         <ProfileComponent
-        name={session?.name ?? "Cool name"}
-        username={session?.id ?? "Cool username"}
-        img={session?.img ?? ""}
-        link={session?.id ? `https://github.com/${session?.id}` : "https://github.com/"}
+        name={session?.full_name ?? "Cool name"}
+        username={session?.user_name ?? "Cool username"}
+        img={session?.avatar_url ?? ""}
+        link={session?.user_name ? `https://github.com/${session?.user_name}` : "https://github.com/"}
         certificates={session.certificates ?? []}
         />
         :

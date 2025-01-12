@@ -21,6 +21,7 @@ description="Profile page"
         img={session.user_metadata.avatar_url ?? ""}
         link={session.user_metadata.user_name ? `https://github.com/${session.user_metadata.user_name}` : "https://github.com/"}
         certificates={certificates ?? []}
+        main={true}
         /> :
         <Login
         fullHeight={true}
