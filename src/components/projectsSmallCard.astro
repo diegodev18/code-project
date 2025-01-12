@@ -1,6 +1,7 @@
 ---
 import getProgressFromAProject from '@/utils/getProgressFromAProject';
 import getProjectsContent from "@/utils/getProjectsContent";
+import getSession from '@/utils/getSession';
 
 interface Props {
     id: string;
@@ -12,11 +13,12 @@ interface Props {
         height: number;
         component: any;
     };
-    session?: boolean;
+    user_name?: string;
 }
-const { id, href, title, description, icon: { width, height, component: Icon }, session = false } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon }, user_name = 'no' } = Astro.props;
 
-const { progress, percentaje, lenguage } = await getProgressFromAProject(id, 1);
+const { progress, percentaje, lenguage } = await getProgressFromAProject(id, user_name);
+
 const data = await getProjectsContent(id, lenguage, 'inicio');
 const { collections } = data ?? { collections: [] };
 ---
@@ -26,7 +28,7 @@ const { collections } = data ?? { collections: [] };
     class="group w-[140px] md:w-[175px] lg:w-[200px] aspect-[9/10] hover:bg-buttonHov bg-secondary rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
-        session
+        user_name
         ?
             progress === 0
             ?

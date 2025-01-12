@@ -12,11 +12,12 @@ interface Props {
         height: number;
         component: any;
     };
-    session?: boolean;
+    user_name?: string;
 }
-const { id, href, title, description, icon: { width, height, component: Icon }, session } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon }, user_name = 'no' } = Astro.props;
 
-const { progress, percentaje, lenguage } = await getProgressFromAProject(id, 1);
+const { progress, percentaje, lenguage } = await getProgressFromAProject(id, user_name);
+
 const data = await getProjectsContent(id, lenguage, 'inicio');
 const { collections } = data ?? { collections: [] };
 ---
@@ -26,7 +27,7 @@ const { collections } = data ?? { collections: [] };
     class="group w-[330px] md:w-[400px] aspect-[16/7] hover:bg-buttonHov bg-secondary px-5 md:px-2 rounded-lg flex gap-x-4 justify-center items-center transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
-        session
+        user_name
         ?
             progress === 0
             ?
