@@ -19,15 +19,24 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         .single();
     const progress = User?.progress;
 
-    if (progress && progress.find((item: any) => item.id_project === data.id_project)) {
+    if (progress && progress.find((item: any) => item.id_project === data.id_project && item.lang === data.lang && item.status === data.status)) {
         // console.log('Ya existe un progreso para este proyecto');
         return redirect(`/projects/${data.id_project}/${data.lang}/inicio`);
     }
-
+    
     if (!User) {
         return new Response('User not found', { status: 404 });
     }
-    const newProgress = progress.concat(data);
+
+    let newProgress;
+    if (progress && progress.find((item: any) => item.id_project === data.id_project && item.lang === data.lang && item.status !== data.status)) {
+        // console.log('Ya existe un progreso para este proyecto pero con otro status');
+        newProgress = [...progress];
+        newProgress[progress.findIndex((item: any) => item.id_project === data.id_project && item.lang === data.lang)]['status'] = data.status;
+    } else {
+        newProgress = progress.concat(data);
+    }
+
 
     const { error: updateError } = await supabase
         .from('users')
