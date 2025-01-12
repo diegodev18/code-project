@@ -16,7 +16,7 @@ interface Props {
 }
 const { id, href, title, description, icon: { width, height, component: Icon }, session } = Astro.props;
 
-const { progress, percentaje, lenguage } = getProgressFromAProject(id, 1);
+const { progress, percentaje, lenguage } = await getProgressFromAProject(id, 1);
 const data = await getProjectsContent(id, lenguage, 'inicio');
 const { collections } = data ?? { collections: [] };
 ---

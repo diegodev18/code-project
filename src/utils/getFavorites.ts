@@ -1,23 +1,15 @@
+import { supabase } from "@/lib/supabase";
 import profiles from "@/db/profiles";
-import getProjects from "@/lib/getProjects";
 
-const Projects = await getProjects();
+export default async function (user_name: string) {
+    const favorites = profiles.find((profile) => profile.user_name === user_name)?.favorites;
 
-export default function (user_name: string) {
-    const profile = profiles.find((profile) => profile.user_name === user_name);    
-    const progress_projects = profile?.favorites?.map((fav) => Projects?.find((project) => project.id === fav.id_project));
+    if (!favorites) return [];
 
-    const addFav = {
-        num: 1,
-        id: 'add-fav',
-        title: 'Añade tus proyectos favoritos',
-        description: 'Añade tus proyectos favoritos para tenerlos siempre a mano.',
-        icon: 'CircleDashedPlus',
-        href: '#fav',
-        lenguages: [],
-        tags: [],
-    };
+    let { data: projects } = await supabase
+        .from("projects")
+        .select("id, title, description, icon, href")
+        .in("id", favorites);
 
-    if (!progress_projects) return [addFav];
-    return progress_projects?.concat(addFav);
+    return projects ? projects : [];
 }

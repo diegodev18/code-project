@@ -1,4 +1,4 @@
-import getProjects from "@/lib/getProjects";
+import getProjects from "@/utils/getProjects";
 import Profiles from "@/db/profiles";
 
 const Projects = await getProjects();
