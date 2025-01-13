@@ -8,7 +8,7 @@ const session = await getSession(Astro);
 ---
 
 <Layout
-title={`${session ? "Inicio" : "Landing Page"} - CodeProject`}
+title={`${session ? "Inicio" : "Aprende programacion con proyectos reales"} - CodeProject`}
 description={session ? "Explora los proyectos de CodeProject" : "Inicia ahora a aprender a programar y mejorar en tu campo con CodeProject"}
 >
     { session ? <Catalog /> : <Landing /> }
