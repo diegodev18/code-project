@@ -28,7 +28,7 @@ export default async function (id_project: string, user_name: string): Promise<{
     }
 
     // const length = getProjectsContent(project);
-    const length = await countFiles(`./src/content${project.href}/c`);
+    const length = 10;
 
     return {
         progress: progress.status,
