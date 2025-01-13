@@ -102,8 +102,15 @@ const { name, username, img, link, certificates, main = false } = Astro.props;
     shareButton?.addEventListener("click", async () => {
         if (navigator.share) {
             await navigator.share({
-                title: "Mi perfil",
-                text: "Conoce mi perfil de CodeProject",
+                title: "Mi perfil de CodeProject",
+                text: `\
+🚀 ¡Hola! 👋
+
+Si te apasiona el mundo de la programación, no puedes perderte de CodeProject 🌟. Ahí encontrarás proyectos increíbles de desarrolladores como tú, con ideas innovadoras y código impresionante 🔥.
+
+🔍 Explora mi perfil y mira lo que estoy haciendo! 💻✨
+
+👉 `,
                 url: `https://code-project-sigma.vercel.app/profile/${username ?? ""}`,
             })
             .then(() => console.log("Successful share"))
