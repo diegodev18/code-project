@@ -19,6 +19,7 @@ const progress = await getProgressFromAProject(params.name, 'diego-dev018')
 
 const session = await getSession(Astro);
 if (!session) { return Astro.redirect("/profile"); }
+const user_name = session?.user_metadata.user_name;
 
 const data = await getProjectsContent(params.name, params.lenguage, params.title);
 
@@ -68,8 +69,16 @@ description="This is a project page"
                     <Content />
                     {
                         progress.progress === info.data.num && (
-                            <form action="">
-                                <button class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out">
+                            <form
+                            action="/api/db/progress"
+                            method="POST"
+                            >
+                                <button
+                                class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
+                                name="progressItem"
+                                value={`{"id_project": "${params.name}", "status": ${info.data.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}"}`}
+                                type="submit"
+                                >
                                     Terminar tarea <SendFly width="20" />
                                 </button>
                             </form>
