@@ -1,0 +1,31 @@
+---
+import UsedResourceCard from "@/components/usedResourceCard.astro"
+import SvglIcon from "@/components/icons/brands/svglIcon.astro"
+import tablerIcons from "@/components/icons/brands/tablerIcons.astro"
+
+const resources = [
+    {
+        name: "Svgl",
+        description: "A beautiful library with SVG logos",
+        href: "https://svgl.vercel.app/",
+        icon: { width: 20, height: 20, component: SvglIcon },
+    },
+    {
+        name: "Tabler Icons",
+        description: "A beautiful library with SVG logos",
+        href: "https://tabler.io/admin-template",
+        icon: { width: 20, height: 20, component: tablerIcons },
+    }
+]
+---
+
+
+<ul class="grid grid-cols-2 gap-4 pt-2">
+    {
+        resources.map(({ name, description, href, icon }) => (
+            <li>
+                <UsedResourceCard name={name} description={description} href={href} icon={icon} />
+            </li>
+        ))
+    }
+</ul>

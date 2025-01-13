@@ -1,0 +1,39 @@
+---
+
+interface Props {
+    name: string;
+    description: string;
+    href?: string;
+    icon?: {
+        width: number;
+        height: number;
+        component: any;
+    }
+    image?: {
+        src: string;
+        alt: string;
+    };
+}
+const { name, description, href, icon: Icon } = Astro.props;
+---
+
+<a
+href={href}
+target="_blank"
+title={`${name} - ${description}`}
+class="flex gap-x-4 px-4 py-3 w-full h-28 bg-secondary md:hover:bg-buttonHov transition duration-300 ease-in-out rounded-3xl"
+>
+    {
+        Icon && (
+            <Icon.component width={Icon.width} height={Icon.height} />
+        )
+    }
+    <div>
+        <h5 class="text-purple-400 text-3xl font-semibold">
+            {name}
+        </h5>
+        <p class="text-purple-100 text-lg font-medium">
+            {description}
+        </p>
+    </div>
+</a>

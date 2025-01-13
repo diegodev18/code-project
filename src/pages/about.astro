@@ -5,6 +5,8 @@ import SectionContainer from "@/components/sectionContainer.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
 import ExternalLink from "@/components/icons/externalLink.astro";
 import Layout from "@/layouts/Layout.astro";
+import UsedResourceCard from "@/components/usedResourceCard.astro";
+import UsedResourcesGallery from "@/components/usedResourcesGallery.astro";
 
 const buttons_me = [
     {
@@ -30,6 +32,15 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
             <p class="text-lg sm:text-xl xl:text-2xl font-medium text-pretty">
                 <MarkText>CodeProject es un proyecto personal mio</MarkText> que nace de la idea de crear mas recursos practicos para mejorar en programacion. Aqui podras encontrar proyectos, con documentacion y ejemplos practicos para mejorar tus habilidades en programacion.
             </p>
+            <ToSectionArrow href="#about-others" />
+        </SectionContainer>
+    </MyArticle>
+    <MyArticle>
+        <SectionContainer class="flex flex-col gap-y-2 py-5 justify-center h-[90svh]" id="about-others">
+            <h2 class="text-4xl md:text-5xl leading-tight font-bold text-main">
+                Otros recursos usados...
+            </h2>
+            <UsedResourcesGallery />
             <ToSectionArrow href="#about-me" />
         </SectionContainer>
     </MyArticle>
