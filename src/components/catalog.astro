@@ -12,6 +12,7 @@ import CircleDashedPlus from "./icons/circleDashedPlus.astro";
 let { data: Projects } = await supabase
         .from("projects")
         .select("icon, title, description, href, id")
+        .eq("status", "public")
 
 const session = await getSession(Astro);
 
