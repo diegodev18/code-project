@@ -41,9 +41,9 @@ $ git cat-file 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
 
 # Tu turno
 
-- [ ] Tu programa debe distingir cuando le das como argumento `cat-file -p {HASH}`, el hash tiene que ser de 40 caracteres.
-- [ ] Tu programa debe buscar el contenido del objeto blob en la ubicacion: `.git/objects/{PRIMEROS DOS CARACTERES}/{ULTIMOS 38 CARACTERES}`.
-- [ ] Tu programa debe descomprimir el contenido del archivo usando el algoritmo **ZLIB** y la salida se deberia ver como `blob {TAMAÑO}\0{CONTENIDO}`.
-- [ ] Tu programa debe separar el contenido del objeto blob e imprimirlo en consola.
+1. [ ] Tu programa debe distingir cuando le das como argumento `cat-file -p {HASH}`, el hash tiene que ser de 40 caracteres.
+2. [ ] Tu programa debe buscar el contenido del objeto blob en la ubicacion: `.git/objects/{PRIMEROS DOS CARACTERES}/{ULTIMOS 38 CARACTERES}`.
+3. [ ] Tu programa debe descomprimir el contenido del archivo usando el algoritmo **ZLIB** y la salida se deberia ver como `blob {TAMAÑO}\0{CONTENIDO}`.
+4. [ ] Tu programa debe separar el contenido del objeto blob e imprimirlo en consola.
 
 > **Nota:** Recuerda manejar los errores.
