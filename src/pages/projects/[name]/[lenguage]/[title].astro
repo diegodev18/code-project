@@ -76,7 +76,7 @@ description="This is a project page"
                                 <button
                                 class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
                                 name="progressItem"
-                                value={`{"id_project": "${params.name}", "status": ${info.data.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}"}`}
+                                value={`{"id_project": "${params.name}", "status": ${info.data.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}", "href": "/projects/${collections.find(task => task.data.num === info.data.num + 1)?.slug}"}`}
                                 type="submit"
                                 >
                                     Terminar tarea <SendFly width="20" />

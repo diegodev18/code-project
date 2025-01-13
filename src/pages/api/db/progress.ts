@@ -47,5 +47,9 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         return new Response('Error updating progress', { status: 500 });
     }
 
+    if (data.href) {
+        // console.log('Redirecting to:', data.href);
+        return redirect(data.href);
+    }
     return redirect(`/projects/${data.id_project}/${data.lang}/inicio`); // projects/your-own-git/c/inicio
 }
