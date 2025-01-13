@@ -11,6 +11,7 @@ const searched = Astro.url.searchParams.get('search') ?? "Todos";
 let { data: Projects } = await supabase
         .from("projects")
         .select("icon, title, description, href")
+        .eq("status", "public")
         .limit(10);
 Projects = Projects ?? [];
 
