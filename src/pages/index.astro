@@ -11,5 +11,7 @@ const session = await getSession(Astro);
 title={`${session ? "Inicio" : "Landing Page"} - CodeProject`}
 description={session ? "Explora los proyectos de CodeProject" : "Inicia ahora a aprender a programar y mejorar en tu campo con CodeProject"}
 >
-    { session ? <Catalog /> : <Landing /> }
+    <div class="min-h-[82vh] md:min-h-[88vh]">
+        { session ? <Catalog /> : <Landing /> }
+    </div>
 </Layout>
