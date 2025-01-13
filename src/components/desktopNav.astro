@@ -18,7 +18,7 @@ const options = [
                     location === link ? 'text-main' : 'text-white/65',
                     'px-4 hover:!text-purple-300 hover:opacity-100 transition duration-300'
                 ]}
-                href={link}>
+                href={location === link ? '#' : link}>
                     {name}
                 </a>
             </li>

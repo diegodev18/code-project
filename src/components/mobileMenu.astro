@@ -1,7 +1,6 @@
 ---
 import XLetterIcon from "@/components/icons/xLetterIcon.astro";
 
-
 const enableOpts = [
     { name: 'Inicio', link: '/' },
     { name: 'Ayuda', link: '/help' },
@@ -27,13 +26,13 @@ id="mobile-menu"
         <nav>
             <ul class="flex flex-col">
                 {
-                    enableOpts.map((opt) => (
+                    enableOpts.map(({ name, link }) => (
                         <li class="text-4xl font-bold py-2">
                             <a
-                            href={opt.link}
-                            class={location === opt.link ? 'text-main' : 'opacity-65 text-white'}
+                            href={link === location ? '#' : link}
+                            class={location === link ? 'text-main' : 'opacity-65 text-white'}
                             >
-                                {opt.name}
+                                {name}
                             </a>
                         </li>
                     ))
