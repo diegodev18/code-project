@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }
     
     if (!User) {
-        return new Response('User not found', { status: 404 });
+        return redirect('/profile');
     }
 
     let newProgress;
