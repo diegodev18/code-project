@@ -41,7 +41,7 @@ const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
                                 <a
                                 class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
                                 title={p_name}
-                                href={`/projects/${name}/${lenguage}/${task.name.replace('.md', '')}`}>
+                                href={task.name.replace('.md', '') === title ? '#' : `/projects/${name}/${lenguage}/${task.name.replace('.md', '')}`}>
                                     {p_name}
                                 </a>
                             </li>
