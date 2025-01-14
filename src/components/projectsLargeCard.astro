@@ -1,6 +1,6 @@
 ---
 import getProgressFromAProject from "@/utils/getProgressFromAProject";
-import getProjectsContent from "@/utils/getProjectsContent";
+import getProjectsList from "@/utils/getDBProjectsList";
 
 interface Props {
     id: string;
@@ -18,8 +18,13 @@ const { id, href, title, description, icon: { width, height, component: Icon }, 
 
 const { progress, percentaje, lenguage } = await getProgressFromAProject(id, user_name);
 
-const data = await getProjectsContent(id, lenguage, 'inicio');
-const { collections } = data ?? { collections: [] };
+const projectsList = await getProjectsList(id, lenguage);
+const projectFound = projectsList.find((item) => {
+    const num = parseInt(item.name.slice(0, 3));
+    if (num === progress) {
+        return item;
+    }
+});
 ---
 
 <li class="snap-center">
@@ -33,7 +38,7 @@ const { collections } = data ?? { collections: [] };
             ?
                 href
             :
-                `${href}/${lenguage}/${collections.find(task => task.data.num === progress)?.data.id}`
+                `${href}/${lenguage}/`
         :
             '/profile'
     }
