@@ -3,33 +3,31 @@ import LeftCaret from '@/components/icons/leftCaret.astro'
 import RightCaret from '@/components/icons/rightCaret.astro'
 
 interface Props {
-    collection: {
-        data: {
-            title: string;
-            id: string;
-            num: number;
-        }
-        slug: string;
+    title: string;
+    name: string;
+    lenguage: string;
+    collections: {
+        name: string;
     }[];
-    this_id: string;
 }
 
-const { collection, this_id } = Astro.props;
+const { name, lenguage, collections, title } = Astro.props;
 
-const thisTask = collection.find(task => task.data.id === this_id)?.data.num ?? 0;
-const prevTask = collection.find(task => task.data.num === thisTask - 1)?.slug;
-const nextTask = collection.find(task => task.data.num === thisTask + 1)?.slug;
+const thisNum = parseInt(title.slice(0, 3));
+const thisTask = collections.find(task => task.name.includes(title))?.name.replace('.md', '');
+const prevTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum - 1)?.name.replace('.md', '');
+const nextTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum + 1)?.name.replace('.md', '');
 ---
 
 <div class="flex md:hidden">
     <a
     class:list={[prevTask ?? "hidden"]}
-    href={`/projects/${prevTask}`}>
+    href={`/projects/${name}/${lenguage}/${prevTask}`}>
         <LeftCaret width="30" />
     </a>
     <a
     class:list={[nextTask ?? "hidden"]}
-    href={`/projects/${nextTask}`}>
+    href={`/projects/${name}/${lenguage}/${nextTask}`}>
         <RightCaret width="30" />
     </a>
 </div>
