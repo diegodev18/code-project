@@ -35,7 +35,7 @@ const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
                         const p_num = parseInt(task.name.slice(0, 3));
                         return (
                             <li class:list={[
-                                p_name === title && onProgress !== p_num && "text-purple-300 rounded-xl",
+                                task.name.replace('.md', '') === title && onProgress !== p_num && "text-purple-300 rounded-xl",
                                 onProgress === p_num && "text-main"
                             ]}>
                                 <a
