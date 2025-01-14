@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { processMarkdown } from "./processMarkdown";
 
 export default async function (id: string, lang: string, title: string) {
     const { data, error } = await supabase
@@ -10,9 +11,18 @@ export default async function (id: string, lang: string, title: string) {
         console.error(error);
         return [];
     }
-        
-    const content = data?.text();
+    
+    const markdown = await data?.text();
+    const content = await processMarkdown(markdown);
 
-    return content;
+    return {
+        render: content.html,
+        data: {
+            num: content.frontmatter.num,
+            id: content.frontmatter.id,
+            title: content.frontmatter.id,
+            description: content.frontmatter.description
+        }
+    };
 }
 
