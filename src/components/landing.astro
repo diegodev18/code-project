@@ -6,6 +6,7 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProjects from "@/utils/getProjects";
 import MyArticle from "@/components/myArticle.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
+import { array } from "astro:schema";
 
 const Projects = await getProjects() ?? [];
 ---
@@ -53,6 +54,16 @@ const Projects = await getProjects() ?? [];
     <p class="pt-2 text-sm md:text-base italic opacity-65">
         Tambien puedes realizar una donacion para apoyar el desarrollo de la plataforma.
     </p>
+</SectionContainer>
+<SectionContainer class="grid md:grid-cols-2 2xl:grid-cols-4 gap-4 pb-20 pt-10 md:py-20">
+    {
+        Array.from({ length: 4 }).map((_, i) => (
+            <img
+            class="lg:hover:scale-[1.8] hover:z-10 shadow-md hover:shadow-xl border-[1px] transition-all duration-500 ease-in-out rounded-xl"
+            src={`/image_photos/code_project0${i+1}.png`}
+            alt="Photo" />
+        ))
+    }
 </SectionContainer>
 
 <style>
