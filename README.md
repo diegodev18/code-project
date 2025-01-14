@@ -1,4 +1,4 @@
-![830_1x_shots_so](https://github.com/user-attachments/assets/07110420-fa78-43c9-9d5e-0a2e2245883f)
+![386_1x_shots_so](https://github.com/user-attachments/assets/88e5a14f-1ecf-4ffb-9d7e-fb680faafc37)
 
 # Code Project - Aprende programacion con proyectos reales!
 
