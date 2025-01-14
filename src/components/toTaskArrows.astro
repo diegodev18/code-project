@@ -14,7 +14,6 @@ interface Props {
 const { name, lenguage, collections, title } = Astro.props;
 
 const thisNum = parseInt(title.slice(0, 3));
-const thisTask = collections.find(task => task.name.includes(title))?.name.replace('.md', '');
 const prevTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum - 1)?.name.replace('.md', '');
 const nextTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum + 1)?.name.replace('.md', '');
 ---
