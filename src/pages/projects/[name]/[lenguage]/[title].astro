@@ -39,8 +39,6 @@ const opts = [
 
 const projectsList = await getProjectsContent(params.name, params.lenguage);
 const nextTask = projectsList.find(task => parseInt(task.name) === info?.num + 1)?.name.replace('.md', '');
-
-console.log(`/projects/${params.name}/${params.lenguage}/${nextTask}`)
 ---
 
 <Layout
