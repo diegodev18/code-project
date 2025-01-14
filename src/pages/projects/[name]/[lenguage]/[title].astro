@@ -1,13 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
-import getProjectsContent from "@/utils/getProjectsContent";
 import ToTaskArrows from "@/components/toTaskArrows.astro";
 import ProjectsTasksGallery from "@/components/projectsTasksGallery.astro";
 import ProjectsOptsGallery from "@/components/projectsOptsGallery.astro";
 import getSession from "@/utils/getSession";
 import SendFly from "@/components/icons/sendFly.astro";
 import getProgressFromAProject from "@/utils/getProgressFromAProject";
+import getProjectContent from "@/utils/getProjectContent";
+import getProjectsContent from "@/utils/getDBProjectsList";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
@@ -15,46 +16,52 @@ if (!params.name || !params.lenguage || !params.title) {
     return Astro.redirect("/404");
 }
 
-const progress = await getProgressFromAProject(params.name, 'diego-dev018')
-
 const session = await getSession(Astro);
 if (!session) { return Astro.redirect("/profile"); }
+
+const progress = await getProgressFromAProject(params.name, session?.user_metadata.user_name);
+
 const user_name = session?.user_metadata.user_name;
 
-const data = await getProjectsContent(params.name, params.lenguage, params.title);
+const data = await getProjectContent(params.name, params.lenguage, params.title); // params.name, params.lenguage, params.title
 
 if (!data) {
     return Astro.redirect("/404");
 }
 
-const { Content } = await data.info.render();
+const Content = !Array.isArray(data) ? data.render : '';
 
-const { info, collections } = data;
+const info = Array.isArray(data) ? null : data.data;
 
 const opts = [
     {  title: "Introducción", href: `#` },
 ]
+
+const projectsList = await getProjectsContent(params.name, params.lenguage);
+const nextTask = projectsList.find(task => parseInt(task.name) === info?.num + 1)?.name.replace('.md', '');
+
+console.log(`/projects/${params.name}/${params.lenguage}/${nextTask}`)
 ---
 
 <Layout
-title={`${info?.data.title ?? "Proyecto"} - CodeProject`}
+title={`${info?.title ?? "Proyecto"} - CodeProject`}
 description="This is a project page"
 >
     <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
         <ProjectsTasksGallery
-        title={info.data.title} name={params.name} lenguage={params.lenguage} collections={collections} onProgress={progress.progress}
+        title={params.title} name={params.name} lenguage={params.lenguage} collections={projectsList} onProgress={progress.progress}
         />
         <section class="pb-3 w-full">
             <div class="flex justify-between items-center">
                 <h3 class="text-md md:text-lg italic font-semibold text-main/50">
                     {params.name?.toUpperCase()}
                 </h3>
-                <ToTaskArrows collection={collections} this_id={params.title} />
+                <ToTaskArrows title={params.title} name={params.name} lenguage={params.lenguage} collections={projectsList} />
             </div>
             <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-main">
-                {info?.data.title ?? ""}
+                {info?.title ?? ""}
                 <span class="text-lg text-yellow-200/65">
-                    {`#${info?.data.num ?? ""}`}
+                    {`#${info?.num ?? ""}`}
                 </span>
             </h1>
             <ProjectsOptsGallery opts={opts} />
@@ -66,9 +73,9 @@ description="This is a project page"
                 class="pt-3 md:pt-2"
                 id="content"
                 >
-                    <Content />
+                    <article set:html={Content}></article>
                     {
-                        progress.progress === info.data.num && (
+                        progress.progress === info?.num && (
                             <form
                             action="/api/db/progress"
                             method="POST"
@@ -76,7 +83,7 @@ description="This is a project page"
                                 <button
                                 class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
                                 name="progressItem"
-                                value={`{"id_project": "${params.name}", "status": ${info.data.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}", "href": "/projects/${collections.find(task => task.data.num === info.data.num + 1)?.slug}"}`}
+                                value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
                                 type="submit"
                                 >
                                     Terminar tarea <SendFly width="20" />
