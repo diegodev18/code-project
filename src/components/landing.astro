@@ -6,7 +6,6 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProjects from "@/utils/getProjects";
 import MyArticle from "@/components/myArticle.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
-import { array } from "astro:schema";
 
 const Projects = await getProjects() ?? [];
 ---
