@@ -6,10 +6,16 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProjects from "@/utils/getProjects";
 import MyArticle from "@/components/myArticle.astro";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
+import UnderlineLink from "@/components/underlineLink.astro";
+import ExternalLink from "@/components/icons/externalLink.astro";
 
 const Projects = await getProjects() ?? [];
 ---
 
+<p class="group flex text-blue-300 justify-center items-center gap-x-1 text-lg pt-5 font-semibold">
+    Proyecto por <UnderlineLink href="https://www.diego18.pro/" target="_blank">@diegodev018</UnderlineLink>
+    <span class="opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out"><ExternalLink width="20" /></span>
+</p>
 <MyArticle>
     <SectionContainer>
         <div class="flex items-center justify-center relative">
@@ -54,7 +60,7 @@ const Projects = await getProjects() ?? [];
         Tambien puedes realizar una donacion para apoyar el desarrollo de la plataforma.
     </p>
 </SectionContainer>
-<SectionContainer class="grid md:grid-cols-2 2xl:grid-cols-4 gap-4 pb-20 pt-10 md:py-20">
+<SectionContainer class="grid md:grid-cols-2 2xl:grid-cols-4 gap-4 pb-20 pt-10">
     {
         Array.from({ length: 4 }).map((_, i) => (
             <img
