@@ -20,7 +20,7 @@ export default async function (id: string, lang: string, title: string) {
         data: {
             num: content.frontmatter.num,
             id: content.frontmatter.id,
-            title: content.frontmatter.id,
+            title: content.frontmatter.title,
             description: content.frontmatter.description
         }
     };
