@@ -1,11 +1,12 @@
 ---
 interface Props {
     href: string;
+    target?: string;
 }
-const { href: link } = Astro.props;
+const { href: link, target } = Astro.props;
 ---
 <span class="underline font-semibold text-blue-200">
-    <a href={link}>
+    <a target={target} href={link}>
         <slot />
     </a>
 </span>

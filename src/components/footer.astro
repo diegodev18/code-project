@@ -3,8 +3,14 @@ import MarkText from "@/components/markText.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
 ---
 
-<footer class="pt-5 pb-3 px-5">
-    <p class="font-medium text-center">
+<footer class="text-center pt-5 pb-3 px-5">
+    <p class="font-medium">
         <MarkText>CodeProject:</MarkText> Aprende programacion con proyectos reales! Por <UnderlineLink href="/about#about-me">Diego Sanchez</UnderlineLink>.
+    </p>
+    <p>
+        <MarkText>Puedes apoyar al proyecto aqui {'->'}</MarkText>
+        <UnderlineLink href="https://www.paypal.com/paypalme/DiegoDev018" target="_blank">
+            Paypal
+        </UnderlineLink>
     </p>
 </footer>
