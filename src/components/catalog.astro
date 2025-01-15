@@ -7,12 +7,12 @@ import getFavorites from "@/utils/getFavorites";
 import getSession from "@/utils/getSession";
 import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
 import { supabase } from "@/lib/supabase";
-import CircleDashedPlus from "./icons/circleDashedPlus.astro";
+import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 
 let { data: Projects } = await supabase
         .from("projects")
         .select("icon, title, description, href, id")
-        .eq("status", "public")
+        .eq("status", "public");
 
 const session = await getSession(Astro);
 

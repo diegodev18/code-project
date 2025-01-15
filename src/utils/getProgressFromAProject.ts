@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabase";
 import getProjects from "@/utils/getProjects";
-import { countFiles } from "@/utils/getFilesInAFolder";
 
 const Projects = await getProjects();
 
