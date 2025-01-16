@@ -5,6 +5,7 @@ import ArrowBottom from "@/components/icons/arrowBottom.astro";
 import frenquently_questions from "@/db/freq_questions";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
 import MyArticle from "@/components/myArticle.astro";
+import YourComments from "@/components/yourComments.astro";
 ---
 
 <Layout
@@ -14,11 +15,14 @@ description="Help page for Code Project"
     <MyArticle>
         <SectionContainer class="flex flex-col items-center justify-center h-[80svh] text-main">
             <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
-                <span class="text-xl font-medium opacity-65">
+                <span class="text-xl font-semibold opacity-65">
                     Bienvenido!
                 </span>
                 En que te podemos ayudar?
             </h1>
+            <div class="py-2">
+                <YourComments />
+            </div>
             <ToSectionArrow href="#faq" />
         </SectionContainer>
     </MyArticle>
