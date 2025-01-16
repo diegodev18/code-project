@@ -7,7 +7,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         provider: 'github' as Provider,
         options: {
             redirectTo: process.env.NODE_ENV === "development"
-                ? "http://localhost:4321/api/auth/callback"
+                ? "https://www.codeproject.site/api/auth/callback"
                 : "https://code-project-sigma.vercel.app/api/auth/callback",
         },
     });
