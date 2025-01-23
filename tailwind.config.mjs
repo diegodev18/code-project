@@ -9,7 +9,8 @@ export default {
 			backgroundColor: {
 				main: "#28292B",
 				secondary: "#1E1E1E",
-				buttonHov: "#131313"
+				buttonHov: "#131313",
+				nav: "#0C0C0C"
 			}
 		},
 	},
