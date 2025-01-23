@@ -26,8 +26,11 @@ export default async function (id_project: string, user_name: string): Promise<{
         }; // retorna 0 si no existe el proyecto o el progreso
     }
 
-    // const length = getProjectsContent(project);
-    const length = 10;
+    const { data, error } = await supabase
+        .storage
+        .from('projects')
+        .list(`${id_project}/${lenguage}`);
+    const length = data?.length ?? 0;
 
     return {
         progress: progress.status,

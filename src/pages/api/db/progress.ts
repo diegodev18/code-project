@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     if (progress && progress.find((item: any) => item.id_project === data.id_project && item.lang === data.lang && item.status === data.status)) {
         // console.log('Ya existe un progreso para este proyecto');
-        return redirect(`/projects/${data.id_project}/${data.lang}/inicio`);
+        return redirect(`/projects/${data.id_project}/${data.lang}/001-index`);
     }
     
     if (!User) {
@@ -52,5 +52,5 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         // console.log('Redirecting to:', data.href);
         return redirect(data.href);
     }
-    return redirect(`/projects/${data.id_project}/${data.lang}/001-inicio`); // projects/your-own-git/c/inicio
+    return redirect(`/projects/${data.id_project}/${data.lang}/001-index`); // projects/your-own-git/c/inicio
 }
