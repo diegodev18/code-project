@@ -2,10 +2,9 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import ProgrammingIcon2 from "@/components/icons/programmingIcon2.astro";
 import Login from "@/components/login.astro";
-import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProjects from "@/utils/getProjects";
-import SendFly from "./icons/sendFly.astro";
-import ProjectsLargeCard from "./projectsLargeCard.astro";
+import SendFly from "@/components/icons/sendFly.astro";
+import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
 import getIcon from "@/utils/getIcon";
 
 const Projects = await getProjects() ?? [];
