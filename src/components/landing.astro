@@ -11,9 +11,9 @@ import getIcon from "@/utils/getIcon";
 const Projects = await getProjects() ?? [];
 ---
 
-<SectionContainer class="flex justify-between items-center md:h-[calc(100vh-300px)] pt-28">
-    <div>
-        <h1 class="text-5xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold pb-20">
+<SectionContainer class="flex justify-between items-center md:min-h-[calc(100vh-300px)] pt-5 md:pt-10">
+    <div class="flex flex-col">
+        <h1 class="text-5xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold pb-14">
             Hazte Un Mejor Programador
         </h1>
         <p class="text-3xl md:text-4xl font-semibold leading-snug md:leading-tight max-w-[900px]">
@@ -26,7 +26,7 @@ const Projects = await getProjects() ?? [];
                 {'entusiastas'}
             </span>
         </p>
-        <div class="pt-20">
+        <div class="pt-10">
             <aside class="text-blue-300 w-fit transition duration-500 ease-in-out" id="main-fly">
                 <SendFly width="45"  stroke-width="3" />
             </aside>
@@ -42,7 +42,7 @@ const Projects = await getProjects() ?? [];
         <ProgrammingIcon2 />
     </div>
 </SectionContainer>
-<SectionContainer class="pt-36 pb-20">
+<SectionContainer class="pb-20 pt-20">
     <div class="group">
         <p class="flex items-center flex-wrap w-[calc(100vw-50px)] md:w-auto gap-x-2 md:ml-6 lg:ml-12 font-medium text-xl md:text-5xl pb-10">
             <span class="text-main brightness-125 font-semibold animate-pulse group-hover:rotate-[105deg] transition duration-500 ease-in-out">
@@ -84,7 +84,7 @@ const Projects = await getProjects() ?? [];
 
     loginButton?.addEventListener('mouseenter', () => {
         if (mainFly) {
-            mainFly.style.transform = 'rotate(55deg)';
+            mainFly.style.transform = 'rotate(75deg)';
         }
     });
     loginButton?.addEventListener('mouseleave', () => {
@@ -93,4 +93,3 @@ const Projects = await getProjects() ?? [];
         }
     });
 </script>
-
