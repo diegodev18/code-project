@@ -10,9 +10,9 @@ import getIcon from "@/utils/getIcon";
 const Projects = await getProjects() ?? [];
 ---
 
-<SectionContainer class="flex justify-between items-center md:min-h-[calc(100vh-300px)] pt-5 md:pt-10">
-    <div class="flex flex-col">
-        <h1 class="text-5xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold pb-14">
+<SectionContainer class="flex justify-between">
+    <div class="flex flex-col justify-between h-full md:min-h-[calc(100vh-200px)]">
+        <h1 class="text-5xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold">
             Hazte Un Mejor Programador
         </h1>
         <p class="text-3xl md:text-4xl font-semibold leading-snug md:leading-tight max-w-[900px]">
@@ -25,7 +25,7 @@ const Projects = await getProjects() ?? [];
                 {'entusiastas'}
             </span>
         </p>
-        <div class="pt-10">
+        <div class="pt-10 md:pt-0">
             <aside class="text-blue-300 w-fit transition duration-500 ease-in-out" id="main-fly">
                 <SendFly width="45"  stroke-width="3" />
             </aside>
