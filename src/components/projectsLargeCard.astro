@@ -38,7 +38,7 @@ const projectFound = projectsList.find((item) => {
             ?
                 href
             :
-                `${href}/${lenguage}/`
+                `${href}/${lenguage}/${projectFound?.name.replace('.md', '')}`
         :
             '/profile'
     }
