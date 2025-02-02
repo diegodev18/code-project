@@ -1,10 +1,14 @@
 ---
 import Adv from "@/components/adv.astro";
 import Layout from "@/layouts/Layout.astro";
+
+// let msg = Astro.url.searchParams.get('msg');
+
+const msg = "La página que buscas no existe. Pero no te preocupes, puedes regresar a la página principal y buscar el proyecto que quieres realizar.";
 ---
 <Layout
 title="Pagina no encontrada - CodeProject"
 description="404: Not Found"
 >
-    <Adv title="404 - Pagina no encontrada" description="La página que buscas no existe. Pero no te preocupes, puedes regresar a la página principal y buscar el proyecto que quieres realizar." />
+    <Adv title="404 - Pagina no encontrada" description={msg} />
 </Layout>
