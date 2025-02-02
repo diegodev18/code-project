@@ -9,7 +9,15 @@ export default async function (id: string, lang: string, title: string) {
 
     if (error) {
         console.error(error);
-        return [];
+        return {
+            render: "",
+            data: {
+                num: 404,
+                id: "not-found",
+                title: "Not found",
+                description: "The requested project was not found."
+            }
+        };
     }
     
     const markdown = await data?.text();
