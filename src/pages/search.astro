@@ -10,7 +10,7 @@ const searched = Astro.url.searchParams.get('search') ?? "Todos";
 
 let { data: Projects } = await supabase
         .from("projects")
-        .select("icon, title, description, href")
+        .select("icon, title, description, href, tags")
         .eq("status", "public")
         .limit(10);
 Projects = Projects ?? [];
@@ -19,8 +19,9 @@ let found = [];
 if (searched == "Todos") {
     found = Projects;
 } else {
+    const tag = searched.toLowerCase().replace(/ /g, "-");
     found = Projects.filter(project => {
-        return project.title.toLowerCase().includes(searched.toLowerCase());
+        return project.tags.includes(tag);
     });
 }
 ---
