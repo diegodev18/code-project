@@ -5,7 +5,7 @@ export default async function (): Promise<{ num: number; id: string; created_at:
         .from("projects")
         .select("*")
         .eq("status", "public")
-        .order("num", { ascending: false });
+        .order("created_at", { ascending: false });
     if (error) {
         throw new Error(error.message);
     }
