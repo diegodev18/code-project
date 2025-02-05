@@ -16,7 +16,7 @@ let { data: Projects } = await supabase
 Projects = Projects ?? [];
 
 let found = [];
-if (searched == "Todos") {
+if (searched.toLowerCase() === "todos") {
     found = Projects;
 } else {
     const tag = searched.toLowerCase().replace(/ /g, "-");
