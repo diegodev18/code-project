@@ -12,6 +12,7 @@ let { data: Projects } = await supabase
         .from("projects")
         .select("icon, title, description, href, tags")
         .eq("status", "public")
+        .order("created_at", { ascending: false })
         .limit(10);
 Projects = Projects ?? [];
 
