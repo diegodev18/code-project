@@ -10,9 +10,9 @@ import getIcon from "@/utils/getIcon";
 const Projects = await getProjects() ?? [];
 ---
 
-<SectionContainer class="flex justify-between pt-5 md:pt-10">
-    <div class="flex flex-col justify-between md:justify-around min-h-[calc(100vh-200px)]">
-        <h1 class="text-5xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold">
+<SectionContainer class="flex justify-between pt-5 md:pt-10 overflow-hidden">
+    <div class="flex flex-col justify-between md:justify-around min-h-[calc(100vh-300px)] sm:min-h-[calc(100vh-400px)] md:min-h-[calc(100vh-200px)] md:max-w-[700px]">
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl max-w-[1000px] leading-[1] font-semibold">
             Hazte Un Mejor Programador
         </h1>
         <p class="text-3xl md:text-4xl font-semibold leading-snug md:leading-tight max-w-[900px]">
@@ -38,7 +38,7 @@ const Projects = await getProjects() ?? [];
         </div>
     </div>
     <div class="items-center h-full md:min-h-[calc(100vh-200px)] animate-pulse text-yellow-200 hidden md:flex">
-        <ProgrammingIcon2 />
+        <ProgrammingIcon2 width="350" height="350" stroke-width="2" />
     </div>
 </SectionContainer>
 <SectionContainer class="pb-20 pt-20">
