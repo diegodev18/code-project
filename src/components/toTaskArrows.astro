@@ -6,16 +6,14 @@ interface Props {
     title: string;
     name: string;
     lenguage: string;
-    collections: {
-        name: string;
-    }[];
+    collections: string[];
 }
 
 const { name, lenguage, collections, title } = Astro.props;
 
 const thisNum = parseInt(title.slice(0, 3));
-const prevTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum - 1)?.name.replace('.md', '');
-const nextTask = collections.find(task => parseInt(task.name.slice(0, 3)) === thisNum + 1)?.name.replace('.md', '');
+const prevTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum - 1)?.replace('.md', '') ?? '';
+const nextTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum + 1)?.replace('.md', '') ?? '';
 ---
 
 <div class="flex md:hidden">

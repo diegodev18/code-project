@@ -38,7 +38,7 @@ const opts = [
 ]
 
 const projectsList = await getProjectsContent(params.name, params.lenguage);
-const nextTask = projectsList.find(task => parseInt(task.name) === info?.num + 1)?.name.replace('.md', '');
+const nextTask = (projectsList.find(task => parseInt(task) === info?.num + 1) || '').replace('.md', '');
 ---
 
 <Layout
