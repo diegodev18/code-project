@@ -6,16 +6,16 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const progressItem = formData.get('progressItem');
     const data = JSON.parse(progressItem as string);
 
-    const user_name = data.user_name; // Usuario a buscar (diego-dev018)
+    const uuid = data.uuid; // Usuario a buscar (diego-dev018)
 
-    if (!user_name || !data.id_project || typeof(data.status) === null || !data.lang) {
-        return new Response(`Missing parameters -> ${user_name} | ${data.id_project} | ${data.status} | ${data.lang}`, { status: 400 });
+    if (!uuid || !data.id_project || typeof(data.status) === null || !data.lang) {
+        return new Response(`Missing parameters -> ${uuid} | ${data.id_project} | ${data.status} | ${data.lang}`, { status: 400 });
     }
 
     const { data: User } = await supabase
         .from('users')
         .select('progress')
-        .eq('user_name', user_name)
+        .eq('id', uuid)
         .single();
     const progress = User?.progress;
 
@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         return redirect('/profile');
     }
 
-    delete data.user_name;
+    delete data.uuid;
     let newProgress;
     if (progress && progress.find((item: any) => item.id_project === data.id_project && item.lang === data.lang && item.status !== data.status)) {
         // console.log('Ya existe un progreso para este proyecto pero con otro status');
@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const { error: updateError } = await supabase
         .from('users')
         .update({ progress: newProgress })
-        .eq('user_name', user_name);
+        .eq('id', uuid);
     
     if (updateError) {
         return new Response('Error updating progress', { status: 500 });

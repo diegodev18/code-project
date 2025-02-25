@@ -18,9 +18,9 @@ interface Props {
         id: string;
     }[];
     small?: boolean;
-    user_name?: string;
+    uuid?: string;
 }
-const { id, title, cards, small = true, user_name } = Astro.props;
+const { id, title, cards, small = true, uuid } = Astro.props;
 ---
 
 {
@@ -50,9 +50,9 @@ const { id, title, cards, small = true, user_name } = Astro.props;
                             const { width, height, component } = getIcon(icon);
 
                             return small ? (
-                                <ProjectsSmallCard user_name={user_name} id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
+                                <ProjectsSmallCard uuid={uuid} id={id} href={href} title={title} description={description} icon={{ width, height, component }} />
                             ) : (
-                                <ProjectsLargeCard user_name={user_name} id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
+                                <ProjectsLargeCard uuid={uuid} id={id} href={href} title={title} description={description ?? "hola"} icon={{ width, height, component }} />
                             )
                         })
                     }
