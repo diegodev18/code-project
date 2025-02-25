@@ -1,10 +1,10 @@
 import { supabase } from "@/lib/supabase";
 
-export default async function (user_name: string) {
+export default async function (uuid: string) {
     let { data: user } = await supabase
         .from("users")
         .select("favorites")
-        .eq("user_name", user_name)
+        .eq("id", uuid)
         .single();
 
     const favorites = user?.favorites;

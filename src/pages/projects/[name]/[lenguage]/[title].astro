@@ -19,13 +19,11 @@ if (!params.name || !params.lenguage || !params.title) {
 const session = await getSession(Astro);
 if (!session) { return Astro.redirect("/profile"); }
 
-const progress = await getProgressFromAProject(params.name, session?.user_metadata.user_name);
+const uuid = session?.id;
 
-const user_name = session?.user_metadata.user_name;
+const progress = await getProgressFromAProject(params.name, uuid);
 
 const data = await getProjectContent(params.name, params.lenguage, params.title); // params.name, params.lenguage, params.title
-
-console.log(data);
 
 if (data.data.num === 404) {
     return Astro.redirect("/404");
@@ -83,7 +81,7 @@ description="This is a project page"
                                 <button
                                 class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
                                 name="progressItem"
-                                value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "user_name": "${user_name}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
+                                value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "uuid": "${uuid}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
                                 type="submit"
                                 >
                                     Terminar tarea <SendFly width="20" />

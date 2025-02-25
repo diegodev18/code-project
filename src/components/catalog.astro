@@ -16,8 +16,10 @@ let { data: Projects } = await supabase
 
 const session = await getSession(Astro);
 
-const user_fav = await getFavorites(session?.user_metadata.user_name || "");
-const user_progress = await getProgress(session?.user_metadata.user_name || "");
+const uuid = session?.id;
+
+const user_fav = await getFavorites(uuid || "");
+const user_progress = await getProgress(uuid || "");
 ---
 
 <SearchVar />
@@ -25,14 +27,14 @@ const user_progress = await getProgress(session?.user_metadata.user_name || "");
 <ProjectsGallery
 id="main"
 cards={[...(Projects ?? [])]}
-user_name={session?.user_metadata.user_name}
+uuid={uuid}
 />
 <ProjectsGallery
 id="love"
 title="Podrian gustarte"
 cards={[...(Projects ?? [])]}
 small={false}
-user_name={session?.user_metadata.user_name}
+uuid={uuid}
 />
 {
     user_progress && user_progress?.length != 0 && (
@@ -40,7 +42,7 @@ user_name={session?.user_metadata.user_name}
         id="continue"
         title="Seguir aprendiendo"
         cards={[...(user_progress ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
-            user_name={session?.user_metadata.user_name}
+            uuid={uuid}
         />
     )
 }
@@ -48,7 +50,7 @@ user_name={session?.user_metadata.user_name}
 id="fav"
 title="Favoritos"
 cards={[...(user_fav ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
-    user_name={session?.user_metadata.user_name}
+uuid={uuid}
 >
-    <ProjectsSmallCard user_name={session?.user_metadata.user_name} id={'add-fav'} href={'#fav'} title={'Explora los proyectos que mas te llamen'} description={'Inicia ahora con los proyectos que mas te agradan'} icon={{ width: 85, height: 85, component: CircleDashedPlus }} />
+    <ProjectsSmallCard uuid={uuid} id={'add-fav'} href={'#fav'} title={'Explora los proyectos que mas te llamen'} description={'Inicia ahora con los proyectos que mas te agradan'} icon={{ width: 85, height: 85, component: CircleDashedPlus }} />
 </ProjectsGallery>

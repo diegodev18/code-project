@@ -1,10 +1,10 @@
 import { supabase } from "@/lib/supabase";
 
-export default async function (user_name: string) {
+export default async function (uuid: string) {
     let { data: User } = await supabase
         .from("users")
         .select("progress")
-        .eq("user_name", user_name)
+        .eq("id", uuid)
         .single();
     const progress = User?.progress;
 

@@ -3,14 +3,14 @@ import getProjects from "@/utils/getProjects";
 
 const Projects = await getProjects();
 
-export default async function (id_project: string, user_name: string): Promise<{ progress: number, percentaje: number, lenguage: string }> {
+export default async function (id_project: string, uuid: string): Promise<{ progress: number, percentaje: number, lenguage: string }> {
     if (!Projects) {
         throw new Error("Projects is null");
     }
     let { data: progressTable } = await supabase
         .from('users')
         .select('progress')
-        .eq('user_name', user_name)
+        .eq('id', uuid)
         .single();
 
     let progress = progressTable?.progress.find((progress: any) => progress.id_project === id_project);

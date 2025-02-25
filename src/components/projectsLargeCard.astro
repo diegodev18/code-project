@@ -12,11 +12,11 @@ interface Props {
         height: number;
         component: any;
     };
-    user_name?: string;
+    uuid?: string;
 }
-const { id, href, title, description, icon: { width, height, component: Icon }, user_name = 'no' } = Astro.props;
+const { id, href, title, description, icon: { width, height, component: Icon }, uuid = 'no' } = Astro.props;
 
-const { progress, percentaje, lenguage } = await getProgressFromAProject(id, user_name);
+const { progress, percentaje, lenguage } = await getProgressFromAProject(id, uuid);
 
 const projectsList = await getProjectsList(id, lenguage);
 const projectFound = projectsList.find((item) => {
@@ -32,7 +32,7 @@ const projectFound = projectsList.find((item) => {
     class="group w-[330px] md:w-[400px] aspect-[16/7] hover:bg-buttonHov bg-secondary px-5 md:px-2 rounded-lg flex gap-x-4 justify-center items-center transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
-        user_name
+        uuid
         ?
             progress === 0
             ?
