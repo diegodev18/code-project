@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import getProjects from "@/utils/getProjects";
+import { getGithubDirContent } from "@/utils/getGithubDocContent";
 
 const Projects = await getProjects();
 
@@ -26,11 +27,8 @@ export default async function (id_project: string, uuid: string): Promise<{ prog
         }; // retorna 0 si no existe el proyecto o el progreso
     }
 
-    const { data, error } = await supabase
-        .storage
-        .from('projects')
-        .list(`${id_project}/${lenguage}`);
-    const length = data?.length ?? 0;
+    const { data, error } = await getGithubDirContent("diegodev18", "code-project-docs", [project.id, lenguage]);
+    const length = data?.filesLength ?? 0;
 
     return {
         progress: progress.status,

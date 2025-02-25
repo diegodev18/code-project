@@ -19,8 +19,8 @@ const { id, href, title, description, icon: { width, height, component: Icon }, 
 const { progress, percentaje, lenguage } = await getProgressFromAProject(id, uuid);
 
 const projectsList = await getProjectsList(id, lenguage);
-const projectFound = projectsList.find((item) => {
-    const num = parseInt(item.name.slice(0, 3));
+const projectFound = projectsList.find((item: string) => {
+    const num = parseInt(item.slice(0, 3));
     if (num === progress) {
         return item;
     }
@@ -38,7 +38,7 @@ const projectFound = projectsList.find((item) => {
             ?
                 href
             :
-                `${href}/${lenguage}/${projectFound?.name.replace('.md', '')}`
+                `${href}/${lenguage}/${(projectFound || "")?.replace('.md', '')}`
         :
             '/profile'
     }

@@ -3,9 +3,7 @@ interface Props {
     title: string;
     name: string;
     lenguage: string;
-    collections: {
-        name: string;
-    }[];
+    collections: string[];
     onProgress?: number;
 }
 const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
@@ -20,8 +18,8 @@ const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
             {
                 collections
                     .sort((a, b) => {
-                        const a_num = parseInt(a.name.slice(0, 3));
-                        const b_num = parseInt(b.name.slice(0, 3));
+                        const a_num = parseInt(a.slice(0, 3));
+                        const b_num = parseInt(b.slice(0, 3));
                         if (a_num < b_num) {
                             return -1
                         }
@@ -31,17 +29,17 @@ const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
                         return 0;
                     })
                     .map(task => {
-                        const p_name = task.name.slice(4).replace('.md', '');
-                        const p_num = parseInt(task.name.slice(0, 3));
+                        const p_name = task.slice(4).replace('.md', '');
+                        const p_num = parseInt(task.slice(0, 3));
                         return (
                             <li class:list={[
-                                task.name.replace('.md', '') === title && onProgress !== p_num && "text-purple-300 rounded-xl",
+                                task.replace('.md', '') === title && onProgress !== p_num && "text-purple-300 rounded-xl",
                                 onProgress === p_num && "text-main"
                             ]}>
                                 <a
                                 class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
                                 title={p_name}
-                                href={task.name.replace('.md', '') === title ? '#' : `/projects/${name}/${lenguage}/${task.name.replace('.md', '')}`}>
+                                href={task.replace('.md', '') === title ? '#' : `/projects/${name}/${lenguage}/${task.replace('.md', '')}`}>
                                     {p_name}
                                 </a>
                             </li>
