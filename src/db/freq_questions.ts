@@ -9,22 +9,22 @@ export default [
     },
     {
         title: "Es gratis?",
-        content: "Si, Code Project y todos los proyectos que se encuentran en la plataforma son completamente gratis. Tambien, puedes contribuir a la plataforma via Paypal."
+        content: "Si, Code Project y todos los proyectos que se encuentran en la plataforma son completamente gratis. Tambien, puedes contribuir a la plataforma via patricinio en GitHub en \"codeproject.site/link/pay\"."
     },
     {
         title: "Puedo subir mis propios proyectos?",
-        content: "Por el momento, no es posible subir tus propios proyectos a la plataforma. Sin embargo, se tiene planeado activar esta opcion dentro de la plataforma, permitiendo contribuir al aprendizaje de la comunidad de desarolladores en CodeProject."
+        content: "Si, puedes subir tus proyectos. Estamos trabajando en una manera de subir proyectos de manera mas sencilla y comoda. Por ahora, puedes subir tus proyectos vía Pull Request en el repositorio oficial GitHub, encuentralo con \"codeproject.site/link/docs\"."
     },
     {
         title: "Como puedo contribuir a la plataforma?",
-        content: "Puedes contribuir a la plataforma via Paypal, ayudando a mantener la plataforma activa y en constante desarrollo."
+        content: "Puedes contribuir de manera monetaria via patricinio en GitHub en \"codeproject.site/link/pay\". Tambien puedes contribuir subiendo tus propios proyectos via Pull Request en el repositorio oficial GitHub, encuentralo con \"codeproject.site/link/docs\"."
     },
     {
         title: "Como puedo contactar a los creadores de la plataforma?",
-        content: "Puedes contactar a los creadores de la plataforma via twitter en \"@diegodev018\""
+        content: "Si, claro. Puedes contactar a los creadores de la plataforma via twitter en \"@diegodev018\" o por formulario via \"codeproject.site/link/form\"."
     },
     {
         title: "Como puedo reportar un error?",
-        content: "Puedes reportar un error en la plataforma, enviando un mensaje a los creadores de la plataforma via twitter en \"@diegodev018\""
+        content: "Puedes reportar un error via formulario en \"codeproject.site/link/form\" o via GitHub en el repositorio oficial de issues, encuentralo con \"codeproject.site/link/docs\"."
     }
 ]
