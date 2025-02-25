@@ -23,7 +23,7 @@ export default async function (id: string, lang: string, title: string) {
     return {
         render: content.html,
         data: {
-            num: content.frontmatter.num,
+            num: parseInt(title.split("-")[0]),
             id: content.frontmatter.id,
             title: content.frontmatter.title,
             description: content.frontmatter.description
