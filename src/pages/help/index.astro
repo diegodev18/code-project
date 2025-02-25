@@ -9,13 +9,14 @@ import YourComments from "@/components/yourComments.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
 ---
 
-<Layout
-title="Help - Code Project"
-description="Help page for Code Project"
->   
+<Layout title="Help - Code Project" description="Help page for Code Project">
     <MyArticle>
-        <SectionContainer class="flex flex-col items-center justify-center h-[80svh] text-main">
-            <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
+        <SectionContainer
+            class="flex flex-col items-center justify-center h-[80svh] text-main"
+        >
+            <h1
+                class="flex flex-col text-center text-[3rem] leading-tight font-bold"
+            >
                 <span class="text-xl font-semibold opacity-65">
                     Bienvenido!
                 </span>
@@ -24,7 +25,11 @@ description="Help page for Code Project"
             <div class="py-2">
                 <YourComments />
             </div>
-            <UnderlineLink className="text-xl text-center !text-purple-200 hover:!text-purple-300" href="https://github.com/diegodev18/code-project-docs" target="_blank">
+            <UnderlineLink
+                className="text-xl text-center !text-purple-200 hover:!text-purple-300"
+                href="https://github.com/diegodev18/code-project-docs"
+                target="_blank"
+            >
                 Apoya a la documentacion de CodeProject en Github
             </UnderlineLink>
             <ToSectionArrow href="#faq" />
@@ -39,21 +44,17 @@ description="Help page for Code Project"
                 {
                     frenquently_questions.map((question) => (
                         <li>
-                            <button
-                            onclick="this.classList.toggle('open')"
-                            class="flex flex-col justify-center text-start gap-x-1">
-                                <div class="flex items-center gap-x-1 text-main text-xl font-semibold">
-                                    <span class="md:-rotate-90 md:group-hover:rotate-0 transition-transform duration-300">
+                            <details class="group" name="faq">
+                                <summary class="flex items-center cursor-pointer list-none text-xl text-yellow-100 group-hover:text-yellow-200 font-medium transition duration-300">
+                                    <span class="mr-1 -rotate-90 text-yellow-300 group-hover:text-yellow-400 group-open:rotate-0 transition duration-300">
                                         <ArrowBottom />
                                     </span>
-                                    <h3 class="text-yellow-100">
-                                        {question.title}
-                                    </h3>
-                                </div>
-                                <p class="pl-[34px] h-0 frenq-answer overflow-hidden text-pretty transition-all duration-300">
+                                    {question.title}
+                                </summary>
+                                <p class="mt-1 ml-[2.15rem] font-medium">
                                     {question.content}
                                 </p>
-                            </button>
+                            </details>
                         </li>
                     ))
                 }
@@ -61,19 +62,3 @@ description="Help page for Code Project"
         </SectionContainer>
     </MyArticle>
 </Layout>
-
-<style>
-    .frenq-answer {
-        interpolate-size: allow-keywords;
-    }
-
-    /* Cuando la clase está activa, el párrafo crece */
-    .open p {
-        height: auto; /* O el valor de altura que necesites */
-        opacity: 1;
-    }
-
-    .open span {
-        transform: rotate(180deg);
-    }
-</style>
