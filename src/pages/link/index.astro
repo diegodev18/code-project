@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import links from "@/db/links";
+---
+
+<Layout
+title="Links - Code Project"
+description="Links page for Code Project"
+>
+    <div class="flex flex-col items-center justify-center gap-y-4 h-[82vh] text-lg font-semibold text-main">
+        <h1 class="text-2xl font-bold mb-3 text-purple-300">
+            <span class="underline">Links</span> de interes para Code Project
+        </h1>
+        {
+            Object.keys(links).map((link) => {
+                const Link = links[link];
+                return (
+                    <div class="border-[1.5px] border-slate-600/30 hover:border-slate-600 px-3 py-[5px] rounded-xl transition duration-500 ease-in-out">
+                        <a
+                            href={Link.href}
+                            target="_blank">
+                            {Link.title}
+                        </a>
+                    </div>
+                )
+            })
+        }
+    </div>
+</Layout>
