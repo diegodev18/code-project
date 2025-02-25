@@ -16,10 +16,10 @@ let { data: Projects } = await supabase
 
 const session = await getSession(Astro);
 
-const user_fav = await getFavorites(session?.user_metadata.user_name || "");
-const user_progress = await getProgress(session?.user_metadata.user_name || "");
-
 const uuid = session?.id;
+
+const user_fav = await getFavorites(uuid || "");
+const user_progress = await getProgress(session?.user_metadata.user_name || "");
 ---
 
 <SearchVar />
@@ -50,7 +50,7 @@ uuid={uuid}
 id="fav"
 title="Favoritos"
 cards={[...(user_fav ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
-    uuid={uuid}
+uuid={uuid}
 >
     <ProjectsSmallCard uuid={uuid} id={'add-fav'} href={'#fav'} title={'Explora los proyectos que mas te llamen'} description={'Inicia ahora con los proyectos que mas te agradan'} icon={{ width: 85, height: 85, component: CircleDashedPlus }} />
 </ProjectsGallery>
