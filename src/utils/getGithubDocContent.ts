@@ -8,6 +8,14 @@ export async function getGithubFileContent(owner: string, name: string, filePath
 
     try {
         const response = await fetch(url);
+        
+        if (response.statusText === "rate limit exceeded") {
+            return {
+                data: "# Alcanzaste el límite de peticiones a la API de los DOCs.",
+                error: null
+            }
+        }
+
         const data = await response.json();
         content = decodeURIComponent(escape(atob(data.content))); // Decodificar correctamente
     } catch (error) {

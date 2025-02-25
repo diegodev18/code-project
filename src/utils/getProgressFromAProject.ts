@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import getProjects from "@/utils/getProjects";
-import { getGithubDirContent } from "./getGithubDocContent";
+import { getGithubDirContent } from "@/utils/getGithubDocContent";
 
 const Projects = await getProjects();
 
