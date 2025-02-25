@@ -14,5 +14,5 @@ export const GET: APIRoute = async ({ params, redirect }) => {
         return redirect("/404");
     }
 
-    return redirect(link);
+    return redirect(link.href);
 }

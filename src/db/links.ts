@@ -1,8 +1,17 @@
 
-const links: { [key: string]: string } = {
-    "docs": "https://github.com/diegodev18/code-project-docs",
-    "pay": "https://github.com/sponsors/diegodev18",
-    "form": "https://tally.so/r/mBAl87"
+const links: { [key: string]: { title: string, href: string } } = {
+    "docs": {
+        title: "Repositorio de Documentación",
+        href: "https://github.com/diegodev18/code-project-docs"
+    },
+    "pay": {
+        title: "Pagina de Sponsor en Github",
+        href: "https://github.com/sponsors/diegodev18"
+    },
+    "form": {
+        title: "Formulario de Feedback",
+        href: "https://tally.so/r/mBAl87"
+    }
 }
 
 export default links;
