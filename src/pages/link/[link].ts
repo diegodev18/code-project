@@ -1,10 +1,5 @@
 import type { APIRoute } from "astro";
-
-const links: { [key: string]: string } = {
-    "docs": "https://github.com/diegodev18/code-project-docs",
-    "pay": "https://github.com/sponsors/diegodev18",
-    "form": "https://tally.so/r/mBAl87"
-}
+import links from "@/db/links";
 
 export const GET: APIRoute = async ({ params, redirect }) => {
     const param = params.link;
