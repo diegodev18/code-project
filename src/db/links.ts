@@ -4,7 +4,7 @@ const links: { [key: string]: { title: string, href: string } } = {
         title: "Repositorio de Documentación",
         href: "https://github.com/diegodev18/code-project-docs"
     },
-    "pay": {
+    "sponsor": {
         title: "Pagina de Sponsor en Github",
         href: "https://github.com/sponsors/diegodev18"
     },
