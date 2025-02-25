@@ -1,5 +1,5 @@
 import { processMarkdown } from "@/utils/processMarkdown";
-import getGithubFileContent from "@/utils/getGithubDocContent";
+import { getGithubFileContent } from "@/utils/getGithubDocContent";
 
 export default async function (id: string, lang: string, title: string) {
     const { data, error } = await getGithubFileContent("diegodev18", "code-project-docs", [id, lang, `${title}.md`]);
