@@ -31,6 +31,7 @@ export async function getGithubDirContent(owner: string, name: string, dirPath: 
 
     let data = {
         filesLength: null,
+        filesName: []
     };
     let error = null;
 
@@ -38,6 +39,11 @@ export async function getGithubDirContent(owner: string, name: string, dirPath: 
         const response = await fetch(url);
         const dataJson = await response.json();
         data.filesLength = dataJson.length;
+        data.filesName = dataJson.map((file: any) => {
+            if (file.type === "file") {
+                return file.name;
+            }
+        });
     } catch (error) {
         error = error;
     }
