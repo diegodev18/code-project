@@ -19,7 +19,7 @@ const session = await getSession(Astro);
 const uuid = session?.id;
 
 const user_fav = await getFavorites(uuid || "");
-const user_progress = await getProgress(session?.user_metadata.user_name || "");
+const user_progress = await getProgress(uuid || "");
 ---
 
 <SearchVar />
