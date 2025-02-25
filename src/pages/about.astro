@@ -6,6 +6,7 @@ import ToSectionArrow from "@/components/toSectionArrow.astro";
 import Layout from "@/layouts/Layout.astro";
 import UsedResourcesGallery from "@/components/usedResourcesGallery.astro";
 import YourComments from "@/components/yourComments.astro";
+import UnderlineLink from "@/components/underlineLink.astro";
 
 const buttons_me = [
     {
@@ -31,6 +32,9 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
             <p class="text-lg sm:text-xl xl:text-2xl font-medium text-pretty">
                 <MarkText>CodeProject es un proyecto personal</MarkText> que nace de la idea de crear mas recursos practicos para mejorar en programacion. Aqui podras encontrar proyectos, con documentacion y ejemplos practicos para mejorar tus habilidades en programacion.
             </p>
+            <UnderlineLink className="text-xl text-center" href="https://github.com/diegodev18/code-project-docs" target="_blank">
+                Apoya a la documentacion de CodeProject en Github
+            </UnderlineLink>
             <ToSectionArrow href="#about-others" />
         </SectionContainer>
     </MyArticle>

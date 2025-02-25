@@ -6,6 +6,7 @@ import frenquently_questions from "@/db/freq_questions";
 import ToSectionArrow from "@/components/toSectionArrow.astro";
 import MyArticle from "@/components/myArticle.astro";
 import YourComments from "@/components/yourComments.astro";
+import UnderlineLink from "@/components/underlineLink.astro";
 ---
 
 <Layout
@@ -23,6 +24,9 @@ description="Help page for Code Project"
             <div class="py-2">
                 <YourComments />
             </div>
+            <UnderlineLink className="text-xl text-center !text-purple-200 hover:!text-purple-300" href="https://github.com/diegodev18/code-project-docs" target="_blank">
+                Apoya a la documentacion de CodeProject en Github
+            </UnderlineLink>
             <ToSectionArrow href="#faq" />
         </SectionContainer>
     </MyArticle>
