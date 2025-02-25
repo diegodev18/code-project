@@ -1,11 +1,8 @@
-import { supabase } from "@/lib/supabase";
-import { processMarkdown } from "./processMarkdown";
+import { processMarkdown } from "@/utils/processMarkdown";
+import getGithubFileContent from "@/utils/getGithubDocContent";
 
 export default async function (id: string, lang: string, title: string) {
-    const { data, error } = await supabase
-        .storage
-        .from('projects')
-        .download(`${id}/${lang}/${title}.md`);
+    const { data, error } = await getGithubFileContent("diegodev18", "code-project-docs", [id, lang, `${title}.md`]);
 
     if (error) {
         console.error(error);
@@ -20,8 +17,8 @@ export default async function (id: string, lang: string, title: string) {
         };
     }
     
-    const markdown = await data?.text();
-    const content = await processMarkdown(markdown);
+    const markdown = data;
+    const content = await processMarkdown(markdown ?? "# Contenido no encontrado!");
 
     return {
         render: content.html,
