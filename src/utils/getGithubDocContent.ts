@@ -1,5 +1,5 @@
 
-async function getGithubFileContent(owner: string, name: string, filePath: string[]) {
+export async function getGithubFileContent(owner: string, name: string, filePath: string[]) {
     const url = `https://api.github.com/repos/${owner}/${name}/contents/${filePath.join("/")}`;
     // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
 
@@ -17,4 +17,22 @@ async function getGithubFileContent(owner: string, name: string, filePath: strin
     return { data: content, error }
 }
 
-export default getGithubFileContent;
+export async function getGithubDirContent(owner: string, name: string, dirPath: string[]) {
+    const url = `https://api.github.com/repos/${owner}/${name}/contents/${dirPath.join("/")}`;
+    // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
+
+    let data = {
+        filesLength: null,
+    };
+    let error = null;
+
+    try {
+        const response = await fetch(url);
+        const dataJson = await response.json();
+        data.filesLength = dataJson.length;
+    } catch (error) {
+        error = error;
+    }
+
+    return { data, error };
+}
