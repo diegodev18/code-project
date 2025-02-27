@@ -73,7 +73,7 @@ description="This is a project page"
                 >
                     <article set:html={Content}></article>
                     {
-                        progress.progress === info?.num && (
+                        progress.progress === info?.num && data.data.id && (
                             <form
                             action="/api/db/progress"
                             method="POST"
