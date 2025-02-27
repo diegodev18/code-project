@@ -1,0 +1,18 @@
+---
+interface Props {
+    content: string
+}
+const { content } = Astro.props;
+---
+
+<article
+class="prose prose-invert prose-yellow"
+id="content"
+set:html={content}
+></article>
+
+<style>
+    #content {
+        
+    }
+</style>
