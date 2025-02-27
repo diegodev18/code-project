@@ -20,7 +20,7 @@ export default {
 						h3: { marginBottom: '0.5rem', marginTop: '0.8rem' },
 						h4: { marginBottom: '0.5rem', marginTop: '0.8rem' },
 						p: { marginTop: '0.8rem', marginBottom: '0.5rem' },
-						pre: { marginTop: '0.8rem', marginBottom: '0.8rem' },
+						pre: { marginTop: '0.8rem', marginBottom: '0.8rem', cursor: 'pointer' },
 						code: { color: '#fde047', backgroundColor: '#0c0c0c', paddingLeft: '0.3rem', paddingRight: '0.3rem', paddingTop: '0.2rem', paddingBottom: '0.1rem', borderRadius: '0.25rem' },
 						'code::before': { content: '""' },
 						'code::after': { content: '""' },
