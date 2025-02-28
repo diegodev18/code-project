@@ -1,12 +1,11 @@
-import { supabase } from "@/lib/supabase";
-import { getGithubDirContent } from "./getGithubDocContent";
+import { getGithubDirContent } from "@/utils/getGithubDocContent";
 
 export default async function (id: string, lang: string) {
     const { data, error } = await getGithubDirContent("diegodev18", "code-project-docs", [id, lang])
 
     if (error) {
-        console.error(error);
-        return [];
+        // console.error(error);
+        return ["403"];
     }
 
     return data.filesName;

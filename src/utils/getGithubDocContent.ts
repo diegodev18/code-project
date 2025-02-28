@@ -38,6 +38,9 @@ export async function getGithubDirContent(owner: string, name: string, dirPath: 
     try {
         const response = await fetch(url);
         const dataJson = await response.json();
+        
+        if (response.status === 403) return { data, error: response.status }
+
         data.filesLength = dataJson.length;
         data.filesName = dataJson.map((file: any) => {
             if (file.type === "file") {

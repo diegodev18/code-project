@@ -19,12 +19,13 @@ const { id, href, title, description, icon: { width, height, component: Icon }, 
 const { progress, percentaje, lenguage } = await getProgressFromAProject(id, uuid);
 
 const projectsList = await getProjectsList(id, lenguage);
-const projectFound = projectsList.find((item: string) => {
+
+const projectFound = projectsList[0] != "403" ? projectsList.find((item: string) => {
     const num = parseInt(item.slice(0, 3));
     if (num === progress) {
         return item;
     }
-});
+}) : "001-index.md";
 ---
 
 <li class="mt-5 md:mt-2 lg:mt-3 snap-center">
