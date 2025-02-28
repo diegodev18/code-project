@@ -1,21 +1,22 @@
 ---
 import MarkText from "@/components/markText.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
+import links from "@/db/links";
 ---
 
 <footer class="text-center pt-5 pb-3 md:pb-7 px-5">
     <p class="font-medium">
-        <MarkText>CodeProject:</MarkText> Aprende programacion con proyectos reales! Por <UnderlineLink href="/about#about-me">Diego Sanchez</UnderlineLink>.
+        <MarkText>CodeProject:</MarkText> Aprende programacion con proyectos reales! Por <UnderlineLink href={links.founder.href} target="_blank">Diego Sanchez</UnderlineLink>.
     </p>
     <p>
         <MarkText>Puedes apoyar al proyecto aqui</MarkText> {'->'}
-        <UnderlineLink href="https://github.com/sponsors/diego-dev018?o=sd&sc=t" target="_blank">
+        <UnderlineLink href={links.sponsor.href} target="_blank">
             GitHub Sponsors
         </UnderlineLink>
     </p>
     <p>
         <MarkText>Apoya a la documentacion de CodeProject, aqui </MarkText>{'->'}
-        <UnderlineLink href="https://github.com/diegodev18/code-project-docs" target="_blank">
+        <UnderlineLink href={links.docs.href} target="_blank">
             Repositorio de GitHub
         </UnderlineLink>
     </p>
