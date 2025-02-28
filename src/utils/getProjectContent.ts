@@ -5,7 +5,7 @@ export default async function (id: string, lang: string, title: string) {
     const { data, error } = await getGithubFileContent("diegodev18", "code-project-docs", [id, lang, `${title}.md`]);
 
     if (error) {
-        console.error(error);
+        console.error("getProjectContent Error:", error);
         return {
             render: "",
             data: {
