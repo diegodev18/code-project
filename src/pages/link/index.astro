@@ -15,13 +15,12 @@ description="Links page for Code Project"
             Object.keys(links).map((link) => {
                 const Link = links[link];
                 return (
-                    <div class="border-[1.5px] border-slate-600/30 hover:border-slate-600 px-3 py-[5px] rounded-xl transition duration-500 ease-in-out">
-                        <a
-                            href={Link.href}
-                            target="_blank">
-                            {Link.title}
-                        </a>
-                    </div>
+                    <a
+                        href={Link.href}
+                        class="border-[1.5px] border-slate-600/30 hover:border-slate-600 px-3 py-[5px] rounded-xl transition duration-500 ease-in-out"
+                        target="_blank">
+                        {Link.title}
+                    </a>
                 )
             })
         }
