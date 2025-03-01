@@ -41,14 +41,14 @@ const Projects = (await getProjects()) ?? [];
         {"entusiastas"}
       </span>
     </p>
-    <div class="pt-10 md:pt-0">
+    <div class="pt-10 md:pt-0 max-w-[800px]">
       <aside
         class="text-blue-300 w-fit transition duration-500 ease-in-out"
         id="main-fly"
       >
         <SendFly width="45" stroke-width="3" />
       </aside>
-      <aside class="w-[calc(100vw-40px)] md:w-auto" id="login-button">
+      <aside class="w-auto" id="login-button">
         <Login
           title="Click aqui! Ahora para comenzar a desarrollar tus proyectos!"
           classButton="!bg-violet-700 hover:brightness-125"
@@ -110,7 +110,7 @@ const Projects = (await getProjects()) ?? [];
 
     loginButton?.addEventListener("mouseenter", () => {
         if (mainFly) {
-            mainFly.style.transform = "rotate(68deg)";
+            mainFly.style.transform = "rotate(72deg)";
         }
     });
     loginButton?.addEventListener("mouseleave", () => {
