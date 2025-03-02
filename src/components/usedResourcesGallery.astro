@@ -8,23 +8,28 @@ const resources = [
         name: "Svgl",
         description: "A beautiful library with SVG logos",
         href: "https://svgl.vercel.app/",
-        icon: { width: 20, height: 20, component: SvglIcon },
+        icon: { width: 70, height: 70, component: SvglIcon },
     },
     {
         name: "Tabler Icons",
-        description: "A beautiful library with SVG logos",
+        description: "Tabler is a free and open source web application UI kit based on Bootstrap 5, with hundreds responsive components and multiple layouts.",
         href: "https://tabler.io/admin-template",
-        icon: { width: 20, height: 20, component: tablerIcons },
+        icon: { width: 70, height: 70, component: tablerIcons },
     }
 ]
 ---
 
 
-<ul class="grid md:grid-cols-2 gap-4 pt-2">
+<ul class="grid md:grid-cols-2 gap-3">
     {
         resources.map(({ name, description, href, icon }) => (
             <li>
-                <UsedResourceCard name={name} description={description} href={href} icon={icon} />
+                <UsedResourceCard
+                name={name}
+                description={description}
+                href={href}
+                icon={icon}
+                />
             </li>
         ))
     }
