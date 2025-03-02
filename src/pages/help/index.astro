@@ -7,6 +7,7 @@ import ToSectionArrow from "@/components/toSectionArrow.astro";
 import MyArticle from "@/components/myArticle.astro";
 import YourComments from "@/components/yourComments.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
+import SubtitleAbout from "@/components/subtitleAbout.astro";
 ---
 
 <Layout title="Help - Code Project" description="Help page for Code Project">
@@ -37,16 +38,20 @@ import UnderlineLink from "@/components/underlineLink.astro";
     </MyArticle>
     <MyArticle>
         <SectionContainer class="min-h-[35svh] md:min-h-[70svh] pb-20">
-            <h2 class="text-3xl font-bold text-main pb-5">
-                Preguntas frecuentes
-            </h2>
+            <SubtitleAbout class="pb-5">
+                Preguntas frecuentes sobre Code Project
+            </SubtitleAbout>
             <ul class="flex flex-col gap-y-2 md:gap-y-6" id="faq">
                 {
                     frenquently_questions.map((question) => (
                         <li>
                             <details class="group" name="faq">
-                                <summary class="flex items-center cursor-pointer list-none text-xl text-yellow-100 group-hover:text-yellow-200 font-medium transition duration-300">
-                                    <span class="mr-1 -rotate-90 text-yellow-300 group-hover:text-yellow-400 group-open:rotate-0 transition duration-300">
+                                <summary
+                                class="flex items-center cursor-pointer list-none text-xl text-yellow-100 group-hover:text-yellow-200 font-semibold transition duration-300"
+                                >
+                                    <span
+                                    class="mr-1 -rotate-90 text-yellow-300 group-open:rotate-0 transition duration-300"
+                                    >
                                         <ArrowBottom />
                                     </span>
                                     {question.title}
