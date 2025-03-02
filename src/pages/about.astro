@@ -2,7 +2,7 @@
 import MarkText from "@/components/markText.astro";
 import MyArticle from "@/components/myArticle.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
-import ToSectionArrow from "@/components/toSectionArrow.astro";
+import links from "@/db/links";
 import Layout from "@/layouts/Layout.astro";
 import UsedResourcesGallery from "@/components/usedResourcesGallery.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
@@ -11,12 +11,20 @@ import TextAbout from "@/components/textAbout.astro";
 
 const buttons_me = [
     {
-        text: "Portfolio",
-        link: "https://www.diego18.pro/",
+        title: "Portfolio",
+        href: links.founder.href,
     },
     {
-        text: "Github",
-        link: "https://github.com/diego-dev018",
+        title: "Github",
+        href: "https://github.com/diego-dev018",
+    },
+    {
+        title: "LinkedIn",
+        href: "https://www.linkedin.com/in/diegodev18/",
+    },
+    {
+        title: "Github Sponsors",
+        href: links.sponsor.href
     },
 ];
 ---
@@ -72,14 +80,14 @@ description="Conoce más sobre CodeProject, la comunidad de programadores más g
                         Actualmente, a los 18 años, dedico mi tiempo libre para mejorar mis habilidades, desarrollar proyectos prácticos y avanzar en mi curso por la carrera de Ingeniería en Desarrollo de Software.
                     </span>
                 </TextAbout>
-                <div class={`grid grid-cols-2 gap-2`}>
+                <div class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}>
                     {
-                        buttons_me.map(({text, link}) => (
+                        buttons_me.map(({title, href}) => (
                             <a
                             class="bg-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-buttonHov transition duration-300 ease-in-out" target="_blank"
-                            href={link}
+                            href={href}
                             >
-                                {text}
+                                {title}
                             </a>
                         ))
                     }
