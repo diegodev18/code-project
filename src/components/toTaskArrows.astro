@@ -8,23 +8,27 @@ interface Props {
     lenguage: string;
     collections: string[];
 }
-
 const { name, lenguage, collections, title } = Astro.props;
 
 const thisNum = parseInt(title.slice(0, 3));
-const prevTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum - 1)?.replace('.md', '') ?? '';
-const nextTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum + 1)?.replace('.md', '') ?? '';
+const prevTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum - 1)?.replace('.md', '');
+const nextTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum + 1)?.replace('.md', '');
+
+const buttons = [ { task: prevTask, icon: LeftCaret }, { task: nextTask, icon: RightCaret } ];
 ---
 
 <div class="flex md:hidden">
-    <a
-    class:list={[prevTask ?? "hidden"]}
-    href={`/projects/${name}/${lenguage}/${prevTask}`}>
-        <LeftCaret width="30" />
-    </a>
-    <a
-    class:list={[nextTask ?? "hidden"]}
-    href={`/projects/${name}/${lenguage}/${nextTask}`}>
-        <RightCaret width="30" />
-    </a>
+    {
+        buttons.map(({ task, icon: Icon }) => {
+            if (task) {
+                return (
+                    <a
+                    class:list={[task ?? "hidden"]}
+                    href={`/projects/${name}/${lenguage}/${task}`}>
+                        <Icon width="30" />
+                    </a>
+                )
+            }
+        })
+    }
 </div>
