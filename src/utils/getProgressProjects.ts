@@ -1,26 +1,25 @@
 import { supabase } from "@/lib/supabase";
 
 export default async function (uuid: string) {
-    let { data: User } = await supabase
+    let { data: User } = await supabase // Trae la lista de proyectos en progreso (y completados) del usuario
         .from("users")
         .select("progress")
         .eq("id", uuid)
         .single();
-    const progress = User?.progress;
+        
+    if (!User?.progress) return [];
+    const progressProjects = User?.progress;
 
-    if (!progress) return [];
+    const found = await Promise.all(progressProjects.map(async (onProgress: any) => {
+        const { data: project } = await supabase
+            .from("projects")
+            .select("*")
+            .eq("id", onProgress.id_project)
+            .single();
+        return project;
+    }));
 
-    let { data: Projects } = await supabase
-        .from("projects")
-        .select("icon, title, description, href, id")
-
-    const found = Projects?.filter((project) => {
-        for (let p of progress) {
-            if (p.id_project === project.id) {
-                return true;
-            }
-        }
-    });
+    console.log(found);
 
     if (!found) return [];
     return found;
