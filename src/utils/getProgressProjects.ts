@@ -10,16 +10,14 @@ export default async function (uuid: string) {
     if (!User?.progress) return [];
     const progressProjects = User?.progress;
 
-    const found = await Promise.all(progressProjects.map(async (onProgress: any) => {
-        const { data: project } = await supabase
+    const found = await Promise.all(progressProjects.map(async (onProgress: any) => { // Trae la información de cada proyecto en progreso
+        const { data: project } = await supabase // Busca el proyecto en la tabla de proyectos
             .from("projects")
             .select("*")
             .eq("id", onProgress.id_project)
             .single();
         return project;
     }));
-
-    console.log(found);
 
     if (!found) return [];
     return found;
