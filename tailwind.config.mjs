@@ -19,11 +19,13 @@ export default {
 						h1: { fontWeight: '600' },
 						pre: { marginBottom: '0.8rem', cursor: 'pointer', fontWeight: '600' },
 						code: { color: '#fde047', backgroundColor: '#0c0c0c', paddingLeft: '0.3rem', paddingRight: '0.3rem', paddingTop: '0.2rem', paddingBottom: '0.1rem', borderRadius: '0.25rem' },
-						'code::before, code::after': { content: '""' },
+						'code::before': { content: '""' },
+						'code::after': { content: '""' },
 						'a': { color: '#fde047' },
 						'a:hover': { color: '#fde047' },
 						'ul, ol': { marginTop: '0rem' },
-						'ul > li, ol > li': { marginLeft: '1.5rem', marginTop: '0.5rem',  },
+						'ul > li': { marginLeft: '1.5rem', marginTop: '0.5rem',  },
+						'ol > li': { marginLeft: '1.5rem', marginTop: '0.5rem',  }
 					}
 				}
 			}
