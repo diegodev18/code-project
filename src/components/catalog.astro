@@ -5,19 +5,14 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProgress from "@/utils/getProgressProjects";
 import getFavorites from "@/utils/getFavorites";
 import getSession from "@/utils/getSession";
+import { allProjects } from "@/utils/getAllProjects";
 /* import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
 import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro"; */
-import { supabase } from "@/lib/supabase";
-
-let { data: Projects } = await supabase
-        .from("projects")
-        .select("icon, title, description, href, id")
-        .eq("status", "public");
 
 const session = await getSession(Astro);
 const uuid = session?.id;
 
-const user_fav = await getFavorites(uuid || "");
+// const user_fav = await getFavorites(uuid || "");
 const user_progress = await getProgress(uuid || "");
 ---
 
@@ -25,13 +20,13 @@ const user_progress = await getProgress(uuid || "");
 <CategoriesGallery />
 <ProjectsGallery
 id="main"
-cards={[...(Projects ?? [])]}
+cards={[...(allProjects ?? [])]}
 uuid={uuid}
 />
 <ProjectsGallery
 id="love"
 title="Podrian gustarte"
-cards={[...(Projects ?? [])]}
+cards={[...(allProjects ?? [])]}
 small={false}
 uuid={uuid}
 />

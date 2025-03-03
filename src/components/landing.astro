@@ -2,12 +2,10 @@
 import SectionContainer from "@/components/sectionContainer.astro";
 import ProgrammingIcon2 from "@/components/icons/programmingIcon2.astro";
 import Login from "@/components/login.astro";
-import getProjects from "@/utils/getAllProjects";
+import { allProjects } from "@/utils/getAllProjects";
 import SendFly from "@/components/icons/sendFly.astro";
 import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
 import getIcon from "@/utils/getIcon";
-
-const Projects = (await getProjects()) ?? [];
 ---
 
 <SectionContainer
@@ -85,7 +83,7 @@ const Projects = (await getProjects()) ?? [];
       class="flex flex-wrap gap-5 md:bg-[#0C0C0C]/20 md:px-10 md:py-8 rounded-2xl"
     >
       {
-        Projects.map(({ title, description, icon, href }) => {
+        allProjects?.map(({ title, description, icon, href }) => {
             const Icon = getIcon(icon);
             return (
             <div class="drop-shadow-2xl border-2 rounded-xl border-[#313131]">
