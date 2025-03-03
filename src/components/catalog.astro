@@ -5,9 +5,9 @@ import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProgress from "@/utils/getProgressProjects";
 import getFavorites from "@/utils/getFavorites";
 import getSession from "@/utils/getSession";
-import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
+/* import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
+import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro"; */
 import { supabase } from "@/lib/supabase";
-import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 
 let { data: Projects } = await supabase
         .from("projects")
@@ -15,7 +15,6 @@ let { data: Projects } = await supabase
         .eq("status", "public");
 
 const session = await getSession(Astro);
-
 const uuid = session?.id;
 
 const user_fav = await getFavorites(uuid || "");
@@ -46,11 +45,11 @@ uuid={uuid}
         />
     )
 }
-<ProjectsGallery
+<!-- <ProjectsGallery
 id="fav"
 title="Favoritos"
 cards={[...(user_fav ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
 uuid={uuid}
 >
     <ProjectsSmallCard uuid={uuid} id={'add-fav'} href={'#fav'} title={'Explora los proyectos que mas te llamen'} description={'Inicia ahora con los proyectos que mas te agradan'} icon={{ width: 85, height: 85, component: CircleDashedPlus }} />
-</ProjectsGallery>
+</ProjectsGallery> -->
