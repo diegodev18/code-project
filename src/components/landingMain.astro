@@ -1,0 +1,75 @@
+---
+import SectionContainer from "@/components/sectionContainer.astro"
+import SendFly from "@/components/icons/sendFly.astro"
+import Login from "@/components/login.astro"
+import ProgrammingIcon from "@/components/icons/programmingIcon2.astro"
+---
+
+<SectionContainer
+    class="grid lg:grid-cols-[60vw_1fr] pt-5 md:pt-10 overflow-x-hidden min-h-[60vh] sm:min-h-[50vh] md:min-h-[68vh]"
+>
+    <div
+        class="flex flex-col justify-between
+        md:justify-around
+        space-y-6 md:space-y-10"
+    >
+        <h1
+            class="text-5xl
+            sm:text-6xl
+            md:text-7xl
+            lg:text-8xl
+            max-w-[1000px]
+            leading-[1]
+            font-semibold"
+        >
+            Hazte Un Mejor Programador
+        </h1>
+        <p
+            class="text-3xl md:text-4xl font-semibold leading-snug md:leading-tight max-w-[800px]"
+        >
+            Proyectos reales de programacion creados para
+            <span class="text-violet-700 brightness-125 border-b-2 border-violet-700">
+                {"{desarrolladores}"}
+            </span>
+            y
+            <span class="text-lime-500 brightness-125 border-b-2 border-lime-500">
+                {"entusiastas"}
+            </span>
+        </p>
+        <div class="pt-10 md:pt-0 max-w-[800px]">
+            <aside
+                class="text-blue-300 w-fit transition duration-500 ease-in-out"
+                id="main-fly"
+            >
+                <SendFly width="45" stroke-width="3" />
+            </aside>
+            <aside class="w-auto" id="login-button">
+                <Login
+                    title="Click aqui! Ahora para comenzar a desarrollar tus proyectos!"
+                    classButton="!bg-violet-700 hover:brightness-125"
+                />
+            </aside>
+        </div>
+    </div>
+    <div
+        class="hidden lg:flex items-center justify-end h-full animate-pulse text-yellow-200"
+    >
+        <ProgrammingIcon width="350" height="350" stroke-width="2" />
+    </div>
+</SectionContainer>
+
+<script>
+    const loginButton = document.getElementById("login-button");
+    const mainFly = document.getElementById("main-fly");
+
+    loginButton?.addEventListener("mouseenter", () => {
+        if (mainFly) {
+            mainFly.style.transform = "rotate(72deg)";
+        }
+    });
+    loginButton?.addEventListener("mouseleave", () => {
+        if (mainFly) {
+            mainFly.style.transform = "rotate(0deg)";
+        }
+    });
+</script>
