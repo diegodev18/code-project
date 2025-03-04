@@ -46,12 +46,14 @@ description='Search for products'
         found.length > 0 && (
             <SectionContainer class="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
                 {
-                    found.map(project => {
-                        const { width, height, component: Icon } = getIcon(project.icon);
-                        return (
-                            <SearchCard title={project.title} description={project.description} href={project.href} icon={{ width: width + 100, height: height + 100, component: Icon }} />
-                        )
-                    })
+                    found.map(({ icon, title, description, href }) => (
+                        <SearchCard
+                            title={title}
+                            description={description}
+                            href={href}
+                            icon={ getIcon(icon) }
+                        />
+                    ))
                 }
             </SectionContainer>
         )
