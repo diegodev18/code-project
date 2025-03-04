@@ -6,6 +6,7 @@ import { allProjects } from "@/utils/getAllProjects";
 import SendFly from "@/components/icons/sendFly.astro";
 import ProjectsLargeCard from "@/components/projectsLargeCard.astro";
 import getIcon from "@/utils/getIcon";
+import ProjectsSmallCard from "./projectsSmallCard.astro";
 ---
 
 <SectionContainer
@@ -63,7 +64,7 @@ import getIcon from "@/utils/getIcon";
 <SectionContainer class="pb-20 pt-20">
   <div class="group">
     <p
-      class="flex items-center flex-wrap w-[calc(100vw-50px)] md:w-auto gap-x-2 md:ml-6 lg:ml-12 font-medium text-xl md:text-5xl pb-10"
+      class="flex items-center flex-wrap gap-x-2 font-medium text-3xl md:text-5xl pb-5 md:pb-10"
     >
       <span
         class="text-main brightness-125 font-semibold animate-pulse group-hover:rotate-[105deg] transition duration-500 ease-in-out"
@@ -76,29 +77,40 @@ import getIcon from "@/utils/getIcon";
         desarrolladores
       </span>
     </p>
-    <p class="ml-5 font-semibold text-xl opacity-30">
-      Explora nuestros proyectos!
-    </p>
-    <ul
-      class="flex flex-wrap gap-5 md:bg-[#0C0C0C]/20 md:px-10 md:py-8 rounded-2xl"
-    >
-      {
-        allProjects?.map(({ title, description, icon, href }) => {
-            const Icon = getIcon(icon);
-            return (
-            <div class="drop-shadow-2xl border-2 rounded-xl border-[#313131]">
-              <ProjectsLargeCard
-                id="landing-projects"
-                title={title}
-                href={href}
-                description={description}
-                icon={Icon}
-              />
-            </div>
-          );
-        })
-      }
-    </ul>
+    <div class="flex flex-col items-center md:block">
+      <p class="ml-5 font-semibold text-xl text-center opacity-30 pb-2">
+        Explora nuestros proyectos!
+      </p>
+      <ul
+        class="flex flex-wrap gap-5 md:bg-[#0C0C0C]/20 md:px-10 md:py-8 rounded-2xl"
+      >
+        {
+          allProjects?.map(({ title, description, icon, href }) => {
+              const Icon = getIcon(icon);
+              return (
+              <div class="drop-shadow-2xl border-2 rounded-xl border-[#313131] sm:hidden xl:block">
+                <ProjectsLargeCard
+                  id="landing-projects"
+                  title={title}
+                  href={href}
+                  description={description}
+                  icon={Icon}
+                />
+              </div>
+              <div class="drop-shadow-2xl rounded-xl hidden sm:block xl:hidden">
+                <ProjectsSmallCard
+                  id="landing-projects"
+                  title={title}
+                  href={href}
+                  description={description}
+                  icon={Icon}
+                />
+              </div>
+            );
+          })
+        }
+      </ul>
+    </div>
   </div>
 </SectionContainer>
 
