@@ -5,27 +5,27 @@ import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 import NotepadIcon from "@/components/icons/brands/notepadIcon.astro";
 
 const icons = {
-    Git: {
+    git: {
         width: 80,
         height: 80,
         component: GitIcon
     },
-    Bash: {
+    bash: {
         width: 80,
         height: 80,
         component: BashIcon
     },
-    Linux: {
+    linux: {
         width: 90,
         height: 90,
         component: LinuxIcon
     },
-    CircleDashedPlus: {
+    circledashedplus: {
         width: 90,
         height: 90,
         component: CircleDashedPlus
     },
-    Notepad: {
+    notepad: {
         width: 90,
         height: 90,
         component: NotepadIcon
@@ -33,5 +33,5 @@ const icons = {
 } as const;
 
 export default function getIcon(icon: string) {
-    return icons[icon as keyof typeof icons] || icons['Git'];
+    return icons[icon.toLowerCase() as keyof typeof icons] || icons['git'];
 }
