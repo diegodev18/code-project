@@ -30,7 +30,7 @@ const projectFound = projectsList[0] != "403" ? projectsList.find((item: string)
 
 <li class="mt-5 md:mt-2 lg:mt-3 snap-center">
     <a
-    class="group w-[140px] md:w-[175px] lg:w-[200px] aspect-[9/10] hover:bg-button-hov bg-dark-secondary rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
+    class="group w-[140px] md:w-[175px] lg:w-[210px] aspect-[9/10] hover:bg-button-hov bg-dark-secondary rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
     title={`${title} - ${description}`}
     href={
         uuid
@@ -44,18 +44,30 @@ const projectFound = projectsList[0] != "403" ? projectsList.find((item: string)
             '/profile'
     }
     >
-        <div class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition-all duration-300 ease-in-out">
+        <div
+        class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition"
+        >
             <Icon width={width} height={height} />
         </div>
-        <div class="pt-16 md:pt-20 lg:pt-[4.2rem] max-w-[130px] md:max-w-[170px] lg:max-w-[185px] px-2 z-10 flex flex-col justify-between h-[calc(100%-30px)] lg:gap-y-1">
-            <h3 class="font-semibold leading-5 min-h-[60px] md:min-h-[85px] md:text-xl lg:min-h-0 line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition duration-300 ease-in-out">
+        <div
+        class="pt-16 md:pt-20 lg:pt-[4.5rem] pb-3 px-3 z-10 flex flex-col justify-between h-full"
+        >
+            <h3
+            class="font-semibold leading-6 md:text-xl line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition"
+            >
                 {title}
             </h3>
-            <p class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 line-clamp-3 h-[60px] leading-5 transition duration-300 ease-in-out">
+            <p
+            class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 leading-5 transition"
+            >
                 {description}
             </p>
-            <div class="relative w-full h-3 bg-white rounded-full mt-2">
-                <div class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition duration-300 ease-in-out h-full rounded-full" style={`width: ${percentaje}%`} />
+            <div
+            class="relative w-full h-3 bg-white rounded-full mt-2"
+            >
+                <div
+                class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition h-full rounded-full" style={`width: ${percentaje}%`}
+                />
             </div>
         </div>
     </a>
