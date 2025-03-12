@@ -7,7 +7,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
 <SectionContainer>
     <var>
         <form
-        class="grid grid-cols-[1fr_50px] justify-between items-center gap-x-2 h-12 bg-secondary rounded-lg"
+        class="grid grid-cols-[1fr_50px] justify-between items-center gap-x-2 h-12 bg-dark-secondary rounded-lg"
         action="/search"
         method="get"
         >
@@ -19,7 +19,7 @@ import SectionContainer from "@/components/sectionContainer.astro";
             placeholder="Buscar..."
             >
             <button
-            class="flex justify-center items-center text-yellow-200 opacity-75 hover:opacity-100 bg-slate-500 bg-opacity-0 hover:bg-opacity-10 h-full rounded-r-lg transition duration-500"
+            class="flex justify-center items-center text-yellow-200 hover:opacity-100 opacity-75 h-full rounded-r-lg cursor-pointer transition duration-500"
             type="submit"
             >
                 <SearchIcon width="30" />
