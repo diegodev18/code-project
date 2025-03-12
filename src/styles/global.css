@@ -6,4 +6,8 @@
     --color-dark-secondary: #1E1E1E;
     --color-button-hov: #131313;
     --color-nav: #0C0C0C;
+    --default-transition-duration: 0.3s;
+    --default-transition-timing-function: ease-in-out;
+    --default-transition-delay: 0s;
+    --default-transition-property: all;
 }
