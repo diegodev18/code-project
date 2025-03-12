@@ -12,11 +12,11 @@ const options = [
 <ul class="hidden lg:flex items-center justify-between font-semibold gap-x-2 text-xl">
     {
         options.map(({name, link}) => (
-            <li class="bg-slate-500 bg-opacity-0 hover:bg-opacity-10 rounded-xl transition duration-300">
+            <li class="hover:bg-zinc-700 rounded-xl transition duration-300">
                 <a
                 class:list={[
-                    location === link ? 'text-main' : 'text-white/65',
-                    'px-4 hover:!text-purple-300 hover:opacity-100 transition duration-300'
+                    location === link ? 'text-light-primary' : 'text-white/65 hover:!text-purple-300',
+                    'px-4 hover:opacity-100 transition duration-300'
                 ]}
                 href={location === link ? '#' : link}>
                     {name}
