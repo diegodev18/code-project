@@ -1,4 +1,14 @@
 
+async function getGithubAPI(url: string) {
+  const response = await fetch(url, {
+      headers: {
+          Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+          Accept: "application/vnd.github.v3.raw",
+      }
+  });
+  return response;
+}
+
 export async function getGithubFileContent(owner: string, name: string, filePath: string[]) {
     const url = `https://api.github.com/repos/${owner}/${name}/contents/${filePath.join("/")}`;
     // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
@@ -7,7 +17,7 @@ export async function getGithubFileContent(owner: string, name: string, filePath
     let error = null;
 
     try {
-        const response = await fetch(url);
+        const response = await getGithubAPI(url);
         
         if (response.statusText === "rate limit exceeded") {
             return {
@@ -16,10 +26,11 @@ export async function getGithubFileContent(owner: string, name: string, filePath
             }
         }
 
-        const data = await response.json();
-        content = decodeURIComponent(escape(atob(data.content))); // Decodificar correctamente
+        const data = await response.text();
+        content = data;
     } catch (error) {
         error = error;
+        console.log({ error });
     }
 
     return { data: content, error }
@@ -36,7 +47,7 @@ export async function getGithubDirContent(owner: string, name: string, dirPath: 
     let error = null;
 
     try {
-        const response = await fetch(url);
+        const response = await getGithubAPI(url);
         const dataJson = await response.json();
         
         if (response.status === 403) return { data, error: response.status }
