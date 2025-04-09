@@ -17,12 +17,12 @@ const { component: Icon, width, height } = icon;
 <a
 href={href ?? '/404'}
 title={`${title} - ${description}`}
-class="group grid grid-cols-[70px_1fr] items-center bg-secondary hover:bg-buttonHov rounded-3xl gap-x-8 px-6 py-4 transition duration-300 ease-in-out">
+class="group grid grid-cols-[70px_1fr] items-center bg-dark-secondary hover:bg-button-hov rounded-3xl gap-x-8 px-6 py-4 transition duration-300 ease-in-out">
     <div class="group-hover:scale-110 transition duration-500 ease-in-out">
         <Icon width={width} height={height} />
     </div>
     <div>
-        <h1 class="text-3xl sm:text-4xl font-bold text-main">
+        <h1 class="text-3xl sm:text-4xl font-bold text-light-primary">
             {title}
         </h1>
         <p class="text-base sm:text-lg font-medium text-white/75 line-clamp-2 pt-2">

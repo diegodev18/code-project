@@ -27,14 +27,14 @@ description={`Pagina de perfil de ${profile?.full_name ?? "CodeProject"}`}
     {
         session ? (
             <SectionContainer class="mb-5 pt-2 pb-1 w-fit mx-auto rounded-xl relative">
-                <p class="md:text-center font-bold text-lg leading-snug py-2 px-5 bg-secondary rounded-xl">
+                <p class="md:text-center font-bold text-lg leading-snug py-2 px-5 bg-dark-secondary rounded-xl">
                     Estas viendo un perfil externo, si quieres ver tu perfil ve a <UnderlineLink href="/profile">/profile</UnderlineLink>
                 </p>
             </SectionContainer>
         )
         :
         (
-            <SectionContainer class="bg-secondary mx-5 mb-5 py-3 rounded-xl relative" id="msg">
+            <SectionContainer class="bg-dark-secondary mx-5 mb-5 py-3 rounded-xl relative" id="msg">
                 <h1 class="md:text-center font-bold text-lg leading-snug pb-2">
                     Recibiste el link de un usuario de CodeProject!<br><MarkText>¿Y tu que esperas para empezar a realizar nuestros proyectos y mejorar tus habilidades en programacion?</MarkText>
                 </h1>

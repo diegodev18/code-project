@@ -38,7 +38,7 @@ const { name, username, img, link, certificates, main = false } = Astro.props;
                 class="lg:w-full"
                 >
                     <button
-                    class="py-2 px-3 bg-secondary hover:bg-buttonHov font-bold rounded-lg lg:w-full transition ease-in-out duration-300"
+                    class="py-2 px-3 bg-dark-secondary hover:bg-button-hov cursor-pointer font-bold rounded-lg lg:w-full transition ease-in-out duration-300"
                     type="submit"
                     >
                         Cerrar sesion
@@ -56,14 +56,14 @@ const { name, username, img, link, certificates, main = false } = Astro.props;
                 main && (
                     <button
                     id="share-button"
-                    class="p-2 bg-[#1E1E1E] rounded-lg bg-opacity-0 hover:bg-opacity-100 hover:scale-105 active:scale-95 transition md:hidden"
+                    class="p-2 rounded-lg bg-[#1E1E1E]/0 hover:bg-[#1E1E1E]/100 hover:scale-105 active:scale-95 transition md:hidden"
                     >
                         <ShareIcon />
                     </button>
                 )
             }
         </div>
-        <a href={link ?? ""} target="_blank" class="flex w-fit opacity-50 items-center font-medium md:hover:bg-buttonHov rounded-2xl md:px-3 py-2 transition duration-300 ease-in-out">
+        <a href={link ?? ""} target="_blank" class="flex w-fit opacity-50 items-center font-medium md:hover:bg-button-hov rounded-2xl md:px-3 py-2 transition duration-300 ease-in-out">
             <GitHubIcon width="30" />
             <p class="pl-3 md:pl-3 font-semibold text-xl md:text-2xl">
                 {username}
@@ -80,7 +80,7 @@ const { name, username, img, link, certificates, main = false } = Astro.props;
             certificates && certificates?.length > 0 ? certificates.map(certificate => (
                 <li>
                     <div
-                    class="flex justify-end items-end p-3 aspect-video w-full rounded-xl bg-secondary"
+                    class="flex justify-end items-end p-3 aspect-video w-full rounded-xl bg-dark-secondary"
                     >
                         <Share2Icon width="30" />
                     </div>
@@ -89,7 +89,7 @@ const { name, username, img, link, certificates, main = false } = Astro.props;
             :
             <li>
                 <div
-                class="flex justify-center items-center text-red-300 p-3 aspect-video w-full rounded-xl bg-secondary"
+                class="flex justify-center items-center text-red-300 p-3 aspect-video w-full rounded-xl bg-dark-secondary"
                 >
                     <p class="pr-5 font-medium text-xl">No tienes certificados</p>
                     <XLetterIcon width="30" />
