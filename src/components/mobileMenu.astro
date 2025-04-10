@@ -2,69 +2,79 @@
 import XLetterIcon from "@/components/icons/xLetterIcon.astro";
 
 const enableOpts = [
-    { name: 'Inicio', link: '/' },
-    { name: 'Creado por', link: '/about' },
-    { name: 'Ayuda', link: '/help' },
-    { name: 'Perfil', link: '/profile' },
-]
+  { name: "Inicio", link: "/" },
+  { name: "Creado por", link: "/about" },
+  { name: "Ayuda", link: "/help" },
+  { name: "Perfil", link: "/profile" },
+];
 
 const location = Astro.url.pathname;
 ---
+
 <div
-class="fixed inset-0 z-[999] bg-[#000000]/70 backdrop-blur-sm h-[100dvh] w-screen px-5 pt-4 pb-10"
-id="mobile-menu"
+  class="fixed inset-0 z-[999] bg-[#000000]/70 backdrop-blur-sm h-[100dvh] w-screen px-5 pt-4 pb-10"
+  id="mobile-menu"
 >
-    <div class="flex flex-col justify-between h-full">
-        <aside>
-            <button
-            class="text-light-primary"
-            onclick="document.querySelector('#mobile-menu').removeAttribute('open')"
-            >
-                <XLetterIcon width="30" />
-            </button>
-        </aside>
-        <nav>
-            <ul class="flex flex-col">
-                {
-                    enableOpts.map(({ name, link }) => (
-                        <li class="text-4xl font-bold py-2">
-                            <a
-                            href={link === location ? '#' : link}
-                            class={location === link ? 'text-light-primary' : 'opacity-65 text-white'}
-                            >
-                                {name}
-                            </a>
-                        </li>
-                    ))
+  <div class="flex flex-col justify-between h-full">
+    <aside>
+      <button
+        class="text-light-primary"
+        onclick="document.querySelector('#mobile-menu').removeAttribute('open')"
+      >
+        <XLetterIcon width="30" />
+      </button>
+    </aside>
+    <nav>
+      <ul class="flex flex-col">
+        {
+          enableOpts.map(({ name, link }) => (
+            <li class="text-4xl font-bold py-2">
+              <a
+                href={link === location ? "#" : link}
+                class={
+                  location === link
+                    ? "text-light-primary"
+                    : "opacity-65 text-white"
                 }
-                <li class="h-20 bg-dark-secondary mt-5 rounded-md">
-                    <a
-                    class="flex items-center w-full h-full"
-                    target="_blank"
-                    href="https://github.com/sponsors/diego-dev018?o=sd&sc=t">
-                        <p class="px-4 text-center text-xl font-bold text-yellow-200 animate-pulse">
-                            Contribuir monetariamente por GitHub
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+              >
+                {name}
+              </a>
+            </li>
+          ))
+        }
+        <li class="h-20 bg-dark-secondary mt-5 rounded-md">
+          <a
+            class="flex items-center w-full h-full"
+            target="_blank"
+            href="https://github.com/sponsors/diego-dev018?o=sd&sc=t"
+          >
+            <p
+              class="px-4 text-center text-xl font-bold text-yellow-200 animate-pulse"
+            >
+              Contribuir monetariamente por GitHub
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 
 <style>
-    #mobile-menu[open] {
-        display: block;
-        opacity: 1;
-        transition: opacity 0.3s;
-        
-        @starting-style {
-            opacity: 0;
-        }
+  #mobile-menu[open] {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s;
+
+    @starting-style {
+      opacity: 0;
     }
-    #mobile-menu {
-        display: none;
-        transition: opacity 0.3s, display 0.3s allow-discrete;
-        opacity: 0;
-    }
+  }
+  #mobile-menu {
+    display: none;
+    transition:
+      opacity 0.3s,
+      display 0.3s allow-discrete;
+    opacity: 0;
+  }
 </style>

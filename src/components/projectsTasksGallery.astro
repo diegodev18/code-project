@@ -1,51 +1,65 @@
 ---
 interface Props {
-    title: string;
-    name: string;
-    lenguage: string;
-    collections: string[];
-    onProgress?: number;
+  title: string;
+  name: string;
+  lenguage: string;
+  collections: string[];
+  onProgress?: number;
 }
 const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
 ---
 
 <var class="hidden md:block mt-3">
-    <div class="fixed bg-[#1E1E1E] rounded-lg py-5 px-2 w-[220px]">
-        <h3 class="text-center text-2xl not-italic font-semibold text-light-primary border-b-2 pb-1">
-            Tareas
-        </h3>
-        <ul class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll" id="tasks">
-            {
-                collections
-                    .sort((a, b) => {
-                        const a_num = parseInt(a.slice(0, 3));
-                        const b_num = parseInt(b.slice(0, 3));
-                        if (a_num < b_num) {
-                            return -1
-                        }
-                        if (a_num > b_num) {
-                            return 1
-                        }
-                        return 0;
-                    })
-                    .map(task => {
-                        const p_name = task.slice(4).replace('.md', '');
-                        const p_num = parseInt(task.slice(0, 3));
-                        return (
-                            <li class:list={[
-                                task.replace('.md', '') === title && onProgress !== p_num && "text-purple-300 rounded-xl",
-                                onProgress === p_num && "text-main"
-                            ]}>
-                                <a
-                                class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
-                                title={p_name}
-                                href={task.replace('.md', '') === title ? '#' : `/projects/${name}/${lenguage}/${task.replace('.md', '')}`}>
-                                    {p_name}
-                                </a>
-                            </li>
-                        )
-                })
+  <div class="fixed bg-[#1E1E1E] rounded-lg py-5 px-2 w-[220px]">
+    <h3
+      class="text-center text-2xl not-italic font-semibold text-light-primary border-b-2 pb-1"
+    >
+      Tareas
+    </h3>
+    <ul
+      class="flex flex-col gap-y-2 h-[77svh] py-3 overflow-y-scroll"
+      id="tasks"
+    >
+      {
+        collections
+          .sort((a, b) => {
+            const a_num = parseInt(a.slice(0, 3));
+            const b_num = parseInt(b.slice(0, 3));
+            if (a_num < b_num) {
+              return -1;
             }
-        </ul>
-    </div>
+            if (a_num > b_num) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((task) => {
+            const p_name = task.slice(4).replace(".md", "");
+            const p_num = parseInt(task.slice(0, 3));
+            return (
+              <li
+                class:list={[
+                  task.replace(".md", "") === title &&
+                    onProgress !== p_num &&
+                    "text-purple-300 rounded-xl",
+                  onProgress === p_num && "text-main",
+                ]}
+              >
+                <a
+                  class="font-semibold line-clamp-1 text-xl px-2 py-1 hover:bg-[#2c2c2c] rounded-xl transition duration-300"
+                  title={p_name}
+                  href={
+                    task.replace(".md", "") === title
+                      ? "#"
+                      : `/projects/${name}/${lenguage}/${task.replace(".md", "")}`
+                  }
+                >
+                  {p_name}
+                </a>
+              </li>
+            );
+          })
+      }
+    </ul>
+  </div>
 </var>

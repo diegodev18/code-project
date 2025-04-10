@@ -1,70 +1,63 @@
 ---
-import SearchCard from '@/components/searchCard.astro';
-import SearchVar from '@/components/searchVar.astro'
-import SectionContainer from '@/components/sectionContainer.astro';
-import Layout from '@/layouts/Layout.astro'
-import getIcon from '@/utils/getIcon';
+import SearchCard from "@/components/searchCard.astro";
+import SearchVar from "@/components/searchVar.astro";
+import SectionContainer from "@/components/sectionContainer.astro";
+import Layout from "@/layouts/Layout.astro";
+import getIcon from "@/utils/getIcon";
 import { supabase } from "@/lib/supabase";
 
-const searched = Astro.url.searchParams.get('search') ?? "Todos";
+const searched = Astro.url.searchParams.get("search") ?? "Todos";
 
 let { data: Projects } = await supabase
-        .from("projects")
-        .select("icon, title, description, href, tags")
-        .eq("status", "public")
-        .order("created_at", { ascending: false })
-        .limit(10);
+  .from("projects")
+  .select("icon, title, description, href, tags")
+  .eq("status", "public")
+  .order("created_at", { ascending: false })
+  .limit(10);
 Projects = Projects ?? [];
 
 let found = [];
 if (searched.toLowerCase() === "todos") {
-    found = Projects;
+  found = Projects;
 } else {
-    const tag = searched.toLowerCase().replace(/ /g, "-");
-    found = Projects.filter(project => {
-        return project.tags.includes(tag);
-    });
+  const tag = searched.toLowerCase().replace(/ /g, "-");
+  found = Projects.filter((project) => {
+    return project.tags.includes(tag);
+  });
 }
 ---
 
-<Layout
-title='Search'
-description='Search for products'
->
-    <SearchVar />
-    <SectionContainer>
-        <p class="pt-2 pb-4 font-medium">
-            <span class="opacity-70 italic text-sm">
-                Resultados para:
-            </span>
-            <span class="font-bold text-purple-300">
-                {searched}
-            </span>
+<Layout title="Search" description="Search for products">
+  <SearchVar />
+  <SectionContainer>
+    <p class="pt-2 pb-4 font-medium">
+      <span class="opacity-70 italic text-sm"> Resultados para: </span>
+      <span class="font-bold text-purple-300">
+        {searched}
+      </span>
+    </p>
+  </SectionContainer>
+  {
+    found.length > 0 && (
+      <SectionContainer class="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+        {found.map(({ icon, title, description, href }) => (
+          <SearchCard
+            title={title}
+            description={description}
+            href={href}
+            icon={getIcon(icon)}
+          />
+        ))}
+      </SectionContainer>
+    )
+  }
+  {
+    found.length === 0 && (
+      <SectionContainer class="flex items-center justify-center h-[70vh] md:h-[78vh]">
+        <p class="text-2xl text-center font-bold text-purple-300">
+          No se encontraron resultados
         </p>
-    </SectionContainer>
-    {
-        found.length > 0 && (
-            <SectionContainer class="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-                {
-                    found.map(({ icon, title, description, href }) => (
-                        <SearchCard
-                            title={title}
-                            description={description}
-                            href={href}
-                            icon={ getIcon(icon) }
-                        />
-                    ))
-                }
-            </SectionContainer>
-        )
-    }
-    {
-        found.length === 0 && (
-            <SectionContainer class="flex items-center justify-center h-[70vh] md:h-[78vh]">
-                <p class="text-2xl text-center font-bold text-purple-300">
-                    No se encontraron resultados
-                </p>
-            </SectionContainer>
-        )
-    }
+      </SectionContainer>
+    )
+  }
 </Layout>

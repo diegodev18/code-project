@@ -11,59 +11,49 @@ import SubtitleAbout from "@/components/subtitleAbout.astro";
 ---
 
 <Layout title="Help - Code Project" description="Help page for Code Project">
-    <MyArticle>
-        <SectionContainer
-            class="flex flex-col items-center justify-center h-[80svh] text-light-primary"
-        >
-            <h1
-                class="flex flex-col text-center text-[3rem] leading-tight font-bold"
-            >
-                <span class="text-xl font-semibold opacity-65">
-                    Bienvenido!
-                </span>
-                En que te podemos ayudar?
-            </h1>
-            <div class="py-2">
-                <YourComments />
-            </div>
-            <UnderlineLink
-                className="text-xl text-center !text-purple-200 hover:!text-purple-300"
-                href="https://github.com/diegodev18/code-project-docs"
-                target="_blank"
-            >
-                Apoya a la documentacion de CodeProject en Github
-            </UnderlineLink>
-            <ToSectionArrow href="#faq" />
-        </SectionContainer>
-    </MyArticle>
-    <MyArticle>
-        <SectionContainer class="min-h-[35svh] md:min-h-[70svh] pb-20">
-            <SubtitleAbout class="pb-5">
-                Preguntas frecuentes sobre Code Project
-            </SubtitleAbout>
-            <ul class="flex flex-col gap-y-2 md:gap-y-6" id="faq">
-                {
-                    frenquently_questions.map((question) => (
-                        <li>
-                            <details class="group" name="faq">
-                                <summary
-                                class="flex items-center cursor-pointer list-none appearance-none marker:hidden text-xl text-yellow-100 group-hover:text-yellow-200 font-semibold transition duration-300"
-                                >
-                                    <span
-                                    class="mr-1 -rotate-90 text-yellow-300 group-open:rotate-0 transition duration-300"
-                                    >
-                                        <ArrowBottom />
-                                    </span>
-                                    {question.title}
-                                </summary>
-                                <p class="mt-1 ml-[2.15rem] font-medium">
-                                    {question.content}
-                                </p>
-                            </details>
-                        </li>
-                    ))
-                }
-            </ul>
-        </SectionContainer>
-    </MyArticle>
+  <MyArticle>
+    <SectionContainer
+      class="flex flex-col items-center justify-center h-[80svh] text-light-primary"
+    >
+      <h1 class="flex flex-col text-center text-[3rem] leading-tight font-bold">
+        <span class="text-xl font-semibold opacity-65"> Bienvenido! </span>
+        En que te podemos ayudar?
+      </h1>
+      <div class="py-2">
+        <YourComments />
+      </div>
+      <UnderlineLink
+        className="text-xl text-center !text-purple-200 hover:!text-purple-300"
+        href="https://github.com/diegodev18/code-project-docs"
+        target="_blank"
+      >
+        Apoya a la documentacion de CodeProject en Github
+      </UnderlineLink>
+      <ToSectionArrow href="#faq" />
+    </SectionContainer>
+  </MyArticle>
+  <MyArticle>
+    <SectionContainer class="min-h-[35svh] md:min-h-[70svh] pb-20">
+      <SubtitleAbout class="pb-5">
+        Preguntas frecuentes sobre Code Project
+      </SubtitleAbout>
+      <ul class="flex flex-col gap-y-2 md:gap-y-6" id="faq">
+        {
+          frenquently_questions.map((question) => (
+            <li>
+              <details class="group" name="faq">
+                <summary class="flex items-center cursor-pointer list-none appearance-none marker:hidden text-xl text-yellow-100 group-hover:text-yellow-200 font-semibold transition duration-300">
+                  <span class="mr-1 -rotate-90 text-yellow-300 group-open:rotate-0 transition duration-300">
+                    <ArrowBottom />
+                  </span>
+                  {question.title}
+                </summary>
+                <p class="mt-1 ml-[2.15rem] font-medium">{question.content}</p>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+    </SectionContainer>
+  </MyArticle>
 </Layout>

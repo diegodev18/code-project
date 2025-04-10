@@ -1,23 +1,32 @@
 ---
 interface Props {
-    title?: string;
-    fullHeight?: boolean;
-    classButton?: string;
+  title?: string;
+  fullHeight?: boolean;
+  classButton?: string;
 }
-const { fullHeight = false, classButton, title = "Iniciar sesión con GitHub" } = Astro.props;
+const {
+  fullHeight = false,
+  classButton,
+  title = "Iniciar sesión con GitHub",
+} = Astro.props;
 ---
 
-<section class:list={["flex justify-center items-center", fullHeight && "h-[calc(90vh-4rem)]"]}>
-    <form
-    action="/api/auth/signin"
-    method="post"
+<section
+  class:list={[
+    "flex justify-center items-center",
+    fullHeight && "h-[calc(90vh-4rem)]",
+  ]}
+>
+  <form action="/api/auth/signin" method="post">
+    <button
+      value="github"
+      type="submit"
+      class:list={[
+        "py-2 px-4 bg-[#1E1E1E] hover:bg-button-hov text-white font-bold rounded-full cursor-pointer transition duration-300 ease-in-out",
+        classButton,
+      ]}
     >
-        <button
-        value="github"
-        type="submit"
-        class:list={["py-2 px-4 bg-[#1E1E1E] hover:bg-button-hov text-white font-bold rounded-full cursor-pointer transition duration-300 ease-in-out", classButton]}
-        >
-            {title}
-        </button>
-    </form>
+      {title}
+    </button>
+  </form>
 </section>

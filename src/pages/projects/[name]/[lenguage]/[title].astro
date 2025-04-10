@@ -14,87 +14,105 @@ import MarkDownContent from "@/components/markDownContent.astro";
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
 if (!params.name || !params.lenguage || !params.title) {
-    return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
 const session = await getSession(Astro);
-if (!session) { return Astro.redirect("/profile"); }
+if (!session) {
+  return Astro.redirect("/profile");
+}
 
 const uuid = session?.id;
 
 const progress = await getProgressFromAProject(params.name, uuid);
 
-const data = await getProjectContent(params.name, params.lenguage, params.title); // params.name, params.lenguage, params.title
+const data = await getProjectContent(
+  params.name,
+  params.lenguage,
+  params.title,
+); // params.name, params.lenguage, params.title
 
 if (data.data.num === 404) {
-    return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
-const Content = !Array.isArray(data) ? data.render : '';
+const Content = !Array.isArray(data) ? data.render : "";
 
 const info = Array.isArray(data) ? null : data.data;
 
-const opts = [
-    {  title: "Introducción", href: `#` },
-]
+const opts = [{ title: "Introducción", href: `#` }];
 
 const projectsList = await getProjectsContent(params.name, params.lenguage);
-const nextTask = (projectsList.find(task => parseInt(task) === (info?.num ?? 0) + 1) || '').replace('.md', '');
+const nextTask = (
+  projectsList.find((task) => parseInt(task) === (info?.num ?? 0) + 1) || ""
+).replace(".md", "");
 ---
 
 <Layout
-title={`${info?.title ?? "Proyecto"} - CodeProject`}
-description="This is a project page"
+  title={`${info?.title ?? "Proyecto"} - CodeProject`}
+  description="This is a project page"
 >
-    <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
-        <ProjectsTasksGallery
-        title={params.title} name={params.name} lenguage={params.lenguage} collections={projectsList} onProgress={progress.progress}
+  <SectionContainer class="md:grid md:grid-cols-[220px_1fr] md:gap-x-6">
+    <ProjectsTasksGallery
+      title={params.title}
+      name={params.name}
+      lenguage={params.lenguage}
+      collections={projectsList}
+      onProgress={progress.progress}
+    />
+    <section class="pb-3 w-full">
+      <div class="flex justify-between items-center">
+        <h3
+          class="text-md md:text-lg italic font-semibold text-light-primary/50"
+        >
+          {params.name?.toUpperCase()}
+        </h3>
+        <ToTaskArrows
+          title={params.title}
+          name={params.name}
+          lenguage={params.lenguage}
+          collections={projectsList}
         />
-        <section class="pb-3 w-full">
-            <div class="flex justify-between items-center">
-                <h3 class="text-md md:text-lg italic font-semibold text-light-primary/50">
-                    {params.name?.toUpperCase()}
-                </h3>
-                <ToTaskArrows title={params.title} name={params.name} lenguage={params.lenguage} collections={projectsList} />
-            </div>
-            <h1 class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-light-primary">
-                {info?.title ?? ""}
-                <span class="text-lg text-yellow-200/65">
-                    {`#${info?.num ?? ""}`}
-                </span>
-            </h1>
-            <ProjectsOptsGallery opts={opts} />
-            <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
-                <h2 class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-main">
-                    Tarea
-                </h2>
-                <div>
-                    <MarkDownContent content={Content} />
-                    {
-                        progress.progress === info?.num && data.data.id && (
-                            <form
-                            action="/api/db/progress"
-                            method="POST"
-                            >
-                                <button
-                                class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
-                                name="progressItem"
-                                value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "uuid": "${uuid}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
-                                type="submit"
-                                >
-                                    Terminar tarea <SendFly width="20" />
-                                </button>
-                            </form>
-                        )
-                    }
-                </div>
-            </div>
-        </section>
-    </SectionContainer>
+      </div>
+      <h1
+        class="flex text-3xl md:text-4xl pb-2 font-bold items-end gap-x-2 text-light-primary"
+      >
+        {info?.title ?? ""}
+        <span class="text-lg text-yellow-200/65">
+          {`#${info?.num ?? ""}`}
+        </span>
+      </h1>
+      <ProjectsOptsGallery opts={opts} />
+      <div class="px-3 md:px-5 pt-3 pb-5 mt-5 bg-[#1E1E1E] rounded-lg">
+        <h2
+          class="text-2xl md:text-3xl pb-1 font-semibold border-b-2 border-main"
+        >
+          Tarea
+        </h2>
+        <div>
+          <MarkDownContent content={Content} />
+          {
+            progress.progress === info?.num && data.data.id && (
+              <form action="/api/db/progress" method="POST">
+                <button
+                  class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
+                  name="progressItem"
+                  value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "uuid": "${uuid}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
+                  type="submit"
+                >
+                  Terminar tarea <SendFly width="20" />
+                </button>
+              </form>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </SectionContainer>
 </Layout>
 
 <style>
-    #tasks {
-        scrollbar-width: none;
-    }
+  #tasks {
+    scrollbar-width: none;
+  }
 </style>

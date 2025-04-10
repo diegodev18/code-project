@@ -1,66 +1,73 @@
-
 async function getGithubAPI(url: string) {
   const response = await fetch(url, {
-      headers: {
-          Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
-          Accept: "application/vnd.github.v3.raw",
-      }
+    headers: {
+      Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+      Accept: "application/vnd.github.v3.raw",
+    },
   });
   return response;
 }
 
-export async function getGithubFileContent(owner: string, name: string, filePath: string[]) {
-    const url = `https://api.github.com/repos/${owner}/${name}/contents/${filePath.join("/")}`;
-    // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
+export async function getGithubFileContent(
+  owner: string,
+  name: string,
+  filePath: string[],
+) {
+  const url = `https://api.github.com/repos/${owner}/${name}/contents/${filePath.join("/")}`;
+  // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
 
-    let content = null;
-    let error = null;
+  let content = null;
+  let error = null;
 
-    try {
-        const response = await getGithubAPI(url);
-        
-        if (response.statusText === "rate limit exceeded") {
-            return {
-                data: "# Alcanzaste el límite de peticiones a la API de los DOCs.",
-                error: null
-            }
-        }
+  try {
+    const response = await getGithubAPI(url);
 
-        const data = await response.text();
-        content = data;
-    } catch (error) {
-        error = error;
-        console.log({ error });
+    if (response.statusText === "rate limit exceeded") {
+      return {
+        data: "# Alcanzaste el límite de peticiones a la API de los DOCs.",
+        error: null,
+      };
     }
 
-    return { data: content, error }
+    const data = await response.text();
+    content = data;
+  } catch (error) {
+    error = error;
+    console.log({ error });
+  }
+
+  return { data: content, error };
 }
 
-export async function getGithubDirContent(owner: string, name: string, dirPath: string[]) {
-    const url = `https://api.github.com/repos/${owner}/${name}/contents/${dirPath.join("/")}`;
-    // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
+export async function getGithubDirContent(
+  owner: string,
+  name: string,
+  dirPath: string[],
+) {
+  const url = `https://api.github.com/repos/${owner}/${name}/contents/${dirPath.join("/")}`;
+  // https://github.com/diegodev18/code-project-docs/blob/master/your-own-git/c/001-index.md
 
-    let data = {
-        filesLength: null,
-        filesName: []
-    };
-    let error = null;
+  let data = {
+    filesLength: null,
+    filesName: [],
+  };
+  let error = null;
 
-    try {
-        const response = await getGithubAPI(url);
-        const dataJson = await response.json();
-        
-        if (response.status === 403) return { data, error: response.status }
+  try {
+    const response = await getGithubAPI(url);
+    const dataJson = await response.json();
 
-        data.filesLength = dataJson.length;
-        data.filesName = dataJson.map((file: any) => {
-            if (file.type === "file") {
-                return file.name;
-            }
-        });
-    } catch (error) {
-        error = error;
-    }
+    if (response.status === 403) return { data, error: response.status };
 
-    return { data, error };
+    data.filesLength = dataJson.length;
+    data.filesName = dataJson.map((file: any) => {
+      if (file.type === "file") {
+        return file.name;
+      }
+    });
+  } catch (error) {
+    error = error;
+  }
+
+  return { data, error };
 }

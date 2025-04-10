@@ -1,27 +1,31 @@
 ---
-
-const location = Astro.url.pathname
+const location = Astro.url.pathname;
 
 const options = [
-    { name: 'Inicio', link: '/' },
-    { name: 'Creado por', link: '/about' },
-    { name: 'Ayuda', link: '/help' },
-]
+  { name: "Inicio", link: "/" },
+  { name: "Creado por", link: "/about" },
+  { name: "Ayuda", link: "/help" },
+];
 ---
 
-<ul class="hidden lg:flex items-center justify-between font-semibold gap-x-2 text-xl">
-    {
-        options.map(({name, link}) => (
-            <li class="hover:bg-zinc-700 rounded-xl transition duration-300">
-                <a
-                class:list={[
-                    location === link ? 'text-light-primary' : 'text-white/65 hover:!text-purple-300',
-                    'px-4 hover:opacity-100 transition duration-300'
-                ]}
-                href={location === link ? '#' : link}>
-                    {name}
-                </a>
-            </li>
-        ))
-    }
+<ul
+  class="hidden lg:flex items-center justify-between font-semibold gap-x-2 text-xl"
+>
+  {
+    options.map(({ name, link }) => (
+      <li class="hover:bg-zinc-700 rounded-xl transition duration-300">
+        <a
+          class:list={[
+            location === link
+              ? "text-light-primary"
+              : "text-white/65 hover:!text-purple-300",
+            "px-4 hover:opacity-100 transition duration-300",
+          ]}
+          href={location === link ? "#" : link}
+        >
+          {name}
+        </a>
+      </li>
+    ))
+  }
 </ul>

@@ -1,10 +1,13 @@
 ---
 interface Props {
-    id: string;
+  id: string;
 }
 const { id } = Astro.props;
 ---
 
-<button class="hover:scale-[1.15] active:scale-100 transition duration-300 ease-in-out" id={id}>
-    <slot />
+<button
+  class="hover:scale-[1.15] active:scale-100 transition duration-300 ease-in-out"
+  id={id}
+>
+  <slot />
 </button>

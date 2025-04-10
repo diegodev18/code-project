@@ -4,27 +4,32 @@ import ProfileComponent from "@/components/profileComponent.astro";
 import Login from "@/components/login.astro";
 import getSession from "@/utils/getSession";
 
-const certificates: { title: string; description: string; img: { src: string; alt: string } }[] = [];
+const certificates: {
+  title: string;
+  description: string;
+  img: { src: string; alt: string };
+}[] = [];
 
 const session = await getSession(Astro);
 ---
 
-<Layout
-title="Profile"
-description="Profile page"
->
-    {
-        session ?
-        <ProfileComponent
+<Layout title="Profile" description="Profile page">
+  {
+    session ? (
+      <ProfileComponent
         name={session.user_metadata.full_name ?? "Cool name"}
         username={session.user_metadata.user_name ?? "Cool username"}
         img={session.user_metadata.avatar_url ?? ""}
-        link={session.user_metadata.user_name ? `https://github.com/${session.user_metadata.user_name}` : "https://github.com/"}
+        link={
+          session.user_metadata.user_name
+            ? `https://github.com/${session.user_metadata.user_name}`
+            : "https://github.com/"
+        }
         certificates={certificates ?? []}
         main={true}
-        /> :
-        <Login
-        fullHeight={true}
-        />
-    }
+      />
+    ) : (
+      <Login fullHeight={true} />
+    )
+  }
 </Layout>

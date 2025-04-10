@@ -1,10 +1,15 @@
 ---
 interface Props {
-    class?: string;
+  class?: string;
 }
 const { class: className } = Astro.props;
 ---
 
-<h2 class:list={["text-4xl leading-tight font-bold pb-2 text-light-primary", className]}>
-    <slot />
+<h2
+  class:list={[
+    "text-4xl leading-tight font-bold pb-2 text-light-primary",
+    className,
+  ]}
+>
+  <slot />
 </h2>
