@@ -6,7 +6,7 @@ const { content } = Astro.props;
 ---
 
 <article
-  class="prose prose-invert pt-5 max-w-none *:my-3 **:[pre]:cursor-pointer"
+  class="prose prose-invert pt-5 max-w-none *:my-3 **:[pre]:cursor-pointer *:[h1]:text-[2rem]"
   id="markdown-content"
   set:html={content}
 />
@@ -23,3 +23,20 @@ const { content } = Astro.props;
     });
   });
 </script>
+
+<style>
+  #markdown-content {
+    code:not(pre code) {
+      color: #fde047;
+      background-color: #000;
+      padding: 1px 5px;
+      border-radius: 8px;
+      &::before {
+        display: none;
+      }
+      &::after {
+        display: none;
+      }
+    }
+  }
+</style>
