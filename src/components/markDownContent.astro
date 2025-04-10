@@ -1,25 +1,25 @@
 ---
 interface Props {
-    content: string;
+  content: string;
 }
 const { content } = Astro.props;
 ---
 
 <article
-class="prose prose-invert pt-5 max-w-none *:my-3 **:[pre]:cursor-pointer"
-id="markdown-content"
-set:html={content}
+  class="prose prose-invert pt-5 max-w-none *:my-3 **:[pre]:cursor-pointer"
+  id="markdown-content"
+  set:html={content}
 />
 
 <script>
-    const $pre = document.querySelectorAll('#markdown-content pre');
-    $pre.forEach(pre => {
-        pre.addEventListener('click', () => {
-            const $code = pre.querySelector('code');
-            if ($code?.textContent) {
-                const text = $code.textContent.slice(0, -1);
-                window.navigator.clipboard.writeText(text);
-            }
-        })
-    }); 
+  const $pre = document.querySelectorAll("#markdown-content pre");
+  $pre.forEach((pre) => {
+    pre.addEventListener("click", () => {
+      const $code = pre.querySelector("code");
+      if ($code?.textContent) {
+        const text = $code.textContent.slice(0, -1);
+        window.navigator.clipboard.writeText(text);
+      }
+    });
+  });
 </script>

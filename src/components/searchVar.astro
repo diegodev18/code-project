@@ -1,29 +1,28 @@
 ---
 import SearchIcon from "@/components/icons/searchIcon.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
-
 ---
 
 <SectionContainer>
-    <var>
-        <form
-        class="grid grid-cols-[1fr_50px] justify-between items-center gap-x-2 h-12 bg-dark-secondary rounded-lg"
-        action="/search"
-        method="get"
-        >
-            <input
-            class="px-5 min-w-40 bg-transparent outline-none text-white font-medium"
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Buscar..."
-            >
-            <button
-            class="flex justify-center items-center text-yellow-200 hover:opacity-100 opacity-75 h-full rounded-r-lg cursor-pointer transition duration-500"
-            type="submit"
-            >
-                <SearchIcon width="30" />
-            </button>
-        </form>
-    </var>
+  <var>
+    <form
+      class="grid grid-cols-[1fr_50px] justify-between items-center gap-x-2 h-12 bg-dark-secondary rounded-lg"
+      action="/search"
+      method="get"
+    >
+      <input
+        class="px-5 min-w-40 bg-transparent outline-none text-white font-medium"
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Buscar..."
+      />
+      <button
+        class="flex justify-center items-center text-yellow-200 hover:opacity-100 opacity-75 h-full rounded-r-lg cursor-pointer transition duration-500"
+        type="submit"
+      >
+        <SearchIcon width="30" />
+      </button>
+    </form>
+  </var>
 </SectionContainer>

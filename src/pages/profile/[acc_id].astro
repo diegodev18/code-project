@@ -13,56 +13,79 @@ import UnderlineLink from "@/components/underlineLink.astro";
 const params = Astro.params;
 
 let { data: profile } = await supabase
-    .from("users")
-    .select("user_name, full_name, avatar_url, certificates")
-    .eq("user_name", params.acc_id)
-    .single();
+  .from("users")
+  .select("user_name, full_name, avatar_url, certificates")
+  .eq("user_name", params.acc_id)
+  .single();
 
 const session = await getSession(Astro);
 ---
+
 <Layout
-title={profile?.full_name ?? "Profile - CodeProject"}
-description={`Pagina de perfil de ${profile?.full_name ?? "CodeProject"}`}
+  title={profile?.full_name ?? "Profile - CodeProject"}
+  description={`Pagina de perfil de ${profile?.full_name ?? "CodeProject"}`}
 >
-    {
-        session ? (
-            <SectionContainer class="mb-5 pt-2 pb-1 w-fit mx-auto rounded-xl relative">
-                <p class="md:text-center font-bold text-lg leading-snug py-2 px-5 bg-dark-secondary rounded-xl">
-                    Estas viendo un perfil externo, si quieres ver tu perfil ve a <UnderlineLink href="/profile">/profile</UnderlineLink>
-                </p>
-            </SectionContainer>
-        )
-        :
-        (
-            <SectionContainer class="bg-dark-secondary mx-5 mb-5 py-3 rounded-xl relative" id="msg">
-                <h1 class="md:text-center font-bold text-lg leading-snug pb-2">
-                    Recibiste el link de un usuario de CodeProject!<br><MarkText>¿Y tu que esperas para empezar a realizar nuestros proyectos y mejorar tus habilidades en programacion?</MarkText>
-                </h1>
-                <Login />
-                <button id="close-msg" class="hover:rotate-90 hover:scale-105 hover:text-blue-200 drop-shadow-xl transition duration-500 ease-in-out right-2 top-2 absolute">
-                    <XLetterIcon width="30" />
-                </button>
-            </SectionContainer>
-        )
-    }
-    {
-        profile ?
-        <ProfileComponent
+  {
+    session ? (
+      <SectionContainer class="mb-5 pt-2 pb-1 w-fit mx-auto rounded-xl relative">
+        <p class="md:text-center font-bold text-lg leading-snug py-2 px-5 bg-dark-secondary rounded-xl">
+          Estas viendo un perfil externo, si quieres ver tu perfil ve a{" "}
+          <UnderlineLink href="/profile">/profile</UnderlineLink>
+        </p>
+      </SectionContainer>
+    ) : (
+      <SectionContainer
+        class="bg-dark-secondary mx-5 mb-5 py-3 rounded-xl relative"
+        id="msg"
+      >
+        <h1 class="md:text-center font-bold text-lg leading-snug pb-2">
+          Recibiste el link de un usuario de CodeProject!
+          <>
+            <br />
+            <MarkText>
+              ¿Y tu que esperas para empezar a realizar nuestros proyectos y
+              mejorar tus habilidades en programacion?
+            </MarkText>
+          </>
+        </h1>
+        <Login />
+        <button
+          id="close-msg"
+          class="hover:rotate-90 hover:scale-105 hover:text-blue-200 drop-shadow-xl transition duration-500 ease-in-out right-2 top-2 absolute"
+        >
+          <XLetterIcon width="30" />
+        </button>
+      </SectionContainer>
+    )
+  }
+  {
+    profile ? (
+      <ProfileComponent
         name={profile?.full_name ?? "Cool name"}
         username={profile?.user_name ?? "Cool username"}
         img={profile?.avatar_url ?? ""}
-        link={profile?.user_name ? `https://github.com/${profile?.user_name}` : "https://github.com/"}
+        link={
+          profile?.user_name
+            ? `https://github.com/${profile?.user_name}`
+            : "https://github.com/"
+        }
         certificates={profile.certificates ?? []}
-        />
-        :
-        <Adv title="404 - Perfil no encontrado" description="No se ha encontrado el perfil :(. Revisa que la url este correcta!" />
-    }
+      />
+    ) : (
+      <Adv
+        title="404 - Perfil no encontrado"
+        description="No se ha encontrado el perfil :(. Revisa que la url este correcta!"
+      />
+    )
+  }
 </Layout>
 
 <script>
-    const closeMsg = document.querySelector("#close-msg");
-    const msg = document.querySelector("#msg");
-    closeMsg?.addEventListener("click", () => {
-        if (msg) { (msg as HTMLElement).className = "hidden"; }
-    });
+  const closeMsg = document.querySelector("#close-msg");
+  const msg = document.querySelector("#msg");
+  closeMsg?.addEventListener("click", () => {
+    if (msg) {
+      (msg as HTMLElement).className = "hidden";
+    }
+  });
 </script>

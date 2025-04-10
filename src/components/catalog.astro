@@ -18,27 +18,25 @@ const user_progress = await getProgress(uuid || "");
 
 <SearchVar />
 <CategoriesGallery />
+<ProjectsGallery id="main" cards={[...(allProjects ?? [])]} uuid={uuid} />
 <ProjectsGallery
-id="main"
-cards={[...(allProjects ?? [])]}
-uuid={uuid}
-/>
-<ProjectsGallery
-id="love"
-title="Podrian gustarte"
-cards={[...(allProjects ?? [])]}
-small={false}
-uuid={uuid}
+  id="love"
+  title="Podrian gustarte"
+  cards={[...(allProjects ?? [])]}
+  small={false}
+  uuid={uuid}
 />
 {
-    user_progress && user_progress?.length != 0 && (
-        <ProjectsGallery
-        id="continue"
-        title="Seguir aprendiendo"
-        cards={[...(user_progress ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
-            uuid={uuid}
-        />
-    )
+  user_progress && user_progress?.length != 0 && (
+    <ProjectsGallery
+      id="continue"
+      title="Seguir aprendiendo"
+      cards={[...(user_progress ?? [])].filter(
+        (item): item is NonNullable<typeof item> => item !== undefined,
+      )}
+      uuid={uuid}
+    />
+  )
 }
 <!-- <ProjectsGallery
 id="fav"

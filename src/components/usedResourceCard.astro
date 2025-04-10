@@ -1,40 +1,35 @@
 ---
-
 interface Props {
-    name: string;
-    description: string;
-    href?: string;
-    icon?: {
-        width: number;
-        height: number;
-        component: any;
-    }
-    image?: {
-        src: string;
-        alt: string;
-    };
+  name: string;
+  description: string;
+  href?: string;
+  icon?: {
+    width: number;
+    height: number;
+    component: any;
+  };
+  image?: {
+    src: string;
+    alt: string;
+  };
 }
 const { name, description, href, icon } = Astro.props;
 const Icon = icon?.component;
 ---
 
 <a
-href={href}
-target="_blank"
-title={`${name} - ${description}`}
-class="grid grid-cols-[auto_1fr] justify-center items-center gap-x-3 px-4 py-3 h-28 drop-shadow-md bg-dark-secondary md:hover:bg-button-hov transition rounded-3xl"
+  href={href}
+  target="_blank"
+  title={`${name} - ${description}`}
+  class="grid grid-cols-[auto_1fr] justify-center items-center gap-x-3 px-4 py-3 h-28 drop-shadow-md bg-dark-secondary md:hover:bg-button-hov transition rounded-3xl"
 >
-    {
-        icon && (
-            <Icon width={icon.width} height={icon.height} />
-        )
-    }
-    <div>
-        <h5 class="text-purple-400 text-2xl font-semibold">
-            {name}
-        </h5>
-        <p class="text-purple-100 text-lg font-medium line-clamp-2">
-            {description}
-        </p>
-    </div>
+  {icon && <Icon width={icon.width} height={icon.height} />}
+  <div>
+    <h5 class="text-purple-400 text-2xl font-semibold">
+      {name}
+    </h5>
+    <p class="text-purple-100 text-lg font-medium line-clamp-2">
+      {description}
+    </p>
+  </div>
 </a>

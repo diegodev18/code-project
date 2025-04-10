@@ -1,11 +1,13 @@
-import matter from 'gray-matter';
-import { marked } from 'marked';
+import matter from "gray-matter";
+import { marked } from "marked";
 
 /**
  * Procesa un archivo Markdown.
  * Extrae la cabecera (frontmatter) y convierte el contenido a HTML.
  */
-export async function processMarkdown(markdown: string): Promise<{ html: string; frontmatter: Record<string, any> }> {
+export async function processMarkdown(
+  markdown: string,
+): Promise<{ html: string; frontmatter: Record<string, any> }> {
   // Parsear el Markdown con gray-matter
   const { content, data } = matter(markdown);
 

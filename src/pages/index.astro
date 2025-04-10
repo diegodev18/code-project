@@ -1,15 +1,17 @@
 ---
-import Catalog from '@/components/catalog.astro';
-import Landing from '@/components/landing.astro';
-import Layout from '@/layouts/Layout.astro';
-import getSession from '@/utils/getSession';
+import Catalog from "@/components/catalog.astro";
+import Landing from "@/components/landing.astro";
+import Layout from "@/layouts/Layout.astro";
+import getSession from "@/utils/getSession";
 
 const session = await getSession(Astro);
 ---
 
 <Layout
-title={`${session ? "Inicio" : "Aprende programacion con proyectos reales"} - CodeProject`}
-description={session ? "Explora los proyectos de CodeProject" : "Inicia ahora a aprender a programar y mejorar en tu campo con CodeProject"}
+  title={`${session ? "Inicio" : "Aprende programacion con proyectos reales"} - CodeProject`}
+  description={session
+    ? "Explora los proyectos de CodeProject"
+    : "Inicia ahora a aprender a programar y mejorar en tu campo con CodeProject"}
 >
-    { session ? <Catalog /> : <Landing /> }
+  {session ? <Catalog /> : <Landing />}
 </Layout>

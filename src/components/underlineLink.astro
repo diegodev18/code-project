@@ -1,17 +1,20 @@
 ---
 interface Props {
-    href: string;
-    target?: string;
-    title?: string;
-    className?: string;
+  href: string;
+  target?: string;
+  title?: string;
+  className?: string;
 }
 const { href: link, target, title, className } = Astro.props;
 ---
-<span class:list={["underline font-semibold text-blue-200 hover:text-blue-300 transition-colors duration-300 ease-in-out", className]}>
-    <a
-    title={title ?? 'Visitar enlace'}
-    target={target}
-    href={link}>
-        <slot />
-    </a>
+
+<span
+  class:list={[
+    "underline font-semibold text-blue-200 hover:text-blue-300 transition-colors duration-300 ease-in-out",
+    className,
+  ]}
+>
+  <a title={title ?? "Visitar enlace"} target={target} href={link}>
+    <slot />
+  </a>
 </span>

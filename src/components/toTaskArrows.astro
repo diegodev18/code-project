@@ -1,34 +1,42 @@
 ---
-import LeftCaret from '@/components/icons/leftCaret.astro'
-import RightCaret from '@/components/icons/rightCaret.astro'
+import LeftCaret from "@/components/icons/leftCaret.astro";
+import RightCaret from "@/components/icons/rightCaret.astro";
 
 interface Props {
-    title: string;
-    name: string;
-    lenguage: string;
-    collections: string[];
+  title: string;
+  name: string;
+  lenguage: string;
+  collections: string[];
 }
 const { name, lenguage, collections, title } = Astro.props;
 
 const thisNum = parseInt(title.slice(0, 3));
-const prevTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum - 1)?.replace('.md', '');
-const nextTask = collections.find(task => parseInt(task.slice(0, 3)) === thisNum + 1)?.replace('.md', '');
+const prevTask = collections
+  .find((task) => parseInt(task.slice(0, 3)) === thisNum - 1)
+  ?.replace(".md", "");
+const nextTask = collections
+  .find((task) => parseInt(task.slice(0, 3)) === thisNum + 1)
+  ?.replace(".md", "");
 
-const buttons = [ { task: prevTask, icon: LeftCaret }, { task: nextTask, icon: RightCaret } ];
+const buttons = [
+  { task: prevTask, icon: LeftCaret },
+  { task: nextTask, icon: RightCaret },
+];
 ---
 
 <div class="flex md:hidden">
-    {
-        buttons.map(({ task, icon: Icon }) => {
-            if (task) {
-                return (
-                    <a
-                    class:list={[task ?? "hidden"]}
-                    href={`/projects/${name}/${lenguage}/${task}`}>
-                        <Icon width="30" />
-                    </a>
-                )
-            }
-        })
-    }
+  {
+    buttons.map(({ task, icon: Icon }) => {
+      if (task) {
+        return (
+          <a
+            class:list={[task ?? "hidden"]}
+            href={`/projects/${name}/${lenguage}/${task}`}
+          >
+            <Icon width="30" />
+          </a>
+        );
+      }
+    })
+  }
 </div>

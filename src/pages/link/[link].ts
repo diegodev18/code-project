@@ -2,17 +2,17 @@ import type { APIRoute } from "astro";
 import links from "@/db/links";
 
 export const GET: APIRoute = async ({ params, redirect }) => {
-    const param = params.link;
+  const param = params.link;
 
-    if (!param) {
-        return redirect("/404");
-    }
+  if (!param) {
+    return redirect("/404");
+  }
 
-    const link = links[param as keyof typeof links];
+  const link = links[param as keyof typeof links];
 
-    if (!link) {
-        return redirect("/404");
-    }
+  if (!link) {
+    return redirect("/404");
+  }
 
-    return redirect(link.href);
-}
+  return redirect(link.href);
+};
