@@ -8,6 +8,11 @@ import UsedResourcesGallery from "@/components/usedResourcesGallery.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
 import SubtitleAbout from "@/components/subtitleAbout.astro";
 import TextAbout from "@/components/textAbout.astro";
+import { getCollection } from "astro:content";
+
+const about = await getCollection("about");
+const about_me = about.find((item) => item.slug === "me");
+const about_code_project = about.find((item) => item.slug === "code-project");
 
 const buttons_me = [
   {
@@ -35,80 +40,50 @@ const buttons_me = [
   description="Conoce más sobre CodeProject, la comunidad de programadores más grande de habla hispana."
 >
   <div class="flex flex-col gap-y-[22vh] pb-[10vh] sm:py-[15vh] lg:py-[18vh]">
-    <MyArticle>
-      <SectionContainer id="about-project">
-        <SubtitleAbout> Sobre Code Project </SubtitleAbout>
-        <TextAbout class="pb-2">
-          <span>
-            <MarkText>CodeProject es un proyecto personal</MarkText> creado con la
-            misión de brindar recursos prácticos y accesibles para quienes desean
-            mejorar sus habilidades en programación.
-          </span>
-          <span>
-            Aquí encontrarás una colección de proyectos diseñados para el
-            aprendizaje, con documentación detallada, ejemplos aplicados y retos
-            que te ayudarán a desarrollar un pensamiento lógico y una
-            comprensión más profunda de la programación.
-          </span>
-          <span>
-            Ya seas principiante en busca de una base sólida o un desarrollador
-            con experiencia que quiere perfeccionar sus habilidades, CodeProject
-            te ofrece herramientas, desafíos y guías para llevar tu conocimiento
-            al siguiente nivel. 🚀
-          </span>
-        </TextAbout>
-        <div class="flex justify-center">
-          <UnderlineLink
-            className="text-xl text-center !text-purple-200 hover:!text-purple-300"
-            href="https://github.com/diegodev18/code-project-docs"
-            target="_blank"
-          >
-            Apoya a la documentacion de CodeProject en Github
-          </UnderlineLink>
-        </div>
-      </SectionContainer>
-    </MyArticle>
-    <MyArticle>
-      <SectionContainer id="about-me">
-        <SubtitleAbout> Sobre mi </SubtitleAbout>
-        <TextAbout class="pb-3">
-          <span>
-            Mi nombre es <MarkText>Diego Sánchez</MarkText> y soy estudiante de Ingeniería
-            en Desarrollo de Software.
-          </span>
-          <span>
-            A los 14, gracias a mi gusto por los videojuegos, me adentre en el
-            mundo de la computación, desde sus componentes, como se arman, su
-            mantenimiento, entre otros aspectos relacionados.
-          </span>
-          <span>
-            Después, a los 16 empecé a estudiar programación de manera
-            autodidacta, pasando por diferentes cursos en academias online como
-            Mastermind.ac y Udemy.
-          </span>
-          <span>
-            Actualmente, a los 18 años, dedico mi tiempo libre para mejorar mis
-            habilidades, desarrollar proyectos prácticos y avanzar en mi curso
-            por la carrera de Ingeniería en Desarrollo de Software.
-          </span>
-        </TextAbout>
-        <div
-          class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}
-        >
-          {
-            buttons_me.map(({ title, href }) => (
-              <a
-                class="bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
+    {
+      about_code_project && (
+        <MyArticle>
+          <SectionContainer id="about-project">
+            <SubtitleAbout> {about_code_project.data.title} </SubtitleAbout>
+            <TextAbout item={about_code_project} class="pb-3" />
+            <div class="flex justify-center">
+              <UnderlineLink
+                className="text-xl text-center !text-purple-200 hover:!text-purple-300"
+                href="https://github.com/diegodev18/code-project-docs"
                 target="_blank"
-                href={href}
               >
-                {title}
-              </a>
-            ))
-          }
-        </div>
-      </SectionContainer>
-    </MyArticle>
+                Apoya a la documentacion de CodeProject en Github
+              </UnderlineLink>
+            </div>
+          </SectionContainer>
+        </MyArticle>
+      )
+    }
+    {
+      about_me && (
+        <MyArticle>
+          <SectionContainer id="about-me">
+            <SubtitleAbout> {about_me.data.title} </SubtitleAbout>
+            <TextAbout item={about_me} class="pb-3" />
+            <div
+              class={`grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2`}
+            >
+              {
+                buttons_me.map(({ title, href }) => (
+                  <a
+                    class="flex items-center justify-center bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
+                    target="_blank"
+                    href={href}
+                  >
+                    {title}
+                  </a>
+                ))
+              }
+            </div>
+          </SectionContainer>
+        </MyArticle>
+      )
+    }
     <MyArticle>
       <SectionContainer id="about-others">
         <SubtitleAbout class="pb-4">
