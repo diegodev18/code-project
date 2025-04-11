@@ -1,15 +1,18 @@
 ---
+import { render } from "astro:content";
+
 interface Props {
+  item: any;
   class?: string;
 }
-const { class: className } = Astro.props;
+const { class: className, item } = Astro.props;
+
+const { data } = item;
+const { Content } = await render(item);
 ---
 
-<p
-  class:list={[
-    "flex flex-col gap-y-3 text-lg sm:text-xl font-medium text-pretty",
-    className,
-  ]}
+<article
+  class="*:prose *:prose-invert *:prose-lg md:*:prose-xl *:max-w-none mb-4"
 >
-  <slot />
-</p>
+  <Content />
+</article>
