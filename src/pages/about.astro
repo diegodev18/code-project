@@ -40,42 +40,50 @@ const buttons_me = [
   description="Conoce más sobre CodeProject, la comunidad de programadores más grande de habla hispana."
 >
   <div class="flex flex-col gap-y-[22vh] pb-[10vh] sm:py-[15vh] lg:py-[18vh]">
-    <MyArticle>
-      <SectionContainer id="about-project">
-        <SubtitleAbout> {about_code_project.data.title} </SubtitleAbout>
-        <TextAbout item={about_code_project} class="pb-3" />
-        <div class="flex justify-center">
-          <UnderlineLink
-            className="text-xl text-center !text-purple-200 hover:!text-purple-300"
-            href="https://github.com/diegodev18/code-project-docs"
-            target="_blank"
-          >
-            Apoya a la documentacion de CodeProject en Github
-          </UnderlineLink>
-        </div>
-      </SectionContainer>
-    </MyArticle>
-    <MyArticle>
-      <SectionContainer id="about-me">
-        <SubtitleAbout> {about_me.data.title} </SubtitleAbout>
-        <TextAbout item={about_me} class="pb-3" />
-        <div
-          class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}
-        >
-          {
-            buttons_me.map(({ title, href }) => (
-              <a
-                class="bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
+    {
+      about_code_project && (
+        <MyArticle>
+          <SectionContainer id="about-project">
+            <SubtitleAbout> {about_code_project.data.title} </SubtitleAbout>
+            <TextAbout item={about_code_project} class="pb-3" />
+            <div class="flex justify-center">
+              <UnderlineLink
+                className="text-xl text-center !text-purple-200 hover:!text-purple-300"
+                href="https://github.com/diegodev18/code-project-docs"
                 target="_blank"
-                href={href}
               >
-                {title}
-              </a>
-            ))
-          }
-        </div>
-      </SectionContainer>
-    </MyArticle>
+                Apoya a la documentacion de CodeProject en Github
+              </UnderlineLink>
+            </div>
+          </SectionContainer>
+        </MyArticle>
+      )
+    }
+    {
+      about_me && (
+        <MyArticle>
+          <SectionContainer id="about-me">
+            <SubtitleAbout> {about_me.data.title} </SubtitleAbout>
+            <TextAbout item={about_me} class="pb-3" />
+            <div
+              class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}
+            >
+              {
+                buttons_me.map(({ title, href }) => (
+                  <a
+                    class="bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
+                    target="_blank"
+                    href={href}
+                  >
+                    {title}
+                  </a>
+                ))
+              }
+            </div>
+          </SectionContainer>
+        </MyArticle>
+      )
+    }
     <MyArticle>
       <SectionContainer id="about-others">
         <SubtitleAbout class="pb-4">
