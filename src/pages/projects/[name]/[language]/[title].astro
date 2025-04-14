@@ -10,10 +10,11 @@ import getProgressFromAProject from "@/utils/getProgressFromAProject";
 import getProjectContent from "@/utils/getProjectContent";
 import getProjectsContent from "@/utils/getDBProjectsList";
 import MarkDownContent from "@/components/markDownContent.astro";
+import FinishTaskButton from "@/components/finishTaskButton.astro";
 
 const params = Astro.params; // http://localhost:4321/projects/your-own-git/c/inicio
 
-if (!params.name || !params.lenguage || !params.title) {
+if (!params.name || !params.language || !params.title) {
   return Astro.redirect("/404");
 }
 
@@ -28,7 +29,7 @@ const progress = await getProgressFromAProject(params.name, uuid);
 
 const data = await getProjectContent(
   params.name,
-  params.lenguage,
+  params.language,
   params.title,
 ); // params.name, params.lenguage, params.title
 
@@ -42,7 +43,7 @@ const info = Array.isArray(data) ? null : data.data;
 
 const opts = [{ title: "Introducción", href: `#` }];
 
-const projectsList = await getProjectsContent(params.name, params.lenguage);
+const projectsList = await getProjectsContent(params.name, params.language);
 const nextTask = (
   projectsList.find((task) => parseInt(task) === (info?.num ?? 0) + 1) || ""
 ).replace(".md", "");
@@ -93,16 +94,12 @@ const nextTask = (
           <MarkDownContent content={Content} />
           {
             progress.progress === info?.num && data.data.id && (
-              <form action="/api/db/progress" method="POST">
-                <button
-                  class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-buttonHov rounded-md transition duration-300 ease-in-out"
-                  name="progressItem"
-                  value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.lenguage}", "uuid": "${uuid}", "href": "/projects/${params.name}/${params.lenguage}/${nextTask}"}`}
-                  type="submit"
-                >
-                  Terminar tarea <SendFly width="20" />
-                </button>
-              </form>
+              <FinishTaskButton
+                params={params}
+                info={info}
+                uuid={data.data.id}
+                nextTask={nextTask}
+              />
             )
           }
         </div>
