@@ -2,11 +2,11 @@
 interface Props {
   title: string;
   name: string;
-  lenguage: string;
+  language: string;
   collections: string[];
   onProgress?: number;
 }
-const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
+const { title, name, language, collections, onProgress = 1 } = Astro.props;
 ---
 
 <var class="hidden md:block mt-3">
@@ -51,7 +51,7 @@ const { title, name, lenguage, collections, onProgress = 1 } = Astro.props;
                   href={
                     task.replace(".md", "") === title
                       ? "#"
-                      : `/projects/${name}/${lenguage}/${task.replace(".md", "")}`
+                      : `/projects/${name}/${language}/${task.replace(".md", "")}`
                   }
                 >
                   {p_name}

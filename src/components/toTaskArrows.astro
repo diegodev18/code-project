@@ -5,10 +5,10 @@ import RightCaret from "@/components/icons/rightCaret.astro";
 interface Props {
   title: string;
   name: string;
-  lenguage: string;
+  language: string;
   collections: string[];
 }
-const { name, lenguage, collections, title } = Astro.props;
+const { name, language, collections, title } = Astro.props;
 
 const thisNum = parseInt(title.slice(0, 3));
 const prevTask = collections
@@ -31,7 +31,7 @@ const buttons = [
         return (
           <a
             class:list={[task ?? "hidden"]}
-            href={`/projects/${name}/${lenguage}/${task}`}
+            href={`/projects/${name}/${language}/${task}`}
           >
             <Icon width="30" />
           </a>
