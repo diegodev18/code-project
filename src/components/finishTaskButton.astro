@@ -1,0 +1,27 @@
+---
+import SendFly from "@/components/icons/sendFly.astro";
+
+interface Props {
+  params: {
+    name: string;
+    language: string;
+  };
+  info: {
+    num: number;
+  };
+  uuid: string;
+  nextTask: string;
+}
+const { params, info, uuid, nextTask } = Astro.props;
+---
+
+<form action="/api/db/progress" method="POST">
+  <button
+    class="flex justify-center gap-x-2 w-full py-2 mt-5 bg-main font-semibold hover:bg-button-hov cursor-pointer rounded-md transition"
+    name="progressItem"
+    value={`{"id_project": "${params.name}", "status": ${info.num + 1}, "lang": "${params.language}", "uuid": "${uuid}", "href": "/projects/${params.name}/${params.language}/${nextTask}"}`}
+    type="submit"
+  >
+    Terminar tarea <SendFly width="20" />
+  </button>
+</form>
