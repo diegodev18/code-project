@@ -6,7 +6,7 @@ const { content } = Astro.props;
 ---
 
 <article
-  class="relative prose prose-invert pt-5 max-w-none *:my-3 **:[pre]:cursor-pointer *:[h1]:text-[2rem]"
+  class="relative prose prose-invert pt-5 max-w-none *:my-3 prose-pre:cursor-pointer prose-h1:text-[2rem]"
   id="markdown-content"
   set:html={content}
 />
@@ -43,9 +43,10 @@ const { content } = Astro.props;
 <style>
   #markdown-content {
     code:not(pre code) {
+      font-style: italic;
       color: #fde047;
       background-color: #000;
-      padding: 1px 5px;
+      padding: 2px 5px 1px;
       border-radius: 8px;
       &::before {
         display: none;
