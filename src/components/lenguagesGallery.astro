@@ -25,7 +25,7 @@ const { id, lenguages } = Astro.props; // `/projects/${id}/${lang}/inicio`
 
         return (
           <button
-            class="md:hover:scale-125 transition ease-in-out duration-300"
+            class="md:hover:scale-125 cursor-pointer transition"
             name="progressItem"
             value={`{"id_project": "${id}", "status": 1, "lang": "${lang}", "uuid": "${uuid}"}`}
             type="submit"

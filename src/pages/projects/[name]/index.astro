@@ -27,9 +27,9 @@ const { width, height, component: Icon } = getIcon(Project?.icon);
 >
   <SectionContainer>
     <MyArticle
-      class="group flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-2 md:flex-row items-center justify-center md:justify-between min-h-[45vh] md:min-h-[50vh]"
+      class="group flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-8 md:flex-row items-center justify-center min-h-[45vh] md:min-h-[50vh]"
     >
-      <div>
+      <div class="max-w-[600px]">
         <h1
           class="text-3xl sm:text-4xl md:text-[3rem] leading-tight md:leading-[3.2rem] font-bold text-main mt-4"
         >
@@ -48,9 +48,7 @@ const { width, height, component: Icon } = getIcon(Project?.icon);
       </div>
     </MyArticle>
   </SectionContainer>
-  <SectionContainer
-    class="flex flex-col justify-center min-h-[45vh] md:min-h-[38vh]"
-  >
+  <SectionContainer class="pt-5">
     <h2
       class="text-start lg:text-center text-3xl md:text-4xl font-bold text-light-primary"
     >
