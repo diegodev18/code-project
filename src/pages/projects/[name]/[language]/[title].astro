@@ -25,21 +25,17 @@ if (!session) {
 
 const uuid = session?.id;
 
-const progress = await getProgressFromAProject(params.name, uuid);
+const { progress, file } = await getProgressFromAProject(params.name, uuid);
 
-const data = await getProjectContent(
+const { data, render: content } = await getProjectContent(
   params.name,
   params.language,
   params.title,
-); // params.name, params.lenguage, params.title
+);
 
-if (data.data.num === 404) {
-  return Astro.redirect("/404");
-}
+if (!data || !data.id) return Astro.redirect("/404");
 
-const Content = !Array.isArray(data) ? data.render : "";
-
-const info = Array.isArray(data) ? null : data.data;
+const info = Array.isArray(data) ? null : data;
 
 const opts = [{ title: "Introducción", href: `#` }];
 
@@ -59,7 +55,7 @@ const nextTask = (
       name={params.name}
       language={params.language}
       collections={projectsList}
-      onProgress={progress.progress}
+      onProgress={progress}
     />
     <section class="pb-3 w-full">
       <div class="flex justify-between items-center">
@@ -91,13 +87,17 @@ const nextTask = (
           Tarea
         </h2>
         <div>
-          <MarkDownContent content={Content} />
+          <MarkDownContent content={content} />
           {
-            progress.progress === info?.num && data.data.id && (
+            progress === info?.num && data.id && (
               <FinishTaskButton
-                params={params}
-                info={info}
+                params={{
+                  name: params.name,
+                  language: params.language,
+                  title: params.title,
+                }}
                 uuid={uuid}
+                info={info}
                 nextTask={nextTask}
               />
             )
