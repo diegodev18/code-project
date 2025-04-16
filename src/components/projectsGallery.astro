@@ -42,7 +42,10 @@ const { id, title, cards, small = true, uuid } = Astro.props;
           </ArrowIconComp>
         </div>
       </div>
-      <ul class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery flex gap-x-4 px-5 md:px-0">
+      <ul
+        class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery flex gap-x-4 px-5 md:px-0"
+        id={`${id}-gallery`}
+      >
         {cards.map(({ icon, title, description, href, id }) => {
           const { width, height, component } = getIcon(icon);
 
@@ -79,23 +82,21 @@ const { id, title, cards, small = true, uuid } = Astro.props;
 </style>
 
 <script is:inline define:vars={{ id }}>
-  document.addEventListener("astro:page-load", () => {
-    const gallery = document.getElementById(`${id}-gallery`);
-    const left = document.getElementById(`${id}-left`);
-    const right = document.getElementById(`${id}-right`);
+  const gallery = document.getElementById(`${id}-gallery`);
+  const left = document.getElementById(`${id}-left`);
+  const right = document.getElementById(`${id}-right`);
 
-    left.addEventListener("click", () => {
-      gallery.scrollBy({
-        left: -gallery.offsetWidth,
-        behavior: "smooth",
-      });
+  left.addEventListener("click", () => {
+    gallery.scrollBy({
+      left: -gallery.offsetWidth,
+      behavior: "smooth",
     });
+  });
 
-    right.addEventListener("click", () => {
-      gallery.scrollBy({
-        left: gallery.offsetWidth,
-        behavior: "smooth",
-      });
+  right.addEventListener("click", () => {
+    gallery.scrollBy({
+      left: gallery.offsetWidth,
+      behavior: "smooth",
     });
   });
 </script>
