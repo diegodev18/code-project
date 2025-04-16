@@ -1,6 +1,7 @@
 ---
 import getSession from "@/utils/getSession";
 import getLangIcon from "@/utils/getLangIcon";
+import NewProjectButton from "@/components/newProjectButton.astro";
 
 const session = await getSession(Astro);
 const uuid = session?.id;
@@ -19,21 +20,14 @@ const { id, lenguages } = Astro.props; // `/projects/${id}/${lang}/inicio`
     class="flex lg:justify-center gap-x-4 py-4"
   >
     {
-      lenguages.map((lang: string) => {
-        const { component: Icon, width, height } = getLangIcon(lang);
-        if (!Icon) return null;
-
-        return (
-          <button
-            class="md:hover:scale-125 cursor-pointer transition"
-            name="progressItem"
-            value={`{"id_project": "${id}", "status": 1, "lang": "${lang}", "uuid": "${uuid}"}`}
-            type="submit"
-          >
-            <Icon width={width ?? 50} height={height ?? 50} />
-          </button>
-        );
-      })
+      lenguages.map((lang: string) => (
+        <NewProjectButton
+          id={id}
+          lang={lang}
+          uuid={uuid ?? null}
+          icon={getLangIcon(lang)}
+        />
+      ))
     }
   </form>
 </div>

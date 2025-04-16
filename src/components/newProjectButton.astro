@@ -1,0 +1,26 @@
+---
+import getStatusObj from "@/utils/getStatusObj";
+interface Props {
+  id: string;
+  lang: string;
+  uuid: string | null;
+  icon: {
+    width: number;
+    height: number;
+    component: any;
+  };
+}
+const { id, lang, uuid, icon } = Astro.props;
+if (!uuid) return Astro.redirect("/profile");
+const { component: Icon, width, height } = icon;
+const statusObj = getStatusObj(id, 1, "001-index", lang, uuid);
+---
+
+<button
+  class="md:hover:scale-125 transition ease-in-out duration-300"
+  name="progressItem"
+  value={statusObj}
+  type="submit"
+>
+  <Icon width={width ?? 50} height={height ?? 50} />
+</button>
