@@ -3,16 +3,12 @@ import SearchVar from "@/components/searchVar.astro";
 import CategoriesGallery from "@/components/categoriesGallery.astro";
 import ProjectsGallery from "@/components/projectsGallery.astro";
 import getProgress from "@/utils/getProgressProjects";
-import getFavorites from "@/utils/getFavorites";
 import getSession from "@/utils/getSession";
 import { allProjects } from "@/utils/getAllProjects";
-/* import ProjectsSmallCard from "@/components/projectsSmallCard.astro";
-import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro"; */
 
 const session = await getSession(Astro);
 const uuid = session?.id;
 
-// const user_fav = await getFavorites(uuid || "");
 const user_progress = await getProgress(uuid || "");
 ---
 
@@ -38,11 +34,3 @@ const user_progress = await getProgress(uuid || "");
     />
   )
 }
-<!-- <ProjectsGallery
-id="fav"
-title="Favoritos"
-cards={[...(user_fav ?? [])].filter((item): item is NonNullable<typeof item> => item !== undefined)}
-uuid={uuid}
->
-    <ProjectsSmallCard uuid={uuid} id={'add-fav'} href={'#fav'} title={'Explora los proyectos que mas te llamen'} description={'Inicia ahora con los proyectos que mas te agradan'} icon={{ width: 85, height: 85, component: CircleDashedPlus }} />
-</ProjectsGallery> -->
