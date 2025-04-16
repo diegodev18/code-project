@@ -8,9 +8,15 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   const uuid = data.uuid; // Usuario a buscar (diego-dev018)
 
-  if (!uuid || !data.id_project || typeof data.status === null || !data.lang) {
+  if (
+    !uuid ||
+    !data.id_project ||
+    !data.file ||
+    typeof data.status === null ||
+    !data.lang
+  ) {
     return new Response(
-      `Missing parameters -> ${uuid} | ${data.id_project} | ${data.status} | ${data.lang}`,
+      `Missing parameters -> ${uuid} | ${data.id_project} | ${data.file} | ${data.status} | ${data.lang}`,
       { status: 400 },
     );
   }
@@ -41,23 +47,17 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   delete data.uuid;
   let newProgress;
-  if (
-    progress &&
-    progress.find(
-      (item: any) =>
-        item.id_project === data.id_project &&
-        item.lang === data.lang &&
-        item.status !== data.status,
-    )
-  ) {
-    // console.log('Ya existe un progreso para este proyecto pero con otro status');
+  const index = progress.findIndex(
+    (item: any) =>
+      item.id_project === data.id_project &&
+      item.lang === data.lang &&
+      item.status !== data.status,
+  );
+  if (progress && index !== -1) {
+    // Si ya existe un progreso para este proyecto pero con otro status
     newProgress = [...progress];
-    newProgress[
-      progress.findIndex(
-        (item: any) =>
-          item.id_project === data.id_project && item.lang === data.lang,
-      )
-    ]["status"] = data.status;
+    newProgress[index]["status"] = data.status; // Actualiza el status
+    newProgress[index]["file"] = data.file; // Actualiza el archivo
   } else {
     newProgress = progress.concat(data);
   }
@@ -71,9 +71,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     return new Response("Error updating progress", { status: 500 });
   }
 
-  if (data.href) {
-    // console.log('Redirecting to:', data.href);
-    return redirect(data.href);
+  if (data.id_project && data.lang && data.file) {
+    return redirect(`/projects/${data.id_project}/${data.lang}/${data.file}`);
   }
   return redirect(`/projects/${data.id_project}/${data.lang}/001-index`); // projects/your-own-git/c/inicio
 };
