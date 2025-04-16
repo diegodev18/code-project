@@ -10,9 +10,9 @@ const progressObj = {
 
 export default async function (
   id_project: string,
-  uuid: string,
+  uuid: string | null = null,
 ): Promise<{ progress: number; percentaje: number; lenguage: string }> {
-  if (!allProjects) throw new Error("Projects is null");
+  if (!allProjects || !uuid) throw new Error("Projects is null");
 
   const progressTable = await getUserProgress(uuid);
   if (!progressTable) return progressObj;

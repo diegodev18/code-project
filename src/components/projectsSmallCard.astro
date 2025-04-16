@@ -12,7 +12,7 @@ interface Props {
     height: number;
     component: any;
   };
-  uuid?: string;
+  uuid?: string | null;
 }
 const {
   id,
@@ -20,7 +20,7 @@ const {
   title,
   description,
   icon: { width, height, component: Icon },
-  uuid = "no",
+  uuid = null,
 } = Astro.props;
 
 const { progress, percentaje, lenguage } = await getProgressFromAProject(
@@ -60,7 +60,7 @@ const projectFound =
       class="pt-16 md:pt-20 lg:pt-[4.5rem] pb-3 px-3 z-10 flex flex-col justify-between h-full"
     >
       <h3
-        class="font-semibold leading-6 md:text-xl line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition"
+        class="font-semibold leading-5 md: md:text-xl line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition"
       >
         {title}
       </h3>

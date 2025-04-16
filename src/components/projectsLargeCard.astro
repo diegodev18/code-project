@@ -12,7 +12,7 @@ interface Props {
     height: number;
     component: any;
   };
-  uuid?: string;
+  uuid?: string | null;
 }
 const {
   id,
@@ -20,7 +20,7 @@ const {
   title,
   description,
   icon: { width, height, component: Icon },
-  uuid = "no",
+  uuid = null,
 } = Astro.props;
 
 const { progress, percentaje, lenguage } = await getProgressFromAProject(
@@ -43,7 +43,7 @@ const projectFound =
 
 <li class="snap-center">
   <a
-    class="group w-[330px] md:w-[400px] aspect-[16/7] hover:bg-button-hov bg-dark-secondary px-5 md:px-2 rounded-lg flex gap-x-4 justify-center items-center transition duration-300 ease-in-out"
+    class="group flex flex-col items-center p-4 w-[330px] md:w-[350px] hover:bg-button-hov bg-dark-secondary rounded-lg transition"
     title={`${title} - ${description}`}
     href={uuid
       ? progress === 0
@@ -51,27 +51,29 @@ const projectFound =
         : `${href}/${lenguage}/${(projectFound || "")?.replace(".md", "")}`
       : "/profile"}
   >
-    <div class="md:max-w-[240px]">
-      <h3
-        class="font-semibold leading-7 line-clamp-2 text-xl md:text-2xl group-hover:text-yellow-300 transition duration-300 ease-in-out"
-      >
-        {title}
-      </h3>
-      <p
-        class="text-sm font-medium md:min-h-12 line-clamp-2 opacity-65 lg:pt-1 group-hover:opacity-100 transition duration-300 ease-in-out"
-      >
-        {description}
-      </p>
-      <div class="relative w-full h-3 bg-white rounded-full mt-2">
-        <div
-          class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition duration-300 ease-in-out h-full rounded-full"
-          style={`width: ${percentaje}%`}
+    <div class="flex gap-x-5 items-center min-h-[100px] pb-1">
+      <div>
+        <h3
+          class="font-semibold leading-7 line-clamp-2 text-xl md:text-2xl group-hover:text-yellow-300 transition"
         >
-        </div>
+          {title}
+        </h3>
+        <p
+          class="text-sm font-medium line-clamp-2 opacity-65 lg:pt-1 group-hover:opacity-100 transition"
+        >
+          {description}
+        </p>
+      </div>
+      <div class="md:group-hover:scale-110 transition">
+        <Icon width={width - 15} height={height - 15} />
       </div>
     </div>
-    <div class="md:group-hover:scale-110 transition duration-300 ease-in-out">
-      <Icon width={width + 5} height={height + 5} />
+    <div class="relative w-full h-3 bg-white rounded-full mt-2">
+      <div
+        class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition h-full rounded-full"
+        style={`width: ${percentaje}%`}
+      >
+      </div>
     </div>
   </a>
 </li>
