@@ -4,7 +4,7 @@ import getStatusObj from "@/utils/getStatusObj";
 interface Props {
   params: {
     name: string;
-    lenguage: string;
+    language: string;
     title: string;
   };
   uuid: string;
@@ -14,12 +14,12 @@ interface Props {
   nextTask: string;
 }
 const {
-  params: { name, lenguage },
+  params: { name, language, title },
   uuid,
   info: { num },
   nextTask,
 } = Astro.props;
-const statusObj = getStatusObj(name, num + 1, nextTask, lenguage, uuid);
+const statusObj = getStatusObj(name, num + 1, nextTask, language, uuid);
 ---
 
 <form action="/api/db/progress" method="POST">
