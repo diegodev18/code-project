@@ -5,13 +5,13 @@ import Categories from "@/db/index_categories";
 
 <SectionContainer class="!px-0">
   <div class="overflow-x-auto px-4 md:px-0 scroll-hidden">
-    <div class="flex gap-x-3 text-nowrap py-4 md:!px-20 lg:!px-40">
+    <div class="flex gap-x-2 text-nowrap py-4 md:!px-20 lg:!px-40">
       {
         Categories.map(({ name, href }, index) => (
           <a
             href={href}
             class:list={[
-              "px-4 py-1 font-semibold h-full hover:scale-110 hover:text-purple-300 hover:bg-button-hov transition bg-dark-secondary rounded-full ease-in-out duration-300",
+              "px-4 py-1 font-semibold h-full hover:scale-110 hover:text-purple-300 hover:bg-button-hov bg-dark-secondary rounded-full transition duration-150",
             ]}
           >
             {name}
