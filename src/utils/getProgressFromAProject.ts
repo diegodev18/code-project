@@ -18,7 +18,8 @@ export default async function (
   lenguage: string;
   file: string;
 }> {
-  if (!allProjects || !uuid) throw new Error("Projects is null");
+  if (!allProjects) throw new Error("Projects is null");
+  if (!uuid) return progressObj;
 
   const progressTable = await getUserProgress(uuid);
   if (!progressTable) return progressObj;
