@@ -46,8 +46,9 @@ const { id, title, cards, small = true, uuid } = Astro.props;
         class="overflow-x-auto snap-x snap-mandatory py-2 project-gallery flex gap-x-4 px-5 md:px-0"
         id={`${id}-gallery`}
       >
-        {cards.map(({ icon, title, description, href, id }) => {
+        {cards.map(({ icon, title, description, id }) => {
           const { width, height, component } = getIcon(icon);
+          const href = `/projects/${id}`;
 
           return small ? (
             <ProjectsSmallCard
