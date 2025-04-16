@@ -6,12 +6,18 @@ const progressObj = {
   progress: 0,
   percentaje: 0,
   lenguage: "none",
+  file: "001-index",
 };
 
 export default async function (
   id_project: string,
   uuid: string | null = null,
-): Promise<{ progress: number; percentaje: number; lenguage: string }> {
+): Promise<{
+  progress: number;
+  percentaje: number;
+  lenguage: string;
+  file: string;
+}> {
   if (!allProjects || !uuid) throw new Error("Projects is null");
 
   const progressTable = await getUserProgress(uuid);
@@ -39,6 +45,7 @@ export default async function (
       progress.status < length
         ? Math.round((progress?.status / length) * 100)
         : 100,
-    lenguage: lenguage ?? "none",
-  }; // retorna el porcentaje
+    lenguage: lenguage,
+    file: progress.file,
+  };
 }
