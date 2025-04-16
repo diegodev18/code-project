@@ -1,4 +1,5 @@
 ---
+import links from "@/db/links";
 import XLetterIcon from "@/components/icons/xLetterIcon.astro";
 
 const enableOpts = [
@@ -46,7 +47,7 @@ const location = Astro.url.pathname;
           <a
             class="flex items-center w-full h-full"
             target="_blank"
-            href="https://github.com/sponsors/diego-dev018?o=sd&sc=t"
+            href={links.sponsor.href}
           >
             <p
               class="px-4 text-center text-xl font-bold text-yellow-200 animate-pulse"
