@@ -1,5 +1,6 @@
 ---
-title: Como contributions en Code Project?
+title: Como puedo contribuir en Code Project?
+description: Aprende cómo contribuir a Code Project y cómo hacerlo de manera efectiva.
 date: 2024-04-19
 author: Diego Sanchez
 tags:
@@ -7,4 +8,6 @@ tags:
   - open-source
 ---
 
-Contribuye a Code Project!
+# Como contribuir
+
+Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!Contribuye a Code Project!
