@@ -1,0 +1,25 @@
+---
+import SectionContainer from "@/components/sectionContainer.astro";
+---
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
+></script>
+<SectionContainer class="flex flex-col items-center pb-10">
+  <p
+    class="flex items-center flex-wrap gap-x-2 font-medium text-3xl md:text-5xl pb-5"
+  >
+    <span class="text-purple-400 font-semibold"> Apoya </span>
+    a
+    <span class="text-light-primary brightness-125 font-semibold">
+      CodeProject!
+    </span>
+  </p>
+  <lite-youtube
+    title="Ve mas sobre CodeProject en Video"
+    class="rounded-2xl border-2 border-gray-700 max-w-[950px]"
+    videoid="NZMoc9G4YwE"
+    style="width: 100%; height: 100%;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  ></lite-youtube>
+</SectionContainer>
