@@ -23,22 +23,10 @@ const {
   uuid = null,
 } = Astro.props;
 
-const { progress, percentaje, lenguage } = await getProgressFromAProject(
+const { progress, percentaje, lenguage, file } = await getProgressFromAProject(
   id,
   uuid,
 );
-
-const projectsList = await getProjectsList(id, lenguage);
-
-const projectFound =
-  projectsList[0] != "403"
-    ? projectsList.find((item: string) => {
-        const num = parseInt(item.slice(0, 3));
-        if (num === progress) {
-          return item;
-        }
-      })
-    : "001-index.md";
 ---
 
 <li class="mt-5 md:mt-2 lg:mt-3 snap-center">
@@ -48,7 +36,7 @@ const projectFound =
     href={uuid
       ? progress === 0
         ? href
-        : `${href}/${lenguage}/${(projectFound || "")?.replace(".md", "")}`
+        : `${href}/${lenguage}/${file}`
       : "/profile"}
   >
     <div
