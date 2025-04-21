@@ -1,4 +1,5 @@
 ---
+import BlogTagsGallery from "@/components/blogTagsGallery.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
@@ -24,21 +25,7 @@ const newDate = date.toLocaleDateString("es-ES", {
 <Layout title={`${title} - Blog de CodeProject`} description={description}>
   <SectionContainer>
     <article class="pt-2 max-w-[650px] mx-auto">
-      <p class="flex gap-x-2 text-sm opacity-50 pb-1">
-        Tags de '{slug}':{" "}
-        <span class="flex gap-x-2">
-          {
-            tags.map((tag) => (
-              <a
-                class="font-medium underline bg-nav hover:bg-black transition px-1 rounded-md"
-                href={`/blog?tag=${tag}`}
-              >
-                {tag}
-              </a>
-            ))
-          }
-        </span>
-      </p>
+      <BlogTagsGallery slug={slug} tags={tags} />
       <div>
         <h2 class="text-4xl font-semibold text-light-primary pb-1">
           {title}
