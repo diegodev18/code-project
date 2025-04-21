@@ -1,5 +1,6 @@
 ---
 import getProgressFromAProject from "@/utils/getProgressFromAProject";
+import CardProgressLine from "./cardProgressLine.astro";
 
 interface Props {
   id: string;
@@ -62,13 +63,7 @@ const destinationUrl =
           {description}
         </p>
       </div>
-      <div class="relative w-full h-3 bg-white rounded-full mt-1 lg:mt-2">
-        <div
-          class="absolute h-full rounded-full bg-[#313131] md:group-hover:bg-[#363636] transition"
-          style={`width: ${percentaje}%`}
-        >
-        </div>
-      </div>
+      <CardProgressLine percentage={percentaje} />
     </div>
   </li>
 </a>
