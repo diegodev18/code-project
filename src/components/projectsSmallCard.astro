@@ -13,6 +13,7 @@ interface Props {
   };
   uuid?: string | null;
 }
+
 const {
   id,
   href,
@@ -26,43 +27,48 @@ const { progress, percentaje, lenguage, file } = await getProgressFromAProject(
   id,
   uuid,
 );
+
+const destinationUrl =
+  uuid == null
+    ? "/profile"
+    : progress === 0
+      ? href
+      : `${href}/${lenguage}/${file}`;
 ---
 
-<li class="mt-5 md:mt-2 lg:mt-3 snap-center">
-  <a
-    class="group w-[140px] md:w-[175px] lg:w-[210px] aspect-[9/10] hover:bg-button-hov bg-dark-secondary rounded-lg flex flex-col justify-center items-center relative transition duration-300 ease-in-out"
-    title={`${title} - ${description}`}
-    href={uuid
-      ? progress === 0
-        ? href
-        : `${href}/${lenguage}/${file}`
-      : "/profile"}
-  >
+<a
+  class="group relative mt-3"
+  title={`${title} - ${description}`}
+  href={destinationUrl}
+>
+  <li class="snap-center">
     <div
-      class="absolute -top-6 md:-top-2 lg:-top-4 md:group-hover:scale-105 md:group-hover:pb-16 transition"
+      class="absolute -top-3 w-full flex justify-center transition-all lg:group-hover:scale-105 lg:group-hover:-top-4"
     >
       <Icon width={width} height={height} />
     </div>
     <div
-      class="pt-16 md:pt-20 lg:pt-[4.5rem] pb-3 px-3 z-10 flex flex-col justify-between h-full"
+      class="w-[185px] lg:w-[210px] aspect-square bg-dark-secondary group-hover:bg-button-hov overflow-hidden pt-[4.6rem] md:pt-[4.3rem] lg:pt-[4.6rem] px-3 h-full rounded-lg"
     >
-      <h3
-        class="font-semibold leading-5 md: md:text-xl line-clamp-3 lg:line-clamp-2 md:group-hover:text-yellow-300 transition"
-      >
-        {title}
-      </h3>
-      <p
-        class="hidden lg:block font-medium opacity-65 group-hover:opacity-100 leading-5 transition"
-      >
-        {description}
-      </p>
-      <div class="relative w-full h-3 bg-white rounded-full mt-2">
+      <div class="min-h-[85px] md:min-h-[88px]">
+        <h3
+          class="text-lg md:text-xl font-semibold line-clamp-3 lg:line-clamp-2 transition md:group-hover:text-yellow-300"
+        >
+          {title}
+        </h3>
+        <p
+          class="hidden font-medium lg:line-clamp-2 opacity-65 transition group-hover:opacity-100"
+        >
+          {description}
+        </p>
+      </div>
+      <div class="relative w-full h-3 bg-white rounded-full mt-1 lg:mt-2">
         <div
-          class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition h-full rounded-full"
+          class="absolute h-full rounded-full bg-[#313131] md:group-hover:bg-[#363636] transition"
           style={`width: ${percentaje}%`}
         >
         </div>
       </div>
     </div>
-  </a>
-</li>
+  </li>
+</a>
