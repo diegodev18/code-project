@@ -71,3 +71,54 @@ export async function getGithubDirContent(
 
   return { data, error };
 }
+
+export async function getContributors(
+  owner: string,
+  repo: string,
+): Promise<{
+  contributors: {
+    login: string;
+    avatar_url: string;
+    html_url: string;
+    contributions: number;
+  }[];
+  error: string | null;
+}> {
+  let data: {
+    contributors: {
+      login: string;
+      avatar_url: string;
+      html_url: string;
+      contributions: number;
+    }[];
+    error: string | null;
+  } = {
+    contributors: [],
+    error: null,
+  };
+
+  try {
+    const response = await getGithubAPI(
+      `https://api.github.com/repos/${owner}/${repo}/contributors`,
+    );
+    const dataJson = await response.json();
+
+    data.contributors = dataJson
+      .map((contributor: any) => {
+        return {
+          login: contributor.login,
+          avatar_url: contributor.avatar_url,
+          html_url: contributor.html_url,
+          contributions: contributor.contributions,
+        };
+      })
+      .sort(
+        (a: { contributions: number }, b: { contributions: number }) =>
+          b.contributions - a.contributions,
+      );
+  } catch (error) {
+    data.error = error;
+  }
+
+  return { contributors: data.contributors, error: data.error };
+}

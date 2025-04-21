@@ -1,0 +1,25 @@
+---
+interface Props {
+  html_url: string;
+  avatar_url: string;
+  login: string;
+}
+const { html_url, avatar_url, login } = Astro.props;
+---
+
+<a
+  href={html_url}
+  target="_blank"
+  class="group w-[150px] rounded-xl bg-dark-secondary px-2 pt-2 pb-1"
+>
+  <li>
+    <div class="w-full rounded-md overflow-hidden aspect-square mb-1">
+      <img
+        src={avatar_url}
+        alt={login}
+        class="w-full group-hover:scale-[1.15] transition duration-150"
+      />
+    </div>
+    <p class="font-semibold text-center">{login}</p>
+  </li>
+</a>

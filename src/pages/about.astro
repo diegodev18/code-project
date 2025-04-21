@@ -8,11 +8,18 @@ import UsedResourcesGallery from "@/components/usedResourcesGallery.astro";
 import UnderlineLink from "@/components/underlineLink.astro";
 import SubtitleAbout from "@/components/subtitleAbout.astro";
 import TextAbout from "@/components/textAbout.astro";
+import { getContributors } from "@/utils/getGithubDocContent";
 import { getCollection } from "astro:content";
+import ContributorItem from "@/components/contributorItem.astro";
 
 const about = await getCollection("about");
 const about_me = about.find((item) => item.slug === "me");
 const about_code_project = about.find((item) => item.slug === "code-project");
+
+const { contributors, error: errorContributors } = await getContributors(
+  "diegodev18",
+  "code-project-docs",
+);
 
 const buttons_me = [
   {
@@ -68,17 +75,15 @@ const buttons_me = [
             <div
               class={`grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2`}
             >
-              {
-                buttons_me.map(({ title, href }) => (
-                  <a
-                    class="flex items-center justify-center bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
-                    target="_blank"
-                    href={href}
-                  >
-                    {title}
-                  </a>
-                ))
-              }
+              {buttons_me.map(({ title, href }) => (
+                <a
+                  class="flex items-center justify-center bg-dark-secondary text-lg md:text-xl font-semibold px-4 py-[6px] text-center rounded-full hover:bg-button-hov transition duration-300 ease-in-out"
+                  target="_blank"
+                  href={href}
+                >
+                  {title}
+                </a>
+              ))}
             </div>
           </SectionContainer>
         </MyArticle>
@@ -92,5 +97,23 @@ const buttons_me = [
         <UsedResourcesGallery />
       </SectionContainer>
     </MyArticle>
+    {
+      !errorContributors && (
+        <MyArticle>
+          <SectionContainer>
+            <SubtitleAbout>Gracias por sus contribuciones!</SubtitleAbout>
+            <ul class="flex gap-x-4 overflow-x-scroll overflow-y-hidden">
+              {contributors.map(({ login, avatar_url, html_url }) => (
+                <ContributorItem
+                  html_url={html_url}
+                  avatar_url={avatar_url}
+                  login={login}
+                />
+              ))}
+            </ul>
+          </SectionContainer>
+        </MyArticle>
+      )
+    }
   </div>
 </Layout>
