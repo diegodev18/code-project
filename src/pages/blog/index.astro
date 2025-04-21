@@ -22,7 +22,11 @@ const posts = await getCollection("blog");
     {
       posts.map(({ slug, data }) => {
         const { title, description, date, author, tags } = data;
-        const newDate = new Date(date);
+        const newDate = date.toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
         return (
           <p class="flex gap-x-2 text-sm opacity-50 pb-1">
             Tags de '{slug}':{" "}
