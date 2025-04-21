@@ -1,5 +1,6 @@
 ---
 import getProgressFromAProject from "@/utils/getProgressFromAProject";
+import CardProgressLine from "./cardProgressLine.astro";
 
 interface Props {
   id: string;
@@ -56,12 +57,6 @@ const { progress, percentaje, lenguage, file } = await getProgressFromAProject(
         <Icon width={width - 15} height={height - 15} />
       </div>
     </div>
-    <div class="relative w-full h-3 bg-white rounded-full mt-2">
-      <div
-        class="absolute bg-[#313131] md:group-hover:bg-[#363636] transition h-full rounded-full"
-        style={`width: ${percentaje}%`}
-      >
-      </div>
-    </div>
+    <CardProgressLine percentage={percentaje} />
   </a>
 </li>
