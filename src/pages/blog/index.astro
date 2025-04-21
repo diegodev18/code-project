@@ -1,4 +1,5 @@
 ---
+import BlogTagsGallery from "@/components/blogTagsGallery.astro";
 import SectionContainer from "@/components/sectionContainer.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
@@ -18,7 +19,7 @@ const posts = await getCollection("blog");
       </span>
     </h1>
   </SectionContainer>
-  <div class="max-w-[650px] mx-auto">
+  <div>
     {
       posts.map(({ slug, data }) => {
         const { title, description, date, author, tags } = data;
@@ -28,26 +29,23 @@ const posts = await getCollection("blog");
           day: "numeric",
         });
         return (
-          <p class="flex gap-x-2 text-sm opacity-50 pb-1">
-            Tags de '{slug}':{" "}
-            <span class="flex gap-x-2">
-              {tags.map((tag) => (
-                <a class="font-medium underline bg-nav hover:bg-black transition px-1 rounded-md" href={`/blog?tag=${tag}`}>{tag}</a>
-              ))}
-            </span>
-          </p>
-          <a class="relative group" href={`/blog/${slug}`}>
-            <article class="bg-dark-secondary hover:bg-zinc-900 rounded-md px-2 pt-1 pb-2 transition">
-              <h2 class="text-3xl font-semibold text-light-primary pb-1">
-                {title}
-              </h2>
-              <p class="flex flex-wrap justify-between text-sm opacity-50">
-                <span>Autor: {author}</span>
-                <span>Fecha: {newDate}</span>
-              </p>
-              <p class="pt-2">{description}</p>
-            </article>
-          </a>
+          <SectionContainer>
+            <div class="max-w-[650px] mx-auto">
+              <BlogTagsGallery slug={slug} tags={tags} />
+              <a class="relative group" href={`/blog/${slug}`}>
+                <article class="bg-dark-secondary hover:bg-zinc-900 rounded-md px-2 pt-1 pb-2 transition">
+                  <h2 class="text-3xl font-semibold text-light-primary pb-1">
+                    {title}
+                  </h2>
+                  <p class="flex flex-wrap justify-between text-sm opacity-50">
+                    <span>Autor: {author}</span>
+                    <span>Fecha: {newDate}</span>
+                  </p>
+                  <p class="pt-2">{description}</p>
+                </article>
+              </a>
+            </div>
+          </SectionContainer>
         );
       })
     }
