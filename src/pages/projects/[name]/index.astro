@@ -29,15 +29,13 @@ const { width, height, component: Icon } = getIcon(Project?.icon);
     <MyArticle
       class="group flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-8 md:flex-row items-center justify-center min-h-[45vh] md:min-h-[50vh]"
     >
-      <div class="max-w-[600px]">
+      <div class="max-w-[800px]">
         <h1
           class="text-3xl sm:text-4xl md:text-[3rem] leading-tight md:leading-[3.2rem] font-bold text-main mt-4"
         >
           {Project?.title}
         </h1>
-        <p
-          class="text-xl sm:text-2xl md:text-[1.8rem] opacity-75 font-medium mt-2 xl:mt-4"
-        >
+        <p class="text-xl md:text-[1.5rem] opacity-75 font-medium mt-2 xl:mt-4">
           {Project?.description}
         </p>
       </div>
