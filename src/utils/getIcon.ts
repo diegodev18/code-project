@@ -3,6 +3,7 @@ import GitIcon from "@/components/icons/brands/gitIcon.astro";
 import LinuxIcon from "@/components/icons/brands/linuxIcon.astro";
 import CircleDashedPlus from "@/components/icons/circleDashedPlus.astro";
 import NotepadIcon from "@/components/icons/brands/notepadIcon.astro";
+import AnalizerIcon from "@/components/icons/brands/analizerIcon.astro";
 
 const icons = {
   git: {
@@ -29,6 +30,11 @@ const icons = {
     width: 90,
     height: 90,
     component: NotepadIcon,
+  },
+  analizer: {
+    width: 90,
+    height: 90,
+    component: AnalizerIcon,
   },
 } as const;
 
