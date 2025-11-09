@@ -1,0 +1,5 @@
+/* Import Modules */
+@import "tailwindcss";
+
+/* Import Style Files */
+@import "./global.css";
