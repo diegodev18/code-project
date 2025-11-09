@@ -1,0 +1,6 @@
+@theme {
+  --default-transition-duration: 0.3s;
+  --default-transition-timing-function: ease-in-out;
+  --default-transition-delay: 0s;
+  --default-transition-property: all;
+}
